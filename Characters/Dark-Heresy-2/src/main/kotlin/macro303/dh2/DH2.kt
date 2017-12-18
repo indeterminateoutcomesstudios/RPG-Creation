@@ -6,8 +6,31 @@ object DH2 {
 	val homeworlds = arrayListOf("Feral World", "Forge World", "Highborn", "Hive World", "Shrine World", "Voidborn")
 	val backgrounds = arrayListOf("Adeptus Administratum", "Adeptus Arbites", "Adeptus Astra Telepathica", "Adeptus Mechanicus", "Adeptus Ministorum", "Imperial Guard", "Outcast")
 	val roles = arrayListOf("Assassin", "Chirurgeon", "Desperado", "Hierophant", "Mystic", "Sage", "Seeker", "Warrior")
+	val builds = mapOf(
+			Pair(homeworlds[0], arrayListOf(
+					arrayListOf("Rangy", "1.90m/65kg", "1.80m/60kg"),
+					arrayListOf("Lean", "1.75m/60kg", "1.65m/55kg"),
+					arrayListOf("Muscular", "1.85m/85kg", "1.70m/70kg"),
+					arrayListOf("Squat", "1.65m/80kg", "1.55m/70kg"),
+					arrayListOf("Strapping", "2.10m/120kg", "2m/100kg")
+			)),
+			Pair(homeworlds[1], arrayListOf(
+					arrayListOf("Minimal", "1.70m/55kg", "1.60m/50kg"),
+					arrayListOf("Low Nominal", "1.75m/65kg", "1.65m/50kg"),
+					arrayListOf("Optimal", "1.80m/75kg", "1.70/70kg"),
+					arrayListOf("High Nominal", "1.85m/85kg", "1.70m/75kg"),
+					arrayListOf("Maximal", "1.90m/100kg", "1.80m/90kg")
+			)),
+			Pair(homeworlds[2], arrayListOf(
+					arrayListOf("Slender", "1.75m/65kg", "1.65m/60kg"),
+					arrayListOf("Svelte", "1.85m/70kg", "1.75m/65kg"),
+					arrayListOf("Fit", "1.75m/70kg", "1.65m/60kg"),
+					arrayListOf("Well-built", "1.90m/90kg", "1.80m/80kg"),
+					arrayListOf("Powerful", "1.80m/100kg", "1.70m/90kg")
+			))
+	)
 
-	fun ClosedRange<Int>.random() = Random().nextInt(endInclusive + 1 - start) + start
+	private fun ClosedRange<Int>.random() = Random().nextInt(endInclusive + 1 - start) + start
 
 	@JvmStatic
 	fun main(args: Array<String>) {
