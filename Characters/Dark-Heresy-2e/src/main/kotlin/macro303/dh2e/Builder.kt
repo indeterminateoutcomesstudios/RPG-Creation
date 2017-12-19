@@ -3,6 +3,7 @@ package macro303.dh2e
 import macro303.dh2e.Background.*
 import macro303.dh2e.Build.*
 import macro303.dh2e.Homeworld.*
+import macro303.dh2e.Colour.*
 import java.util.*
 
 object Builder {
@@ -13,12 +14,13 @@ object Builder {
 	private var build: Build? = null
 	private var ageStatus: AgeStatus? = null
 	private var age: Int? = null
+	private var skin: Colour? = null
 
 	private fun ClosedRange<Int>.randomInt() = Random().nextInt(endInclusive + 1 - start) + start
 	private fun randomBoolean() = Random().nextBoolean()
 
 	fun createCharacter(): Character {
-		return Character(isMale = isMale, homeworld = homeworld, background = background, role = role, build = build, ageStatus = ageStatus, age = age)
+		return Character(isMale = isMale, homeworld = homeworld, background = background, role = role, build = build, ageStatus = ageStatus, age = age, skin = skin)
 	}
 
 	fun rollGender() {
@@ -336,6 +338,27 @@ object Builder {
 		age = (1..10).randomInt() + (ageStatus?.multiplier ?: 0)
 	}
 
+	fun rollSkin(){
+		skin = when(homeworld){
+			`FERAL WORLD` -> {
+				when((1..30).randomInt()){
+					in 1..30 -> DARK
+					in 31..50 -> TAN
+					in 51..70 -> FAIR
+					in 71..90 -> RUDDY
+					in 91..100 -> BRONZE
+					else -> null
+				}
+			}
+			`FORGE WORLD` -> TODO()
+			HIGHBORN -> TODO()
+			`HIVE WORLD` -> TODO()
+			`SHRINE WORLD` -> TODO()
+			VOIDBORN -> TODO()
+			else -> null
+		}
+	}
+
 	fun reset() {
 		isMale = null
 		homeworld = null
@@ -344,5 +367,6 @@ object Builder {
 		build = null
 		ageStatus = null
 		age = null
+		skin = null
 	}
 }

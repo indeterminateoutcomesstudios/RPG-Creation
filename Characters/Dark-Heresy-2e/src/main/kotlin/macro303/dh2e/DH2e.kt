@@ -10,6 +10,7 @@ object DH2e {
 		Builder.rollRole()
 		Builder.rollBuild()
 		Builder.rollAge()
+		Builder.rollSkin()
 		val character = Builder.createCharacter()
 		println("Character: $character")
 	}
