@@ -329,10 +329,10 @@ object Builder {
 			}
 			else -> null
 		}
-		rollAge()
 	}
 
-	fun rollAge(){
+	fun rollAge() {
+		rollAgeStatus()
 		age = (1..10).randomInt() + (ageStatus?.multiplier ?: 0)
 	}
 
