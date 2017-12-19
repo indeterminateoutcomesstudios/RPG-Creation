@@ -1,0 +1,12 @@
+package macro303.dh2e
+
+enum class Role {
+	ASSASSIN,
+	CHIRURGEON,
+	DESPERADO,
+	HIEROPHANT,
+	MYSTIC,
+	SAGE,
+	SEEKER,
+	WARRIOR
+}

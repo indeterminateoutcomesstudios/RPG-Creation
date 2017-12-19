@@ -13,7 +13,7 @@ _TODO Description_
 ## Modules
 
 - ### Characters
-  - #### Dark Heresy 2
+  - #### Dark Heresy 2e
     - [WIP]
   - #### Dungeons and Dragons 5e
     - [WIP]

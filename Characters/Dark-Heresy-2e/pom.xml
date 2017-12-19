@@ -5,11 +5,11 @@
 	<parent>
 		<groupId>nz.co.macro303.rpg</groupId>
 		<artifactId>characters</artifactId>
-		<version>0.0.1</version>
+		<version>0.0.1-7</version>
 	</parent>
 
 	<groupId>nz.co.macro303.rpg.characters</groupId>
-	<artifactId>dark-heresy-2</artifactId>
+	<artifactId>dark-heresy-2e</artifactId>
 	<packaging>jar</packaging>
-	<name>Dark Heresy 2</name>
+	<name>Dark Heresy 2e</name>
 </project>
