@@ -8,10 +8,12 @@ data class Character(
 		val build: Build? = null,
 		val ageStatus: AgeStatus? = null,
 		val age: Int? = null,
-		val skin: Colour? = null
+		val skin: Colour? = null,
+		val hair: Colour? = null,
+		val eyes: Colour? = null
 ) {
 
 	override fun toString(): String {
-		return "Character(isMale=$isMale, homeworld=$homeworld, background=$background, role=$role, build=$build, ageStatus=$ageStatus, age=$age, skin=$skin)"
+		return "Character(isMale=$isMale, homeworld=$homeworld, background=$background, role=$role, build=$build, ageStatus=$ageStatus, age=$age, skin=$skin, hair=$hair, eyes=$eyes)"
 	}
 }

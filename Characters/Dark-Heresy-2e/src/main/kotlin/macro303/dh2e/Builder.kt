@@ -15,12 +15,14 @@ object Builder {
 	private var ageStatus: AgeStatus? = null
 	private var age: Int? = null
 	private var skin: Colour? = null
+	private var hair: Colour? = null
+	private var eyes: Colour? = null
 
 	private fun ClosedRange<Int>.randomInt() = Random().nextInt(endInclusive + 1 - start) + start
 	private fun randomBoolean() = Random().nextBoolean()
 
 	fun createCharacter(): Character {
-		return Character(isMale = isMale, homeworld = homeworld, background = background, role = role, build = build, ageStatus = ageStatus, age = age, skin = skin)
+		return Character(isMale = isMale, homeworld = homeworld, background = background, role = role, build = build, ageStatus = ageStatus, age = age, skin = skin, hair = hair, eyes = eyes)
 	}
 
 	fun rollGender() {
@@ -341,7 +343,7 @@ object Builder {
 	fun rollSkin(){
 		skin = when(homeworld){
 			`FERAL WORLD` -> {
-				when((1..30).randomInt()){
+				when((1..100).randomInt()){
 					in 1..30 -> DARK
 					in 31..50 -> TAN
 					in 51..70 -> FAIR
@@ -350,11 +352,188 @@ object Builder {
 					else -> null
 				}
 			}
-			`FORGE WORLD` -> TODO()
-			HIGHBORN -> TODO()
-			`HIVE WORLD` -> TODO()
-			`SHRINE WORLD` -> TODO()
-			VOIDBORN -> TODO()
+			`FORGE WORLD` -> {
+				when((1..100).randomInt()){
+					in 1..30 -> DARK
+					in 31..50 -> TAN
+					in 51..70 -> FAIR
+					in 71..90 -> RUDDY
+					in 91..100 -> PALE
+					else -> null
+				}
+			}
+			HIGHBORN -> {
+				when((1..100).randomInt()){
+					in 1..30 -> DARK
+					in 31..50 -> TAN
+					in 51..70 -> FAIR
+					in 71..90 -> RUDDY
+					in 91..100 -> `DYED (ANY)`
+					else -> null
+				}
+			}
+			`HIVE WORLD` -> {
+				when((1..100).randomInt()){
+					in 1..30 -> DARK
+					in 31..50 -> TAN
+					in 51..70 -> FAIR
+					in 71..90 -> RUDDY
+					in 91..100 -> `STAINED (ANY)`
+					else -> null
+				}
+			}
+			`SHRINE WORLD` -> {
+				when((1..100).randomInt()){
+					in 1..30 -> DARK
+					in 31..50 -> TAN
+					in 51..70 -> FAIR
+					in 71..90 -> RUDDY
+					in 91..100 -> FRECKLED
+					else -> null
+				}
+			}
+			VOIDBORN -> {
+				when((1..100).randomInt()){
+					in 1..30 -> PORCELAIN
+					in 31..50 -> FAIR
+					in 51..70 -> BLUISH
+					in 71..90 -> GREYISH
+					in 91..100 -> MILKY
+					else -> null
+				}
+			}
+			else -> null
+		}
+	}
+
+	fun rollHair(){
+		hair = when(homeworld){
+			`FERAL WORLD` -> {
+				when((1..100).randomInt()){
+					in 1..30 -> RED
+					in 31..50 -> BLONDE
+					in 51..70 -> BROWN
+					in 71..90 -> BLACK
+					in 91..100 -> GREY
+					else -> null
+				}
+			}
+			`FORGE WORLD` -> {
+				when((1..100).randomInt()){
+					in 1..30 -> RUST
+					in 31..50 -> BLONDE
+					in 51..70 -> BROWN
+					in 71..90 -> BLACK
+					in 91..100 -> NONE
+					else -> null
+				}
+			}
+			HIGHBORN -> {
+				when((1..100).randomInt()){
+					in 1..30 -> `DYED (ANY)`
+					in 31..50 -> BLONDE
+					in 51..70 -> BROWN
+					in 71..90 -> BLACK
+					in 91..100 -> GREY
+					else -> null
+				}
+			}
+			`HIVE WORLD` -> {
+				when((1..100).randomInt()){
+					in 1..30 -> BROWN
+					in 31..50 -> MOUSY
+					in 51..70 -> `DYED (ANY)`
+					in 71..90 -> GREY
+					in 91..100 -> BLACK
+					else -> null
+				}
+			}
+			`SHRINE WORLD` -> {
+				when((1..100).randomInt()){
+					in 1..30 -> NONE
+					in 31..50 -> BLONDE
+					in 51..70 -> BLACK
+					in 71..90 -> BROWN
+					in 91..100 -> RUSSET
+					else -> null
+				}
+			}
+			VOIDBORN -> {
+				when((1..100).randomInt()){
+					in 1..30 -> RED
+					in 31..50 -> BLONDE
+					in 51..70 -> COPPER
+					in 71..90 -> BLACK
+					in 91..100 -> AUBURN
+					else -> null
+				}
+			}
+			else -> null
+		}
+	}
+
+	fun rollEyes(){
+		eyes = when(homeworld){
+			`FERAL WORLD` -> {
+				when((1..100).randomInt()){
+					in 1..30 -> BLUE
+					in 31..50 -> GREY
+					in 51..70 -> BROWN
+					in 71..90 -> GREEN
+					in 91..100 -> YELLOW
+					else -> null
+				}
+			}
+			`FORGE WORLD` -> {
+				when((1..100).randomInt()){
+					in 1..30 -> BROWN
+					in 31..50 -> GREEN
+					in 51..70 -> BLUE
+					in 71..90 -> GREY
+					in 91..100 -> `LENSES (ANY)`
+					else -> null
+				}
+			}
+			HIGHBORN -> {
+				when((1..100).randomInt()){
+					in 1..30 -> BLUE
+					in 31..50 -> GREY
+					in 51..70 -> BROWN
+					in 71..90 -> GREEN
+					in 91..100 -> `LENSES (ANY)`
+					else -> null
+				}
+			}
+			`HIVE WORLD` -> {
+				when((1..100).randomInt()){
+					in 1..30 -> BLUE
+					in 31..50 -> GREY
+					in 51..70 -> BROWN
+					in 71..90 -> GREEN
+					in 91..100 -> `LENSES (ANY)`
+					else -> null
+				}
+			}
+			`SHRINE WORLD` -> {
+				when((1..100).randomInt()){
+					in 1..30 -> AMBER
+					in 31..50 -> BROWN
+					in 51..70 -> GREY
+					in 71..90 -> BLUE
+					in 91..100 -> EMERALD
+					else -> null
+				}
+			}
+			VOIDBORN -> {
+				when((1..100).randomInt()){
+					in 1..30 -> `WATERY BLUE`
+					in 31..50 -> GREY
+					in 51..70 -> BLACK
+					in 71..90 -> GREEN
+					in 91..100 -> VIOLET
+					else -> null
+				}
+			}
 			else -> null
 		}
 	}
@@ -368,5 +547,7 @@ object Builder {
 		ageStatus = null
 		age = null
 		skin = null
+		hair = null
+		eyes = null
 	}
 }

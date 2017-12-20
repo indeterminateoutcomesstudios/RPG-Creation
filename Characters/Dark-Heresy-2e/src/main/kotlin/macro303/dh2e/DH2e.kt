@@ -4,6 +4,10 @@ object DH2e {
 
 	@JvmStatic
 	fun main(args: Array<String>) {
+		generateCharacter()
+	}
+
+	private fun generateCharacter() {
 		Builder.rollGender()
 		Builder.rollHomeworld()
 		Builder.rollBackground()
@@ -11,6 +15,8 @@ object DH2e {
 		Builder.rollBuild()
 		Builder.rollAge()
 		Builder.rollSkin()
+		Builder.rollHair()
+		Builder.rollEyes()
 		val character = Builder.createCharacter()
 		println("Character: $character")
 	}
