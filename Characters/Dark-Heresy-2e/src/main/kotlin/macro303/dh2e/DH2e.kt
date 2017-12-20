@@ -4,7 +4,10 @@ object DH2e {
 
 	@JvmStatic
 	fun main(args: Array<String>) {
-		generateCharacter()
+		(0..0).forEach {
+			generateCharacter()
+			Builder.reset()
+		}
 	}
 
 	private fun generateCharacter() {
@@ -17,6 +20,7 @@ object DH2e {
 		Builder.rollSkin()
 		Builder.rollHair()
 		Builder.rollEyes()
+		Builder.rollQuirks()
 		val character = Builder.createCharacter()
 		println("Character: $character")
 	}

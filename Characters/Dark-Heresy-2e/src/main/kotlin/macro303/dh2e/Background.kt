@@ -1,11 +1,11 @@
 package macro303.dh2e
 
 enum class Background {
-	`ADEPTUS ADMINISTRATUM`,
-	`ADEPTUS ARBITES`,
-	`ADEPTUS ASTRA TELEPATHICA`,
-	`ADEPTUS MECHANICUS`,
-	`ADEPTUS MINISOTRUM`,
-	`IMPERIAL GUARD`,
-	OUTCAST
+	`Adeptus Administratum`,
+	`Adeptus Arbites`,
+	`Adeptus Astra Telepathica`,
+	`Adeptus Mechanicus`,
+	`Adeptus Minisotrum`,
+	`Imperial Guard`,
+	Outcast
 }
