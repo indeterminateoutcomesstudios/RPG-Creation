@@ -21,6 +21,7 @@ object DH2e {
 		Builder.rollHair()
 		Builder.rollEyes()
 		Builder.rollQuirks()
+		Builder.rollSuperstition()
 		val character = Builder.createCharacter()
 		println("Character: $character")
 	}

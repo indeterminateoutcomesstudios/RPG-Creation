@@ -13,7 +13,8 @@ data class Character(
 		val skin: Colour? = null,
 		val hair: Colour? = null,
 		val eyes: Colour? = null,
-		val quirks: Array<Quirk> = emptyArray()
+		val quirks: Array<Quirk> = emptyArray(),
+		val superstition: Superstition? = null
 ) {
 
 	override fun equals(other: Any?): Boolean {
@@ -31,6 +32,7 @@ data class Character(
 		if (hair != other.hair) return false
 		if (eyes != other.eyes) return false
 		if (!Arrays.equals(quirks, other.quirks)) return false
+		if (superstition != other.superstition) return false
 
 		return true
 	}
@@ -47,10 +49,11 @@ data class Character(
 		result = 31 * result + (hair?.hashCode() ?: 0)
 		result = 31 * result + (eyes?.hashCode() ?: 0)
 		result = 31 * result + Arrays.hashCode(quirks)
+		result = 31 * result + (superstition?.hashCode() ?: 0)
 		return result
 	}
 
 	override fun toString(): String {
-		return "Character(isMale=$isMale, homeworld=$homeworld, background=$background, role=$role, build=$build, ageStatus=$ageStatus, age=$age, skin=$skin, hair=$hair, eyes=$eyes, quirks=${Arrays.toString(quirks)})"
+		return "Character(isMale=$isMale, homeworld=$homeworld, background=$background, role=$role, build=$build, ageStatus=$ageStatus, age=$age, skin=$skin, hair=$hair, eyes=$eyes, quirks=${Arrays.toString(quirks)}, superstition=$superstition)"
 	}
 }

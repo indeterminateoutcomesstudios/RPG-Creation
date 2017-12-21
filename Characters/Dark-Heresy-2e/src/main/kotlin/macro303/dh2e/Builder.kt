@@ -5,6 +5,7 @@ import macro303.dh2e.Build.*
 import macro303.dh2e.Colour.*
 import macro303.dh2e.Homeworld.*
 import macro303.dh2e.Quirk.*
+import macro303.dh2e.Superstition.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -20,12 +21,13 @@ object Builder {
 	private var hair: Colour? = null
 	private var eyes: Colour? = null
 	private var quirks: Array<Quirk> = emptyArray()
+	private var superstition: Superstition? = null
 
 	private fun ClosedRange<Int>.randomInt() = Random().nextInt(endInclusive + 1 - start) + start
 	private fun randomBoolean() = Random().nextBoolean()
 
 	fun createCharacter(): Character {
-		return Character(isMale = isMale, homeworld = homeworld, background = background, role = role, build = build, ageStatus = ageStatus, age = age, skin = skin, hair = hair, eyes = eyes, quirks = quirks)
+		return Character(isMale = isMale, homeworld = homeworld, background = background, role = role, build = build, ageStatus = ageStatus, age = age, skin = skin, hair = hair, eyes = eyes, quirks = quirks, superstition = superstition)
 	}
 
 	fun rollGender() {
@@ -695,6 +697,102 @@ object Builder {
 		}
 	}
 
+	fun rollSuperstition() {
+		superstition = when (homeworld) {
+			`Feral World` -> {
+				when ((0..100).randomInt()) {
+					in 1..10 -> `Ward of Soil`
+					in 11..20 -> `Unlucky Colour`
+					in 21..30 -> `Hunter's Oath`
+					in 31..40 -> `Thirsty Blade`
+					in 41..50 -> `Spirit Shackle`
+					in 51..60 -> `A Good Death`
+					in 61..70 -> `Power of Names`
+					in 71..80 -> `Lonely Dead`
+					in 81..90 -> `Living Record`
+					in 91..100 -> `Sacred Ground`
+					else -> throw Exception("Impossible")
+				}
+			}
+			`Forge World` -> {
+				when ((0..100).randomInt()) {
+					in 1..10 -> `Native Metal`
+					in 11..20 -> `Waste Not`
+					in 21..30 -> `Binary Perfection`
+					in 31..40 -> `Castigate the Flesh`
+					in 41..50 -> `Purifying Heat`
+					in 51..60 -> `Placate the Machine-Spirit`
+					in 61..70 -> `Never to Dust`
+					in 71..80 -> `Tapping for Blessing`
+					in 81..90 -> `Honour the Metal`
+					in 91..100 -> `Abhor the Natural`
+					else -> throw Exception("Impossible")
+				}
+			}
+			Highborn -> {
+				when ((0..100).randomInt()) {
+					in 1..10 -> `Count the Blessings`
+					in 11..20 -> `Each Land a Conquest`
+					in 21..30 -> `Layers of Protection`
+					in 31..40 -> `Arms Length`
+					in 41..50 -> `Nothing Left Behind`
+					in 51..60 -> `Speak Strongly`
+					in 61..70 -> `Comport in Style`
+					in 71..80 -> `Beware the Poisoner`
+					in 81..90 -> `Trappings of Power`
+					in 91..100 -> `Disguise Strength`
+					else -> throw Exception("Impossible")
+				}
+			}
+			`Hive World` -> {
+				when ((0..100).randomInt()) {
+					in 1..10 -> `Touch the Sky`
+					in 11..20 -> `Blight in Darkness`
+					in 21..30 -> `Combat Strength`
+					in 31..40 -> `Comfortable Numbers`
+					in 41..50 -> `Distrust the Strange`
+					in 51..60 -> `Strengthen the Hive`
+					in 61..70 -> `Fear the Silence`
+					in 71..80 -> `Keep Nature at Bay`
+					in 81..90 -> `Hive and Skin`
+					in 91..100 -> `Solitude is Golden`
+					else -> throw Exception("Impossible")
+				}
+			}
+			`Shrine World` -> {
+				when ((0..100).randomInt()) {
+					in 1..10 -> `Honour the Skulls`
+					in 11..20 -> `Endless Repose`
+					in 21..30 -> `Suffer the Pilgrims`
+					in 31..40 -> `Never Disturb the Dead`
+					in 41..50 -> `Cloud Revelations`
+					in 51..60 -> `Challenge the Sun`
+					in 61..70 -> `Stone Abides`
+					in 71..80 -> `Death in the Odds`
+					in 81..90 -> `Drink to the Dead`
+					in 91..100 -> `Aquila Blessing`
+					else -> throw Exception("Impossible")
+				}
+			}
+			Voidborn -> {
+				when ((0..100).randomInt()) {
+					in 1..10 -> `Nailed Hulls`
+					in 11..20 -> `Haunted Decks`
+					in 21..30 -> `Welcoming Hatches`
+					in 31..40 -> `Unlucky Eclipses`
+					in 41..50 -> `Feared Octet`
+					in 51..60 -> `Third Ship Omen`
+					in 61..70 -> `Rumbling Plasma`
+					in 71..80 -> `Lucky Rub`
+					in 81..90 -> `Knocking Shells`
+					in 91..100 -> `Ebon Offerings`
+					else -> throw Exception("Impossible")
+				}
+			}
+			else -> throw Exception("Impossible")
+		}
+	}
+
 	fun reset() {
 		isMale = null
 		homeworld = null
@@ -706,5 +804,6 @@ object Builder {
 		skin = null
 		hair = null
 		eyes = null
+		quirks = emptyArray()
 	}
 }
