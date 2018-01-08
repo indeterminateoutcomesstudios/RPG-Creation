@@ -373,7 +373,7 @@ object Builder {
 					in 31..50 -> Tan
 					in 51..70 -> Fair
 					in 71..90 -> Ruddy
-					in 91..100 -> `Dyed (Any)`
+					in 91..100 -> `Dyed (Any Colour)`
 					else -> throw Exception("Impossible")
 				}
 			}
@@ -383,7 +383,7 @@ object Builder {
 					in 31..50 -> Tan
 					in 51..70 -> Fair
 					in 71..90 -> Ruddy
-					in 91..100 -> `Stained (Any)`
+					in 91..100 -> `Stained (Any Colour)`
 					else -> throw Exception("Impossible")
 				}
 			}
@@ -435,7 +435,7 @@ object Builder {
 			}
 			Highborn -> {
 				when ((1..100).randomInt()) {
-					in 1..30 -> `Dyed (Any)`
+					in 1..30 -> `Dyed (Any Colour)`
 					in 31..50 -> Blonde
 					in 51..70 -> Brown
 					in 71..90 -> Black
@@ -447,7 +447,7 @@ object Builder {
 				when ((1..100).randomInt()) {
 					in 1..30 -> Brown
 					in 31..50 -> Mousy
-					in 51..70 -> `Dyed (Any)`
+					in 51..70 -> `Dyed (Any Colour)`
 					in 71..90 -> Grey
 					in 91..100 -> Black
 					else -> throw Exception("Impossible")
@@ -495,7 +495,7 @@ object Builder {
 					in 31..50 -> Green
 					in 51..70 -> Blue
 					in 71..90 -> Grey
-					in 91..100 -> `Lenses (Any)`
+					in 91..100 -> `Lenses (Any Colour)`
 					else -> throw Exception("Impossible")
 				}
 			}
@@ -505,7 +505,7 @@ object Builder {
 					in 31..50 -> Grey
 					in 51..70 -> Brown
 					in 71..90 -> Green
-					in 91..100 -> `Lenses (Any)`
+					in 91..100 -> `Lenses (Any Colour)`
 					else -> throw Exception("Impossible")
 				}
 			}
@@ -515,7 +515,7 @@ object Builder {
 					in 31..50 -> Grey
 					in 51..70 -> Brown
 					in 71..90 -> Green
-					in 91..100 -> `Lenses (Any)`
+					in 91..100 -> `Lenses (Any Colour)`
 					else -> throw Exception("Impossible")
 				}
 			}
@@ -805,5 +805,6 @@ object Builder {
 		hair = null
 		eyes = null
 		quirks = emptyArray()
+		superstition = null
 	}
 }

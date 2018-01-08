@@ -17,6 +17,35 @@ data class Character(
 		val superstition: Superstition? = null
 ) {
 
+	fun display() {
+		if (isMale != null)
+			println("You are: ${if (isMale) "Male" else "Female"}")
+		if (homeworld != null) {
+			if (homeworld != Homeworld.Highborn && homeworld != Homeworld.Voidborn)
+				println("Your homeworld is known as a: $homeworld")
+			else
+				println("Due to your homeworld you are known as a: $homeworld")
+		}
+		if (background != null)
+			println("Your background/skill is in being a: $background")
+		if (role != null)
+			println("Your role in society is: $role")
+		if (build != null && isMale != null)
+			println("Compared to others from your homeworld your build is: $build, with a rough height of ${if (isMale) build.heightM else build.heightF} and a rough weight of ${if (isMale) build.weightM else build.weightF}")
+		if (ageStatus != null && age != null)
+			println("Compared to others from your homeworld your age classes you as: $ageStatus, you are aged: $age")
+		if (skin != null)
+			println("Your skin colour is: $skin")
+		if (hair != null)
+			println("Your hair colour is: $hair")
+		if (eyes != null)
+			println("Your eye colour is: $eyes")
+		if (quirks.isNotEmpty())
+			println("The little quirks that make you different from everyone else are: ${Arrays.toString(quirks)}")
+		if (superstition != null)
+			println("You believe: $superstition\n\tMeaning: ${superstition.description}")
+	}
+
 	override fun equals(other: Any?): Boolean {
 		if (this === other) return true
 		if (other !is Character) return false
