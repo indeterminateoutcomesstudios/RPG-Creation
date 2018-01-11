@@ -1,21 +1,21 @@
 package macro303.dh2e
 
-enum class AgeStatus(val multiplier: Int) {
-	Warrior(multiplier = 15),
-	`Old One`(multiplier = 25),
-	Young(multiplier = 15),
-	Mature_F(multiplier = 25),
-	Venerated(multiplier = 45),
-	Scion(multiplier = 20),
-	Prime(multiplier = 30),
-	Authority(multiplier = 40),
-	Nipper(multiplier = 15),
-	Adult(multiplier = 25),
-	`Old Timer`(multiplier = 35),
-	Novate(multiplier = 20),
-	Vital(multiplier = 25),
-	Elder(multiplier = 50),
-	Youth(multiplier = 15),
-	Mature_V(multiplier = 20),
-	Methuselah(multiplier = 50)
+enum class AgeStatus(val value: String, val multiplier: Int) {
+	WARRIOR(value = "Warrior", multiplier = 15),
+	OLD_ONE(value = "Old One", multiplier = 25),
+	YOUNG(value = "Young", multiplier = 15),
+	MATURE_F(value = "Mature", multiplier = 25),
+	VENERATED(value = "Venerated", multiplier = 45),
+	SCION(value = "Scion", multiplier = 20),
+	PRIME(value = "Prime", multiplier = 30),
+	AUTHORITY(value = "Authority", multiplier = 40),
+	NIPPER(value = "Nipper", multiplier = 15),
+	ADULT(value = "Adult", multiplier = 25),
+	OLD_TIMER(value = "Old Timer", multiplier = 35),
+	NOVATE(value = "Novate", multiplier = 20),
+	VITAL(value = "Vital", multiplier = 25),
+	ELDER(value = "Elder", multiplier = 50),
+	YOUTH(value = "Youth", multiplier = 15),
+	MATURE_V(value = "Mature", multiplier = 20),
+	METHUSELAH(value = "Methuselah", multiplier = 50)
 }

@@ -4,29 +4,14 @@ object DH2e {
 
 	@JvmStatic
 	fun main(args: Array<String>) {
-		val total = 0
-		(0..total).forEach {
-			val character = generateCharacter()
-			if (total < 3)
+		val total = 3
+		(0 until total).forEach {
+			val character = Builder.buildCharacter()
+			if (total <= 3) {
 				character.display()
-			else
+				println("=".repeat(50))
+			} else
 				println("Character: $character")
-			Builder.reset()
 		}
-	}
-
-	private fun generateCharacter(): Character {
-		Builder.rollGender()
-		Builder.rollHomeworld()
-		Builder.rollBackground()
-		Builder.rollRole()
-		Builder.rollBuild()
-		Builder.rollAge()
-		Builder.rollSkin()
-		Builder.rollHair()
-		Builder.rollEyes()
-		Builder.rollQuirks()
-		Builder.rollSuperstition()
-		return Builder.createCharacter()
 	}
 }
