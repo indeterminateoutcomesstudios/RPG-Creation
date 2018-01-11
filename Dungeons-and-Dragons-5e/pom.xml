@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>nz.co.macro303</groupId>
+		<artifactId>rpg-creation</artifactId>
+		<version>0.0.5</version>
+	</parent>
+
+	<groupId>nz.co.macro303.rpg-creation</groupId>
+	<artifactId>dungeons-and-dragons-5e</artifactId>
+	<packaging>pom</packaging>
+	<name>Dungeons and Dragons 5e</name>
+	
+	<modules>
+		<module>characters</module>
+	</modules>
+</project>

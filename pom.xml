@@ -3,13 +3,14 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>nz.co.macro303</groupId>
-	<artifactId>rpg</artifactId>
+	<artifactId>rpg-creation</artifactId>
 	<version>0.0.5</version>
 	<packaging>pom</packaging>
 	<name>RPG Creation</name>
 	
 	<modules>
-		<module>characters</module>
+		<module>dark-heresy-2e</module>
+		<module>dungeons-and-dragons-5e</module>
 	</modules>
 
 	<properties>
