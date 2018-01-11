@@ -1,4 +1,4 @@
-# RPG Creation _0.0.4_
+# RPG Creation _0.0.5_
 
 _TODO Description_  
 
@@ -8,7 +8,7 @@ _TODO Description_
 - [kotlin-stdlib-jre8: 1.2.10](https://kotlinlang.org/)
 - [junit: RELEASE {4.12} (test)](http://junit.org/junit4/)
 - [kotlin-test-junit: 1.2.10 (test)](https://kotlinlang.org/)  
-- [mockito-core: RELEASE {2.12.0} (test)](https://github.com/mockito/mockito)
+- [mockito-core: RELEASE {2.13.0} (test)](https://github.com/mockito/mockito)
 
 ## Modules
 
