@@ -6,8 +6,9 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 object Builder {
-	private fun ClosedRange<Int>.randomInt() = Random().nextInt(endInclusive + 1 - start) + start
 	private fun randomBoolean() = Random().nextBoolean()
+	private fun randomSelection(items: Array<*>) = items[Random().nextInt(items.size)]
+	private fun Int.rollDice() = Random().nextInt(this) + 1
 
 	fun buildCharacter(
 			isMale: Boolean = rollGender(),
@@ -49,511 +50,73 @@ object Builder {
 	}
 
 	private fun rollHomeworld(): Homeworld {
-		val it = (1..100).randomInt()
-		return when (it) {
-			in 1..15 -> FERAL_WORLD
-			in 16..33 -> FORGE_WORLD
-			in 34..44 -> HIGHBORN
-			in 45..69 -> HIVE_WORLD
-			in 70..85 -> SHRINE_WORLD
-			in 86..100 -> VOIDBORN
-			else -> throw Exception("Impossible Roll: $it")
-		}
+		return randomSelection(Homeworld.values()) as Homeworld
 	}
 
 	private fun rollBackground(homeworld: Homeworld): Background {
-		val it = (1..100).randomInt()
-		return when (homeworld) {
-			FERAL_WORLD -> {
-				when (it) {
-					in 1..10 -> ADEPTUS_ADMINISTRATUM
-					in 11..25 -> ADEPTUS_ARBITES
-					in 26..40 -> ADEPTUS_ASTRA_TELEPATHICA
-					in 41..50 -> ADEPTUS_MECHANICUS
-					in 51..60 -> ADEPTUS_MINISOTRUM
-					in 61..80 -> IMPERIAL_GUARD
-					in 81..100 -> OUTCAST
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			FORGE_WORLD -> {
-				when (it) {
-					in 1..20 -> ADEPTUS_ADMINISTRATUM
-					in 21..35 -> ADEPTUS_ARBITES
-					in 36..45 -> ADEPTUS_ASTRA_TELEPATHICA
-					in 46..65 -> ADEPTUS_MECHANICUS
-					in 66..75 -> ADEPTUS_MINISOTRUM
-					in 76..90 -> IMPERIAL_GUARD
-					in 91..100 -> OUTCAST
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			HIGHBORN -> {
-				when (it) {
-					in 1..20 -> ADEPTUS_ADMINISTRATUM
-					in 21..40 -> ADEPTUS_ARBITES
-					in 41..55 -> ADEPTUS_ASTRA_TELEPATHICA
-					in 56..65 -> ADEPTUS_MECHANICUS
-					in 66..80 -> ADEPTUS_MINISOTRUM
-					in 81..90 -> IMPERIAL_GUARD
-					in 91..100 -> OUTCAST
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			HIVE_WORLD -> {
-				when (it) {
-					in 1..10 -> ADEPTUS_ADMINISTRATUM
-					in 11..30 -> ADEPTUS_ARBITES
-					in 31..40 -> ADEPTUS_ASTRA_TELEPATHICA
-					in 41..55 -> ADEPTUS_MECHANICUS
-					in 56..65 -> ADEPTUS_MINISOTRUM
-					in 66..80 -> IMPERIAL_GUARD
-					in 81..100 -> OUTCAST
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			SHRINE_WORLD -> {
-				when (it) {
-					in 1..15 -> ADEPTUS_ADMINISTRATUM
-					in 16..30 -> ADEPTUS_ARBITES
-					in 31..40 -> ADEPTUS_ASTRA_TELEPATHICA
-					in 41..50 -> ADEPTUS_MECHANICUS
-					in 51..70 -> ADEPTUS_MINISOTRUM
-					in 71..90 -> IMPERIAL_GUARD
-					in 91..100 -> OUTCAST
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			VOIDBORN -> {
-				when (it) {
-					in 1..10 -> ADEPTUS_ADMINISTRATUM
-					in 11..20 -> ADEPTUS_ARBITES
-					in 21..40 -> ADEPTUS_ASTRA_TELEPATHICA
-					in 41..60 -> ADEPTUS_MECHANICUS
-					in 61..75 -> ADEPTUS_MINISOTRUM
-					in 76..85 -> IMPERIAL_GUARD
-					in 86..100 -> OUTCAST
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-		}
+		return randomSelection(homeworld.validBackgrounds) as Background
 	}
 
 	private fun rollRole(background: Background): Role {
-		val it = (1..100).randomInt()
-		return when (background) {
-			ADEPTUS_ADMINISTRATUM -> {
-				when (it) {
-					in 1..10 -> Role.ASSASSIN
-					in 11..25 -> Role.CHIRUGEON
-					in 26..35 -> Role.DESPERADO
-					in 36..50 -> Role.HIEROPHANT
-					in 51..60 -> Role.MYSTIC
-					in 61..75 -> Role.SAGE
-					in 76..90 -> Role.SEEKER
-					in 91..100 -> Role.WARRIOR
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			ADEPTUS_ARBITES -> {
-				when (it) {
-					in 1..15 -> Role.ASSASSIN
-					in 16..25 -> Role.CHIRUGEON
-					in 26..40 -> Role.DESPERADO
-					in 41..50 -> Role.HIEROPHANT
-					in 51..60 -> Role.MYSTIC
-					in 61..70 -> Role.SAGE
-					in 71..85 -> Role.SEEKER
-					in 86..100 -> Role.WARRIOR
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			ADEPTUS_ASTRA_TELEPATHICA -> {
-				when (it) {
-					in 1..10 -> Role.ASSASSIN
-					in 11..25 -> Role.CHIRUGEON
-					in 26..35 -> Role.DESPERADO
-					in 36..45 -> Role.HIEROPHANT
-					in 46..60 -> Role.MYSTIC
-					in 61..75 -> Role.SAGE
-					in 76..90 -> Role.SEEKER
-					in 91..100 -> Role.WARRIOR
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			ADEPTUS_MECHANICUS -> {
-				when (it) {
-					in 1..10 -> Role.ASSASSIN
-					in 11..25 -> Role.CHIRUGEON
-					in 26..35 -> Role.DESPERADO
-					in 36..50 -> Role.HIEROPHANT
-					in 51..60 -> Role.MYSTIC
-					in 61..75 -> Role.SAGE
-					in 76..90 -> Role.SEEKER
-					in 91..100 -> Role.WARRIOR
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			ADEPTUS_MINISOTRUM -> {
-				when (it) {
-					in 1..10 -> Role.ASSASSIN
-					in 11..25 -> Role.CHIRUGEON
-					in 26..35 -> Role.DESPERADO
-					in 36..50 -> Role.HIEROPHANT
-					in 51..60 -> Role.MYSTIC
-					in 61..70 -> Role.SAGE
-					in 71..85 -> Role.SEEKER
-					in 86..100 -> Role.WARRIOR
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			IMPERIAL_GUARD -> {
-				when (it) {
-					in 1..15 -> Role.ASSASSIN
-					in 16..25 -> Role.CHIRUGEON
-					in 26..40 -> Role.DESPERADO
-					in 41..55 -> Role.HIEROPHANT
-					in 56..65 -> Role.MYSTIC
-					in 66..75 -> Role.SAGE
-					in 76..85 -> Role.SEEKER
-					in 86..100 -> Role.WARRIOR
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			OUTCAST -> {
-				when (it) {
-					in 1..15 -> Role.ASSASSIN
-					in 16..25 -> Role.CHIRUGEON
-					in 26..45 -> Role.DESPERADO
-					in 46..55 -> Role.HIEROPHANT
-					in 56..65 -> Role.MYSTIC
-					in 66..75 -> Role.SAGE
-					in 76..90 -> Role.SEEKER
-					in 91..100 -> Role.WARRIOR
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-		}
+		return randomSelection(background.validRoles) as Role
 	}
 
 	private fun rollBuild(homeworld: Homeworld): Build {
-		val it = (1..100).randomInt()
 		return when (homeworld) {
-			FERAL_WORLD -> {
-				when (it) {
-					in 1..20 -> Build.RANGY
-					in 21..50 -> Build.LEAN
-					in 51..80 -> Build.MUSCULAR
-					in 81..90 -> Build.SQUAT
-					in 91..100 -> Build.STRAPPING
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			FORGE_WORLD -> {
-				when (it) {
-					in 1..20 -> Build.MINIMAL
-					in 21..50 -> Build.LOW_NOMINAL
-					in 51..80 -> Build.OPTIMAL
-					in 81..90 -> Build.HIGH_NOMINAL
-					in 91..100 -> Build.MAXIMAL
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			HIGHBORN -> {
-				when (it) {
-					in 1..20 -> Build.SLENDER
-					in 21..50 -> Build.SVELTE
-					in 51..80 -> Build.FIT
-					in 81..90 -> Build.WELL_BUILT
-					in 91..100 -> Build.POWERFUL
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			HIVE_WORLD -> {
-				when (it) {
-					in 1..20 -> Build.RUNT
-					in 21..50 -> Build.SCRAWNY
-					in 51..80 -> Build.WIRY
-					in 81..90 -> Build.LANKY
-					in 91..100 -> Build.BRAWNY
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			SHRINE_WORLD -> {
-				when (it) {
-					in 1..20 -> Build.DIMINISHED
-					in 21..50 -> Build.LESSENED
-					in 51..80 -> Build.FAITHFUL
-					in 81..90 -> Build.COMMENDED
-					in 91..100 -> Build.ABUNDANT
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			VOIDBORN -> {
-				when (it) {
-					in 1..20 -> Build.SKELETAL
-					in 21..50 -> Build.STUNTED
-					in 51..80 -> Build.GAUNT
-					in 81..90 -> Build.GANGLING
-					in 91..100 -> Build.SPINDLY
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
+			FERAL_WORLD -> randomSelection(Build.FeralWorldBuild.values()) as Build
+			FORGE_WORLD -> randomSelection(Build.ForgeWorldBuild.values()) as Build
+			HIGHBORN -> randomSelection(Build.HighbornBuild.values()) as Build
+			HIVE_WORLD -> randomSelection(Build.HiveWorldBuild.values()) as Build
+			SHRINE_WORLD -> randomSelection(Build.ShrineWorldBuild.values()) as Build
+			VOIDBORN -> randomSelection(Build.VoidbornBuild.values()) as Build
 		}
 	}
 
 	private fun rollAgeStatus(homeworld: Homeworld): AgeStatus {
-		val it = (1..100).randomInt()
 		return when (homeworld) {
-			FERAL_WORLD -> {
-				when (it) {
-					in 1..70 -> AgeStatus.WARRIOR
-					in 71..100 -> AgeStatus.OLD_ONE
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			FORGE_WORLD -> {
-				when (it) {
-					in 1..20 -> AgeStatus.YOUNG
-					in 21..80 -> AgeStatus.MATURE_F
-					in 81..100 -> AgeStatus.VENERATED
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			HIGHBORN -> {
-				when (it) {
-					in 1..50 -> AgeStatus.SCION
-					in 51..80 -> AgeStatus.PRIME
-					in 81..100 -> AgeStatus.AUTHORITY
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			HIVE_WORLD -> {
-				when (it) {
-					in 1..30 -> AgeStatus.NIPPER
-					in 31..90 -> AgeStatus.ADULT
-					in 91..100 -> AgeStatus.OLD_TIMER
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			SHRINE_WORLD -> {
-				when (it) {
-					in 1..20 -> AgeStatus.NOVATE
-					in 21..80 -> AgeStatus.VITAL
-					in 81..100 -> AgeStatus.ELDER
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			VOIDBORN -> {
-				when (it) {
-					in 1..40 -> AgeStatus.YOUTH
-					in 41..70 -> AgeStatus.MATURE_V
-					in 71..100 -> AgeStatus.METHUSELAH
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
+			FERAL_WORLD -> randomSelection(arrayOf(AgeStatus.WARRIOR, AgeStatus.OLD_ONE)) as AgeStatus
+			FORGE_WORLD -> randomSelection(arrayOf(AgeStatus.YOUNG, AgeStatus.MATURE_F, AgeStatus.VENERATED)) as AgeStatus
+			HIGHBORN -> randomSelection(arrayOf(AgeStatus.SCION, AgeStatus.PRIME, AgeStatus.AUTHORITY)) as AgeStatus
+			HIVE_WORLD -> randomSelection(arrayOf(AgeStatus.NIPPER, AgeStatus.ADULT, AgeStatus.OLD_TIMER)) as AgeStatus
+			SHRINE_WORLD -> randomSelection(arrayOf(AgeStatus.NOVATE, AgeStatus.VITAL, AgeStatus.ELDER)) as AgeStatus
+			VOIDBORN -> randomSelection(arrayOf(AgeStatus.YOUTH, AgeStatus.MATURE_V, AgeStatus.METHUSELAH)) as AgeStatus
 		}
 	}
 
 	private fun rollAge(ageStatus: AgeStatus): Int {
-		return (1..10).randomInt() + (ageStatus.multiplier)
+		return 10.rollDice() + (ageStatus.multiplier)
 	}
 
 	private fun rollSkinColour(homeworld: Homeworld): SkinColour {
-		val it = (1..100).randomInt()
 		return when (homeworld) {
-			FERAL_WORLD -> {
-				when (it) {
-					in 1..30 -> SkinColour.DARK
-					in 31..50 -> SkinColour.TAN
-					in 51..70 -> SkinColour.FAIR
-					in 71..90 -> SkinColour.RUDDY
-					in 91..100 -> SkinColour.BRONZE
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			FORGE_WORLD -> {
-				when (it) {
-					in 1..30 -> SkinColour.DARK
-					in 31..50 -> SkinColour.TAN
-					in 51..70 -> SkinColour.FAIR
-					in 71..90 -> SkinColour.RUDDY
-					in 91..100 -> SkinColour.PALE
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			HIGHBORN -> {
-				when (it) {
-					in 1..30 -> SkinColour.DARK
-					in 31..50 -> SkinColour.TAN
-					in 51..70 -> SkinColour.FAIR
-					in 71..90 -> SkinColour.RUDDY
-					in 91..100 -> SkinColour.DYED
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			HIVE_WORLD -> {
-				when (it) {
-					in 1..30 -> SkinColour.DARK
-					in 31..50 -> SkinColour.TAN
-					in 51..70 -> SkinColour.FAIR
-					in 71..90 -> SkinColour.RUDDY
-					in 91..100 -> SkinColour.STAINED
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			SHRINE_WORLD -> {
-				when (it) {
-					in 1..30 -> SkinColour.DARK
-					in 31..50 -> SkinColour.TAN
-					in 51..70 -> SkinColour.FAIR
-					in 71..90 -> SkinColour.RUDDY
-					in 91..100 -> SkinColour.FRECKLED
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			VOIDBORN -> {
-				when (it) {
-					in 1..30 -> SkinColour.PORCELAIN
-					in 31..50 -> SkinColour.FAIR
-					in 51..70 -> SkinColour.BLUISH
-					in 71..90 -> SkinColour.GREYISH
-					in 91..100 -> SkinColour.MILKY
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
+			FERAL_WORLD -> randomSelection(arrayOf(SkinColour.DARK, SkinColour.TAN, SkinColour.FAIR, SkinColour.RUDDY, SkinColour.BRONZE)) as SkinColour
+			FORGE_WORLD -> randomSelection(arrayOf(SkinColour.DARK, SkinColour.TAN, SkinColour.FAIR, SkinColour.RUDDY, SkinColour.PALE)) as SkinColour
+			HIGHBORN -> randomSelection(arrayOf(SkinColour.DARK, SkinColour.TAN, SkinColour.FAIR, SkinColour.RUDDY, SkinColour.DYED)) as SkinColour
+			HIVE_WORLD -> randomSelection(arrayOf(SkinColour.DARK, SkinColour.TAN, SkinColour.FAIR, SkinColour.RUDDY, SkinColour.STAINED)) as SkinColour
+			SHRINE_WORLD -> randomSelection(arrayOf(SkinColour.DARK, SkinColour.TAN, SkinColour.FAIR, SkinColour.RUDDY, SkinColour.FRECKLED)) as SkinColour
+			VOIDBORN -> randomSelection(arrayOf(SkinColour.PORCELAIN, SkinColour.BLUISH, SkinColour.FAIR, SkinColour.GREYISH, SkinColour.MILKY)) as SkinColour
 		}
 	}
 
 	private fun rollHairColour(homeworld: Homeworld): HairColour {
-		val it = (1..100).randomInt()
 		return when (homeworld) {
-			FERAL_WORLD -> {
-				when (it) {
-					in 1..30 -> HairColour.RED
-					in 31..50 -> HairColour.BLONDE
-					in 51..70 -> HairColour.BROWN
-					in 71..90 -> HairColour.BLACK
-					in 91..100 -> HairColour.GREY
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			FORGE_WORLD -> {
-				when (it) {
-					in 1..30 -> HairColour.RUST
-					in 31..50 -> HairColour.BLONDE
-					in 51..70 -> HairColour.BROWN
-					in 71..90 -> HairColour.BLACK
-					in 91..100 -> HairColour.NONE
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			HIGHBORN -> {
-				when (it) {
-					in 1..30 -> HairColour.DYED
-					in 31..50 -> HairColour.BLONDE
-					in 51..70 -> HairColour.BROWN
-					in 71..90 -> HairColour.BLACK
-					in 91..100 -> HairColour.GREY
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			HIVE_WORLD -> {
-				when (it) {
-					in 1..30 -> HairColour.BROWN
-					in 31..50 -> HairColour.MOUSY
-					in 51..70 -> HairColour.DYED
-					in 71..90 -> HairColour.GREY
-					in 91..100 -> HairColour.BLACK
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			SHRINE_WORLD -> {
-				when (it) {
-					in 1..30 -> HairColour.NONE
-					in 31..50 -> HairColour.BLONDE
-					in 51..70 -> HairColour.BLACK
-					in 71..90 -> HairColour.BROWN
-					in 91..100 -> HairColour.RUSSET
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			VOIDBORN -> {
-				when (it) {
-					in 1..30 -> HairColour.RED
-					in 31..50 -> HairColour.BLONDE
-					in 51..70 -> HairColour.COPPER
-					in 71..90 -> HairColour.BLACK
-					in 91..100 -> HairColour.AUBURN
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
+			FERAL_WORLD -> randomSelection(arrayOf(HairColour.RED, HairColour.BLONDE, HairColour.BROWN, HairColour.BLACK, HairColour.GREY)) as HairColour
+			FORGE_WORLD -> randomSelection(arrayOf(HairColour.RUST, HairColour.BLONDE, HairColour.BROWN, HairColour.BLACK, HairColour.NONE)) as HairColour
+			HIGHBORN -> randomSelection(arrayOf(HairColour.DYED, HairColour.BLONDE, HairColour.BROWN, HairColour.BLACK, HairColour.GREY)) as HairColour
+			HIVE_WORLD -> randomSelection(arrayOf(HairColour.DYED, HairColour.MOUSY, HairColour.BROWN, HairColour.BLACK, HairColour.GREY)) as HairColour
+			SHRINE_WORLD -> randomSelection(arrayOf(HairColour.RUSSET, HairColour.BLONDE, HairColour.BROWN, HairColour.BLACK, HairColour.NONE)) as HairColour
+			VOIDBORN -> randomSelection(arrayOf(HairColour.RED, HairColour.BLONDE, HairColour.COPPER, HairColour.BLACK, HairColour.AUBURN)) as HairColour
 		}
 	}
 
 	private fun rollEyeColour(homeworld: Homeworld): EyeColour {
-		val it = (1..100).randomInt()
 		return when (homeworld) {
-			FERAL_WORLD -> {
-				when (it) {
-					in 1..30 -> EyeColour.BLUE
-					in 31..50 -> EyeColour.GREY
-					in 51..70 -> EyeColour.BROWN
-					in 71..90 -> EyeColour.GREEN
-					in 91..100 -> EyeColour.YELLOW
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			FORGE_WORLD -> {
-				when (it) {
-					in 1..30 -> EyeColour.BROWN
-					in 31..50 -> EyeColour.GREEN
-					in 51..70 -> EyeColour.BLUE
-					in 71..90 -> EyeColour.GREY
-					in 91..100 -> EyeColour.LENSES
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			HIGHBORN -> {
-				when (it) {
-					in 1..30 -> EyeColour.BLUE
-					in 31..50 -> EyeColour.GREY
-					in 51..70 -> EyeColour.BROWN
-					in 71..90 -> EyeColour.GREEN
-					in 91..100 -> EyeColour.LENSES
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			HIVE_WORLD -> {
-				when (it) {
-					in 1..30 -> EyeColour.BLUE
-					in 31..50 -> EyeColour.GREY
-					in 51..70 -> EyeColour.BROWN
-					in 71..90 -> EyeColour.GREEN
-					in 91..100 -> EyeColour.LENSES
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			SHRINE_WORLD -> {
-				when (it) {
-					in 1..30 -> EyeColour.AMBER
-					in 31..50 -> EyeColour.BROWN
-					in 51..70 -> EyeColour.GREY
-					in 71..90 -> EyeColour.BLUE
-					in 91..100 -> EyeColour.EMERALD
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			VOIDBORN -> {
-				when (it) {
-					in 1..30 -> EyeColour.WATERY_BLUE
-					in 31..50 -> EyeColour.GREY
-					in 51..70 -> EyeColour.BLACK
-					in 71..90 -> EyeColour.GREEN
-					in 91..100 -> EyeColour.VIOLET
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
+			FERAL_WORLD -> randomSelection(arrayOf(EyeColour.BLUE, EyeColour.GREY, EyeColour.BROWN, EyeColour.GREEN, EyeColour.YELLOW)) as EyeColour
+			FORGE_WORLD -> randomSelection(arrayOf(EyeColour.BLUE, EyeColour.GREY, EyeColour.BROWN, EyeColour.GREEN, EyeColour.LENSES)) as EyeColour
+			HIGHBORN -> randomSelection(arrayOf(EyeColour.BLUE, EyeColour.GREY, EyeColour.BROWN, EyeColour.GREEN, EyeColour.LENSES)) as EyeColour
+			HIVE_WORLD -> randomSelection(arrayOf(EyeColour.BLUE, EyeColour.GREY, EyeColour.BROWN, EyeColour.GREEN, EyeColour.LENSES)) as EyeColour
+			SHRINE_WORLD -> randomSelection(arrayOf(EyeColour.BLUE, EyeColour.GREY, EyeColour.BROWN, EyeColour.EMERALD, EyeColour.AMBER)) as EyeColour
+			VOIDBORN -> randomSelection(arrayOf(EyeColour.WATERY_BLUE, EyeColour.GREY, EyeColour.BLACK, EyeColour.GREEN, EyeColour.VIOLET)) as EyeColour
 		}
 	}
 
@@ -574,7 +137,6 @@ object Builder {
 	}
 
 	private fun rollQuirk(homeworld: Homeworld): Quirk? {
-		val it = (1..100).randomInt()
 		return when (homeworld) {
 			FERAL_WORLD -> {
 				when (it) {
@@ -712,7 +274,6 @@ object Builder {
 	}
 
 	private fun rollSuperstition(homeworld: Homeworld): Superstition {
-		val it = (1..100).randomInt()
 		return when (homeworld) {
 			FERAL_WORLD -> {
 				when (it) {
@@ -808,7 +369,6 @@ object Builder {
 	}
 
 	private fun rollHomeworldMemento(homeworld: Homeworld): HomeworldMemento {
-		val it = (1..100).randomInt()
 		return when (homeworld) {
 			FERAL_WORLD -> {
 				when (it) {
@@ -962,7 +522,6 @@ object Builder {
 	}
 
 	private fun rollBackgroundMemento(background: Background): BackgroundMemento {
-		val it = (1..100).randomInt()
 		return when (background) {
 			ADEPTUS_ADMINISTRATUM -> {
 				when (it) {

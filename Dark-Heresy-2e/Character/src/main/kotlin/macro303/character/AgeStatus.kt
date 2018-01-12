@@ -1,11 +1,19 @@
 package macro303.character
 
-enum class AgeStatus(val value: String, val multiplier: Int) {
-	WARRIOR(value = "Warrior", multiplier = 15),
-	OLD_ONE(value = "Old One", multiplier = 25),
-	YOUNG(value = "Young", multiplier = 15),
-	MATURE_F(value = "Mature", multiplier = 25),
-	VENERATED(value = "Venerated", multiplier = 45),
+interface AgeStatus {
+	val value: String
+	val multiplier: Int
+
+	enum class FeralWorldAgeStatus(override val value: String, override val multiplier: Int): AgeStatus {
+		WARRIOR(value = "Warrior", multiplier = 15),
+		OLD_ONE(value = "Old One", multiplier = 25)
+	}
+
+	enum class ForgeWorldAgeStatus(override val value: String, override val multiplier: Int): AgeStatus {
+		YOUNG(value = "Young", multiplier = 15),
+		MATURE_F(value = "Mature", multiplier = 25),
+		VENERATED(value = "Venerated", multiplier = 45)
+	}
 	SCION(value = "Scion", multiplier = 20),
 	PRIME(value = "Prime", multiplier = 30),
 	AUTHORITY(value = "Authority", multiplier = 40),
