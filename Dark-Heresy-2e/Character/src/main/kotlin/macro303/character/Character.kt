@@ -1,4 +1,4 @@
-package macro303.dh2e
+package macro303.character
 
 data class Character(
 		val isMale: Boolean,
@@ -40,5 +40,20 @@ data class Character(
 
 	override fun toString(): String {
 		return "Character(isMale=$isMale, homeworld=$homeworld, background=$background, role=$role, build=$build, ageStatus=$ageStatus, age=$age, skinColour=$skinColour, hairColour=$hairColour, eyeColour=$eyeColour, quirks=$quirks, superstition=$superstition, homeworldMemento=$homeworldMemento, backgroundMemento=$backgroundMemento)"
+	}
+
+	companion object {
+		@JvmStatic
+		fun main(args: Array<String>) {
+			val total = 3
+			(0 until total).forEach {
+				val character = Builder.buildCharacter()
+				if (total <= 3) {
+					character.display()
+					println("=".repeat(50))
+				} else
+					println("Character: $character")
+			}
+		}
 	}
 }

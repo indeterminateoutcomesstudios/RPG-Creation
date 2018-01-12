@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>nz.co.macro303</groupId>
 		<artifactId>rpg-creation</artifactId>
-		<version>0.0.5</version>
+		<version>0.0.6</version>
 	</parent>
 
 	<groupId>nz.co.macro303.rpg-creation</groupId>
@@ -14,6 +14,6 @@
 	<name>Dark Heresy 2e</name>
 	
 	<modules>
-		<module>characters</module>
+		<module>character</module>
 	</modules>
 </project>

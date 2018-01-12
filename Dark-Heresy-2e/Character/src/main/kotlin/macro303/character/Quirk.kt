@@ -1,4 +1,4 @@
-package macro303.dh2e
+package macro303.character
 
 enum class Quirk(val value: String) {
 	HAIRY_KNUCKLES(value = "Hairy Knuckles"),

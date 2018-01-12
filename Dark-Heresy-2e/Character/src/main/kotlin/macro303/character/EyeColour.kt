@@ -1,4 +1,4 @@
-package macro303.dh2e
+package macro303.character
 
 enum class EyeColour(val value: String) {
 	BLUE(value = "Blue"),

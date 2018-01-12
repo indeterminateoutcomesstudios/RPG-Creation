@@ -1,4 +1,4 @@
-# RPG Creation _0.0.5_
+# RPG Creation _0.0.6_
 
 _TODO Description_  
 
@@ -13,8 +13,19 @@ _TODO Description_
 ## Modules
 
 - ### Dark Heresy 2e
-  - #### Characters
-    - [WIP]
+  - #### Character
+    - Age/Status
+    - Background + Memento
+    - Build/Size
+    - Colour
+      - Eyes
+      - Hair
+      - Skin
+    - Gender
+    - Homeworld + Memento
+    - Quirks
+    - Role
+    - Superstition
 - ### Dungeons and Dragons 5e
-  - #### Characters
-    - [WIP]
+  - #### Character
+    - Gender

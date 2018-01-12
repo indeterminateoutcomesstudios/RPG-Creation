@@ -1,4 +1,4 @@
-package macro303.dh2e
+package macro303.character
 
 enum class Background(val value: String) {
 	ADEPTUS_ADMINISTRATUM(value = "Adeptus Administratum"),

@@ -1,7 +1,7 @@
-package macro303.dh2e
+package macro303.character
 
-import macro303.dh2e.Background.*
-import macro303.dh2e.Homeworld.*
+import macro303.character.Background.*
+import macro303.character.Homeworld.*
 import java.util.*
 import kotlin.collections.ArrayList
 

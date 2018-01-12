@@ -1,4 +1,4 @@
-package macro303.dh2e
+package macro303.character
 
 enum class Build(val value: String, val heightM: Double, val weightM: Int, val heightF: Double, val weightF: Int) {
 	RANGY(value = "Rangy", heightM = 1.9, weightM = 65, heightF = 1.8, weightF = 60),

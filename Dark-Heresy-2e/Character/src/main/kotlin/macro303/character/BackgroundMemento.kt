@@ -1,4 +1,4 @@
-package macro303.dh2e
+package macro303.character
 
 enum class BackgroundMemento(val value: String) {
 	BRASS_QUILL_TIP(value = "Brass Quill Tip"),

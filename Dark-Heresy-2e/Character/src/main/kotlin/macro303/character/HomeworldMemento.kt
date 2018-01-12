@@ -1,4 +1,4 @@
-package macro303.dh2e
+package macro303.character
 
 enum class HomeworldMemento(val value: String) {
 	LENGTH_OF_BRAIDED_HAIR(value = "Length of Braided Hair"),

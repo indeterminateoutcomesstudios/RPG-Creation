@@ -1,4 +1,4 @@
-package macro303.dh2e
+package macro303.character
 
 enum class Superstition(val value: String, val description: String) {
 	WARD_OF_SOIL(value = "Ward of Soil", description = "Each world protects those who honour it; applying a handful of native soil to the skin helps keep foul spirits at bay."),

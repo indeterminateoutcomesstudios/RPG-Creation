@@ -1,4 +1,4 @@
-package macro303.dnd5e
+package macro303.character
 
 import java.util.*
 

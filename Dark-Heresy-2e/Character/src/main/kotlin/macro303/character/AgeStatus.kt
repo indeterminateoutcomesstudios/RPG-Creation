@@ -1,4 +1,4 @@
-package macro303.dh2e
+package macro303.character
 
 enum class AgeStatus(val value: String, val multiplier: Int) {
 	WARRIOR(value = "Warrior", multiplier = 15),
