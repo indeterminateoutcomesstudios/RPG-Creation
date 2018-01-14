@@ -3,13 +3,13 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>nz.co.macro303.rpg</groupId>
-		<artifactId>characters</artifactId>
-		<version>0.0.0</version>
+		<groupId>nz.co.macro303.rpg-creation</groupId>
+		<artifactId>dark-heresy-2e</artifactId>
+		<version>0.1</version>
 	</parent>
 
-	<groupId>nz.co.macro303.rpg.characters</groupId>
-	<artifactId>dungeons-and-dragons-5e</artifactId>
+	<groupId>nz.co.macro303.rpg-creation.dark-heresy-2e</groupId>
+	<artifactId>character</artifactId>
 	<packaging>jar</packaging>
-	<name>Dungeons and Dragons 5e</name>
+	<name>Character</name>
 </project>

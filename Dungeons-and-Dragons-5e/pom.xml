@@ -4,17 +4,16 @@
 
 	<parent>
 		<groupId>nz.co.macro303</groupId>
-		<artifactId>rpg</artifactId>
-		<version>0.0.0</version>
+		<artifactId>rpg-creation</artifactId>
+		<version>0.1</version>
 	</parent>
 
-	<groupId>nz.co.macro303.rpg</groupId>
-	<artifactId>characters</artifactId>
+	<groupId>nz.co.macro303.rpg-creation</groupId>
+	<artifactId>dungeons-and-dragons-5e</artifactId>
 	<packaging>pom</packaging>
-	<name>Characters</name>
+	<name>Dungeons and Dragons 5e</name>
 	
 	<modules>
-		<module>dark-heresy-2</module>
-		<module>dungeons-and-dragons-5e</module>
+		<module>character</module>
 	</modules>
 </project>

@@ -1,4 +1,4 @@
-# RPG Creation _0.0.0_
+# RPG Creation _0.1_
 
 _TODO Description_  
 
@@ -8,12 +8,24 @@ _TODO Description_
 - [kotlin-stdlib-jre8: 1.2.10](https://kotlinlang.org/)
 - [junit: RELEASE {4.12} (test)](http://junit.org/junit4/)
 - [kotlin-test-junit: 1.2.10 (test)](https://kotlinlang.org/)  
-- [mockito-core: RELEASE {2.12.0} (test)](https://github.com/mockito/mockito)
+- [mockito-core: RELEASE {2.13.0} (test)](https://github.com/mockito/mockito)
 
 ## Modules
 
-- ### Characters
-  - #### Dark Heresy 2
-    - [WIP]
-  - #### Dungeons and Dragons 5e
-    - [WIP]
+- ### Dark Heresy 2e
+  - #### Character
+    - Age/Status
+    - Background + Memento
+    - Build/Size
+    - Colour
+      - Eyes
+      - Hair
+      - Skin
+    - Gender
+    - Homeworld + Memento
+    - Quirks
+    - Role
+    - Superstition
+- ### Dungeons and Dragons 5e
+  - #### Character
+    - Gender
