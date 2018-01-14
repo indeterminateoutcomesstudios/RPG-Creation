@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>nz.co.macro303.rpg-creation</groupId>
 		<artifactId>dark-heresy-2e</artifactId>
-		<version>0.0.7</version>
+		<version>0.1</version>
 	</parent>
 
 	<groupId>nz.co.macro303.rpg-creation.dark-heresy-2e</groupId>
