@@ -4,7 +4,7 @@
 
 	<groupId>nz.co.macro303</groupId>
 	<artifactId>rpg-creation</artifactId>
-	<version>0.0.6-11</version>
+	<version>0.0.7</version>
 	<packaging>pom</packaging>
 	<name>RPG Creation</name>
 	
