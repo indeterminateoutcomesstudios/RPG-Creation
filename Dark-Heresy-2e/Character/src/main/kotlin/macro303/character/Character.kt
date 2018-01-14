@@ -11,13 +11,13 @@ data class Character(
 		val build: Build,
 		val ageStatus: AgeStatus,
 		val age: Int,
-		val skinColour: SkinColour,
-		val hairColour: HairColour,
-		val eyeColour: EyeColour,
+		val skinColour: Colour,
+		val hairColour: Colour,
+		val eyeColour: Colour,
 		val quirks: ArrayList<Quirk>,
 		val superstition: Superstition,
-		val homeworldMemento: HomeworldMemento,
-		val backgroundMemento: BackgroundMemento
+		val homeworldMemento: Memento,
+		val backgroundMemento: Memento
 ) {
 
 	var weaponSkill: Int = 20
@@ -94,7 +94,7 @@ data class Character(
 	companion object {
 		@JvmStatic
 		fun main(args: Array<String>) {
-			val total = 1
+			val total = 3
 			(0 until total).forEach {
 				val character = Builder.buildCharacter()
 				if (total <= 3) {

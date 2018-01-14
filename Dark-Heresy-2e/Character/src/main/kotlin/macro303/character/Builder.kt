@@ -1,7 +1,11 @@
 package macro303.character
 
-import macro303.character.Background.*
-import macro303.character.Homeworld.*
+import macro303.character.AgeStatus.*
+import macro303.character.Build.*
+import macro303.character.Colour.*
+import macro303.character.Memento.*
+import macro303.character.Quirk.*
+import macro303.character.Superstition.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -18,13 +22,13 @@ object Builder {
 			build: Build = rollBuild(homeworld = homeworld),
 			ageStatus: AgeStatus = rollAgeStatus(homeworld = homeworld),
 			age: Int = rollAge(ageStatus = ageStatus),
-			skinColour: SkinColour = rollSkinColour(homeworld = homeworld),
-			hairColour: HairColour = rollHairColour(homeworld = homeworld),
-			eyeColour: EyeColour = rollEyeColour(homeworld = homeworld),
+			skinColour: Colour = rollSkinColour(homeworld = homeworld),
+			hairColour: Colour = rollHairColour(homeworld = homeworld),
+			eyeColour: Colour = rollEyeColour(homeworld = homeworld),
 			quirks: ArrayList<Quirk> = ArrayList(),
 			superstition: Superstition = rollSuperstition(homeworld = homeworld),
-			homeworldMemento: HomeworldMemento = rollHomeworldMemento(homeworld = homeworld),
-			backgroundMemento: BackgroundMemento = rollBackgroundMemento(background = background)
+			homeworldMemento: Memento = rollHomeworldMemento(homeworld = homeworld),
+			backgroundMemento: Memento = rollBackgroundMemento(background = background)
 	): Character {
 		val tempQuirks = if (quirks.isNotEmpty()) quirks else rollQuirks(homeworld = homeworld)
 		return Character(
@@ -50,36 +54,36 @@ object Builder {
 	}
 
 	private fun rollHomeworld(): Homeworld {
-		return randomSelection(Homeworld.values()) as Homeworld
+		return randomSelection(items = Homeworld.values()) as Homeworld
 	}
 
 	private fun rollBackground(homeworld: Homeworld): Background {
-		return randomSelection(homeworld.validBackgrounds) as Background
+		return randomSelection(items = homeworld.validBackgrounds) as Background
 	}
 
 	private fun rollRole(background: Background): Role {
-		return randomSelection(background.validRoles) as Role
+		return randomSelection(items = background.validRoles) as Role
 	}
 
 	private fun rollBuild(homeworld: Homeworld): Build {
 		return when (homeworld) {
-			FERAL_WORLD -> randomSelection(Build.FeralWorldBuild.values()) as Build
-			FORGE_WORLD -> randomSelection(Build.ForgeWorldBuild.values()) as Build
-			HIGHBORN -> randomSelection(Build.HighbornBuild.values()) as Build
-			HIVE_WORLD -> randomSelection(Build.HiveWorldBuild.values()) as Build
-			SHRINE_WORLD -> randomSelection(Build.ShrineWorldBuild.values()) as Build
-			VOIDBORN -> randomSelection(Build.VoidbornBuild.values()) as Build
+			Homeworld.FERAL_WORLD -> randomSelection(items = FeralBuild.values()) as Build
+			Homeworld.FORGE_WORLD -> randomSelection(items = ForgeBuild.values()) as Build
+			Homeworld.HIGHBORN -> randomSelection(items = HighbornBuild.values()) as Build
+			Homeworld.HIVE_WORLD -> randomSelection(items = HiveBuild.values()) as Build
+			Homeworld.SHRINE_WORLD -> randomSelection(items = ShrineBuild.values()) as Build
+			Homeworld.VOIDBORN -> randomSelection(items = VoidbornBuild.values()) as Build
 		}
 	}
 
 	private fun rollAgeStatus(homeworld: Homeworld): AgeStatus {
 		return when (homeworld) {
-			FERAL_WORLD -> randomSelection(arrayOf(AgeStatus.WARRIOR, AgeStatus.OLD_ONE)) as AgeStatus
-			FORGE_WORLD -> randomSelection(arrayOf(AgeStatus.YOUNG, AgeStatus.MATURE_F, AgeStatus.VENERATED)) as AgeStatus
-			HIGHBORN -> randomSelection(arrayOf(AgeStatus.SCION, AgeStatus.PRIME, AgeStatus.AUTHORITY)) as AgeStatus
-			HIVE_WORLD -> randomSelection(arrayOf(AgeStatus.NIPPER, AgeStatus.ADULT, AgeStatus.OLD_TIMER)) as AgeStatus
-			SHRINE_WORLD -> randomSelection(arrayOf(AgeStatus.NOVATE, AgeStatus.VITAL, AgeStatus.ELDER)) as AgeStatus
-			VOIDBORN -> randomSelection(arrayOf(AgeStatus.YOUTH, AgeStatus.MATURE_V, AgeStatus.METHUSELAH)) as AgeStatus
+			Homeworld.FERAL_WORLD -> randomSelection(items = FeralAgeStatus.values()) as AgeStatus
+			Homeworld.FORGE_WORLD -> randomSelection(items = ForgeAgeStatus.values()) as AgeStatus
+			Homeworld.HIGHBORN -> randomSelection(items = HighbornAgeStatus.values()) as AgeStatus
+			Homeworld.HIVE_WORLD -> randomSelection(items = HiveAgeStatus.values()) as AgeStatus
+			Homeworld.SHRINE_WORLD -> randomSelection(items = ShrineAgeStatus.values()) as AgeStatus
+			Homeworld.VOIDBORN -> randomSelection(items = VoidbornAgeStatus.values()) as AgeStatus
 		}
 	}
 
@@ -87,40 +91,39 @@ object Builder {
 		return 10.rollDice() + (ageStatus.multiplier)
 	}
 
-	private fun rollSkinColour(homeworld: Homeworld): SkinColour {
+	private fun rollSkinColour(homeworld: Homeworld): Colour {
 		return when (homeworld) {
-			FERAL_WORLD -> randomSelection(arrayOf(SkinColour.DARK, SkinColour.TAN, SkinColour.FAIR, SkinColour.RUDDY, SkinColour.BRONZE)) as SkinColour
-			FORGE_WORLD -> randomSelection(arrayOf(SkinColour.DARK, SkinColour.TAN, SkinColour.FAIR, SkinColour.RUDDY, SkinColour.PALE)) as SkinColour
-			HIGHBORN -> randomSelection(arrayOf(SkinColour.DARK, SkinColour.TAN, SkinColour.FAIR, SkinColour.RUDDY, SkinColour.DYED)) as SkinColour
-			HIVE_WORLD -> randomSelection(arrayOf(SkinColour.DARK, SkinColour.TAN, SkinColour.FAIR, SkinColour.RUDDY, SkinColour.STAINED)) as SkinColour
-			SHRINE_WORLD -> randomSelection(arrayOf(SkinColour.DARK, SkinColour.TAN, SkinColour.FAIR, SkinColour.RUDDY, SkinColour.FRECKLED)) as SkinColour
-			VOIDBORN -> randomSelection(arrayOf(SkinColour.PORCELAIN, SkinColour.BLUISH, SkinColour.FAIR, SkinColour.GREYISH, SkinColour.MILKY)) as SkinColour
+			Homeworld.FERAL_WORLD -> randomSelection(items = FeralSkin.values()) as Colour
+			Homeworld.FORGE_WORLD -> randomSelection(items = ForgeSkin.values()) as Colour
+			Homeworld.HIGHBORN -> randomSelection(items = HighbornSkin.values()) as Colour
+			Homeworld.HIVE_WORLD -> randomSelection(items = HiveSkin.values()) as Colour
+			Homeworld.SHRINE_WORLD -> randomSelection(items = ShrineSkin.values()) as Colour
+			Homeworld.VOIDBORN -> randomSelection(items = VoidbornSkin.values()) as Colour
 		}
 	}
 
-	private fun rollHairColour(homeworld: Homeworld): HairColour {
+	private fun rollHairColour(homeworld: Homeworld): Colour {
 		return when (homeworld) {
-			FERAL_WORLD -> randomSelection(arrayOf(HairColour.RED, HairColour.BLONDE, HairColour.BROWN, HairColour.BLACK, HairColour.GREY)) as HairColour
-			FORGE_WORLD -> randomSelection(arrayOf(HairColour.RUST, HairColour.BLONDE, HairColour.BROWN, HairColour.BLACK, HairColour.NONE)) as HairColour
-			HIGHBORN -> randomSelection(arrayOf(HairColour.DYED, HairColour.BLONDE, HairColour.BROWN, HairColour.BLACK, HairColour.GREY)) as HairColour
-			HIVE_WORLD -> randomSelection(arrayOf(HairColour.DYED, HairColour.MOUSY, HairColour.BROWN, HairColour.BLACK, HairColour.GREY)) as HairColour
-			SHRINE_WORLD -> randomSelection(arrayOf(HairColour.RUSSET, HairColour.BLONDE, HairColour.BROWN, HairColour.BLACK, HairColour.NONE)) as HairColour
-			VOIDBORN -> randomSelection(arrayOf(HairColour.RED, HairColour.BLONDE, HairColour.COPPER, HairColour.BLACK, HairColour.AUBURN)) as HairColour
+			Homeworld.FERAL_WORLD -> randomSelection(items = FeralHair.values()) as Colour
+			Homeworld.FORGE_WORLD -> randomSelection(items = ForgeHair.values()) as Colour
+			Homeworld.HIGHBORN -> randomSelection(items = HighbornHair.values()) as Colour
+			Homeworld.HIVE_WORLD -> randomSelection(items = HiveHair.values()) as Colour
+			Homeworld.SHRINE_WORLD -> randomSelection(items = ShrineHair.values()) as Colour
+			Homeworld.VOIDBORN -> randomSelection(items = VoidbornHair.values()) as Colour
 		}
 	}
 
-	private fun rollEyeColour(homeworld: Homeworld): EyeColour {
+	private fun rollEyeColour(homeworld: Homeworld): Colour {
 		return when (homeworld) {
-			FERAL_WORLD -> randomSelection(arrayOf(EyeColour.BLUE, EyeColour.GREY, EyeColour.BROWN, EyeColour.GREEN, EyeColour.YELLOW)) as EyeColour
-			FORGE_WORLD -> randomSelection(arrayOf(EyeColour.BLUE, EyeColour.GREY, EyeColour.BROWN, EyeColour.GREEN, EyeColour.LENSES)) as EyeColour
-			HIGHBORN -> randomSelection(arrayOf(EyeColour.BLUE, EyeColour.GREY, EyeColour.BROWN, EyeColour.GREEN, EyeColour.LENSES)) as EyeColour
-			HIVE_WORLD -> randomSelection(arrayOf(EyeColour.BLUE, EyeColour.GREY, EyeColour.BROWN, EyeColour.GREEN, EyeColour.LENSES)) as EyeColour
-			SHRINE_WORLD -> randomSelection(arrayOf(EyeColour.BLUE, EyeColour.GREY, EyeColour.BROWN, EyeColour.EMERALD, EyeColour.AMBER)) as EyeColour
-			VOIDBORN -> randomSelection(arrayOf(EyeColour.WATERY_BLUE, EyeColour.GREY, EyeColour.BLACK, EyeColour.GREEN, EyeColour.VIOLET)) as EyeColour
+			Homeworld.FERAL_WORLD -> randomSelection(items = FeralEyes.values()) as Colour
+			Homeworld.FORGE_WORLD -> randomSelection(items = ForgeEyes.values()) as Colour
+			Homeworld.HIGHBORN -> randomSelection(items = HighbornEyes.values()) as Colour
+			Homeworld.HIVE_WORLD -> randomSelection(items = HiveEyes.values()) as Colour
+			Homeworld.SHRINE_WORLD -> randomSelection(items = ShrineEyes.values()) as Colour
+			Homeworld.VOIDBORN -> randomSelection(items = VoidbornEyes.values()) as Colour
 		}
 	}
 
-	@Suppress("UNCHECKED_CAST")
 	private fun rollQuirks(homeworld: Homeworld): ArrayList<Quirk> {
 		val temp = ArrayList<Quirk>()
 		var remaining = 1
@@ -136,568 +139,49 @@ object Builder {
 		return temp
 	}
 
+	@Suppress("UNCHECKED_CAST")
 	private fun rollQuirk(homeworld: Homeworld): Quirk? {
 		return when (homeworld) {
-			FERAL_WORLD -> {
-				when (it) {
-					in 1..6 -> Quirk.HAIRY_KNUCKLES
-					in 7..12 -> Quirk.JOINED_EYEBROWS
-					in 13..18 -> Quirk.WARPAINT
-					in 19..24 -> Quirk.HUGE_HANDS
-					in 25..30 -> Quirk.FILED_TEETH
-					in 31..36 -> Quirk.BEETLING_BROWS
-					in 37..42 -> Quirk.MUSKY_SMELL
-					in 43..48 -> Quirk.HAIRY
-					in 49..54 -> Quirk.RIPPED_EARS
-					in 55..60 -> Quirk.LONG_FINGERNAILS
-					in 61..66 -> Quirk.TRIBAL_TATTOOING
-					in 67..72 -> Quirk.SCARRING
-					in 73..78 -> Quirk.PIERCED_NOSE
-					in 79..84 -> Quirk.CATS_EYES
-					in 85..90 -> Quirk.SMALL_HEAD
-					in 91..96 -> Quirk.THICK_JAW
-					in 97..100 -> null
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			FORGE_WORLD -> {
-				when (it) {
-					in 1..6 -> Quirk.RADIATION_SCAR
-					in 7..12 -> Quirk.LARGE_HEAD
-					in 13..18 -> Quirk.MECHANICUM_TATTOO
-					in 19..24 -> Quirk.CROOKED_NOSE
-					in 25..30 -> Quirk.METALLIC_SMELL
-					in 31..36 -> Quirk.SMALL_EYES
-					in 37..42 -> Quirk.SOOT_STAINED_SKIN
-					in 43..48 -> Quirk.ACID_BURNS
-					in 49..54 -> Quirk.MISSING_EYEBROWS
-					in 55..60 -> Quirk.WHEEZING_SPEECH
-					in 61..66 -> Quirk.MISSING_ONE_EAR
-					in 67..72 -> Quirk.SMASHED_TOE
-					in 73..78 -> Quirk.SQUINTED_EYES
-					in 79..84 -> Quirk.SHORT_FINGERS
-					in 85..90 -> Quirk.WIRE_GRILL_OVER_EYES
-					in 91..96 -> Quirk.DISCOLOURED_FINGERNAIL
-					in 97..100 -> null
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			HIGHBORN -> {
-				when (it) {
-					in 1..6 -> Quirk.MISSING_FINGERTIP
-					in 7..12 -> Quirk.AQUILINE_NOSE
-					in 13..18 -> Quirk.BRIGHT_WHITE_TEETH
-					in 19..24 -> Quirk.DUELLING_SCAR
-					in 25..30 -> Quirk.PIERCED_NOSE
-					in 31..36 -> Quirk.SHINY_HAIR
-					in 37..42 -> Quirk.AQUILA_TATTOO
-					in 43..48 -> Quirk.PERFUMED_ODOUR
-					in 49..54 -> Quirk.POX_MARKS
-					in 55..60 -> Quirk.DEVOTIONAL_SCAR
-					in 61..66 -> Quirk.DECORATIVE_ELECTOO
-					in 67..72 -> Quirk.QUIVERING_FINGERS
-					in 73..78 -> Quirk.PIERCED_EARS
-					in 79..84 -> Quirk.SINISTER_BOIL
-					in 85..90 -> Quirk.SHARP_CHEEKBONES
-					in 91..96 -> Quirk.SLOUCHED_GAIT
-					in 97..100 -> null
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			HIVE_WORLD -> {
-				when (it) {
-					in 1..6 -> Quirk.THIN_LIPS
-					in 7..12 -> Quirk.GRIMY_SKIN
-					in 13..18 -> Quirk.PAINTED_FINGERNAILS
-					in 19..24 -> Quirk.ROTTEN_TEETH
-					in 25..30 -> Quirk.FADED_ELECTOO
-					in 31..36 -> Quirk.PIERCED_EYEBROW
-					in 37..42 -> Quirk.WIRE_MESH_ALONG_CHEEK
-					in 43..48 -> Quirk.HACKING_COUGH
-					in 49..54 -> Quirk.TATTOO_OVER_ONE_EYE
-					in 55..60 -> Quirk.BULLET_WOUND_SCAR
-					in 61..66 -> Quirk.NERVOUS_TIC
-					in 67..72 -> Quirk.LARGE_MOLE
-					in 73..78 -> Quirk.POLLUTION_SCARS
-					in 79..84 -> Quirk.HUMP
-					in 85..90 -> Quirk.SMALL_HANDS
-					in 91..96 -> Quirk.CHEMICAL_SMELL
-					in 97..100 -> null
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			SHRINE_WORLD -> {
-				when (it) {
-					in 1..6 -> Quirk.HEAVY_BROWS
-					in 7..12 -> Quirk.LONG_NOSE
-					in 13..18 -> Quirk.MINISTORUM_TATTOO
-					in 19..24 -> Quirk.RIDGED_FINGERNAILS
-					in 25..30 -> Quirk.CROOKED_TEETH
-					in 31..36 -> Quirk.CLEFTED_CHIN
-					in 37..42 -> Quirk.DRY_SKIN
-					in 43..48 -> Quirk.THICK_EYEBROWS
-					in 49..54 -> Quirk.INK_STAINED_FINGERNAILS
-					in 55..60 -> Quirk.SHRIVELLED_EAR
-					in 61..66 -> Quirk.RITUAL_SCARS
-					in 67..72 -> Quirk.THIRD_NIPPLE
-					in 73..78 -> Quirk.BLOODSHOT_EYES
-					in 79..84 -> Quirk.MOULDY_SCENT
-					in 85..90 -> Quirk.WINESTAIN_BIRTHMARK
-					in 91..96 -> Quirk.BROAD_SHOULDERS
-					in 97..100 -> null
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			VOIDBORN -> {
-				when (it) {
-					in 1..6 -> Quirk.LONG_TOES
-					in 7..12 -> Quirk.FINE_HAIR
-					in 13..18 -> Quirk.LONG_FINGERS
-					in 19..24 -> Quirk.TINY_EARS
-					in 25..30 -> Quirk.SPINDLY_LIMBS
-					in 31..36 -> Quirk.YELLOW_FINGERNAILS
-					in 37..42 -> Quirk.STUMPY_TEETH
-					in 43..48 -> Quirk.WIDELY_SPACED_EYES
-					in 49..54 -> Quirk.LARGE_HEAD
-					in 55..60 -> Quirk.CURVED_SPINE
-					in 61..66 -> Quirk.HAIRLESS
-					in 67..72 -> Quirk.ELEGANT_HANDS
-					in 73..78 -> Quirk.SLIGHTLY_CROSS_EYED
-					in 79..84 -> Quirk.WEBBED_TOES
-					in 85..90 -> Quirk.MINOR_LIMP
-					in 91..96 -> Quirk.MISMATCHED_EYES
-					in 97..100 -> null
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
+			Homeworld.FERAL_WORLD -> randomSelection(items = (FeralQuirk.values() as Array<FeralQuirk?>).plusElement(null)) as Quirk
+			Homeworld.FORGE_WORLD -> randomSelection(items = (ForgeQuirk.values() as Array<ForgeQuirk?>).plusElement(null)) as Quirk
+			Homeworld.HIGHBORN -> randomSelection(items = (HighbornQuirk.values() as Array<HighbornQuirk?>).plusElement(null)) as Quirk
+			Homeworld.HIVE_WORLD -> randomSelection(items = (HiveQuirk.values() as Array<HiveQuirk?>).plusElement(null)) as Quirk
+			Homeworld.SHRINE_WORLD -> randomSelection(items = (ShrineQuirk.values() as Array<ShrineQuirk?>).plusElement(null)) as Quirk
+			Homeworld.VOIDBORN -> randomSelection(items = (VoidbornQuirk.values() as Array<VoidbornQuirk?>).plusElement(null)) as Quirk
 		}
 	}
 
 	private fun rollSuperstition(homeworld: Homeworld): Superstition {
 		return when (homeworld) {
-			FERAL_WORLD -> {
-				when (it) {
-					in 1..10 -> Superstition.WARD_OF_SOIL
-					in 11..20 -> Superstition.UNLUCKY_COLOUR
-					in 21..30 -> Superstition.HUNTERS_OATH
-					in 31..40 -> Superstition.THIRSTY_BLADE
-					in 41..50 -> Superstition.SPIRIT_SHACKLE
-					in 51..60 -> Superstition.A_GOOD_DEATH
-					in 61..70 -> Superstition.POWER_OF_NAMES
-					in 71..80 -> Superstition.LONELY_DEAD
-					in 81..90 -> Superstition.LIVING_RECORD
-					in 91..100 -> Superstition.SACRED_GROUND
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			FORGE_WORLD -> {
-				when (it) {
-					in 1..10 -> Superstition.NATIVE_METAL
-					in 11..20 -> Superstition.WASTE_NOT
-					in 21..30 -> Superstition.BINARY_PERFECTION
-					in 31..40 -> Superstition.CASTIGATE_THE_FLESH
-					in 41..50 -> Superstition.PURIFYING_HEAT
-					in 51..60 -> Superstition.PLACATE_THE_MACHINE_SPIRIT
-					in 61..70 -> Superstition.NEVER_TO_DUST
-					in 71..80 -> Superstition.TAPPING_FOR_BLESSING
-					in 81..90 -> Superstition.HONOUR_THE_METAL
-					in 91..100 -> Superstition.ABHOR_THE_NATURAL
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			HIGHBORN -> {
-				when (it) {
-					in 1..10 -> Superstition.COUNT_THE_BLESSINGS
-					in 11..20 -> Superstition.EACH_LAND_A_CONQUEST
-					in 21..30 -> Superstition.LAYERS_OF_PROTECTION
-					in 31..40 -> Superstition.ARMS_LENGTH
-					in 41..50 -> Superstition.NOTHING_LEFT_BEHIND
-					in 51..60 -> Superstition.SPEAK_STRONGLY
-					in 61..70 -> Superstition.COMPORT_IN_STYLE
-					in 71..80 -> Superstition.BEWARE_THE_POISONER
-					in 81..90 -> Superstition.TRAPPINGS_OF_POWER
-					in 91..100 -> Superstition.DISGUISE_STRENGTH
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			HIVE_WORLD -> {
-				when (it) {
-					in 1..10 -> Superstition.TOUCH_THE_SKY
-					in 11..20 -> Superstition.BLIGHT_IN_DARKNESS
-					in 21..30 -> Superstition.COMBAT_STRENGTH
-					in 31..40 -> Superstition.COMFORTABLE_NUMBERS
-					in 41..50 -> Superstition.DISTRUST_THE_STRANGE
-					in 51..60 -> Superstition.STRENGTHEN_THE_HIVE
-					in 61..70 -> Superstition.FEAR_THE_SILENCE
-					in 71..80 -> Superstition.KEEP_NATURE_AT_BAY
-					in 81..90 -> Superstition.HIVE_AND_SKIN
-					in 91..100 -> Superstition.SOLITUDE_IS_GOLDEN
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			SHRINE_WORLD -> {
-				when (it) {
-					in 1..10 -> Superstition.HONOUR_THE_SKULLS
-					in 11..20 -> Superstition.ENDLESS_REPOSE
-					in 21..30 -> Superstition.SUFFER_THE_PILGRIMS
-					in 31..40 -> Superstition.NEVER_DISTURB_THE_DEAD
-					in 41..50 -> Superstition.CLOUD_REVELATIONS
-					in 51..60 -> Superstition.CHALLENGE_THE_SUN
-					in 61..70 -> Superstition.STONE_ABIDES
-					in 71..80 -> Superstition.DEATH_IN_THE_ODDS
-					in 81..90 -> Superstition.DRINK_TO_THE_DEAD
-					in 91..100 -> Superstition.AQUILA_BLESSING
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			VOIDBORN -> {
-				when (it) {
-					in 1..10 -> Superstition.NAILED_HULLS
-					in 11..20 -> Superstition.HAUNTED_DECKS
-					in 21..30 -> Superstition.WELCOMING_HATCHES
-					in 31..40 -> Superstition.UNLUCKY_ECLIPSES
-					in 41..50 -> Superstition.FEARED_OCTET
-					in 51..60 -> Superstition.THIRD_SHIP_OMEN
-					in 61..70 -> Superstition.RUMBLING_PLASMA
-					in 71..80 -> Superstition.LUCKY_RUB
-					in 81..90 -> Superstition.KNOCKING_SHELLS
-					in 91..100 -> Superstition.EBON_OFFERINGS
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
+			Homeworld.FERAL_WORLD -> randomSelection(items = FeralTradition.values()) as Superstition
+			Homeworld.FORGE_WORLD -> randomSelection(items = ForgeCant.values()) as Superstition
+			Homeworld.HIGHBORN -> randomSelection(items = HighbornCustom.values()) as Superstition
+			Homeworld.HIVE_WORLD -> randomSelection(items = HiveTradition.values()) as Superstition
+			Homeworld.SHRINE_WORLD -> randomSelection(items = ShrineMore.values()) as Superstition
+			Homeworld.VOIDBORN -> randomSelection(items = VoidbornLore.values()) as Superstition
 		}
 	}
 
-	private fun rollHomeworldMemento(homeworld: Homeworld): HomeworldMemento {
+	private fun rollHomeworldMemento(homeworld: Homeworld): Memento {
 		return when (homeworld) {
-			FERAL_WORLD -> {
-				when (it) {
-					in 1..5 -> HomeworldMemento.LENGTH_OF_BRAIDED_HAIR
-					in 6..10 -> HomeworldMemento.ANIMAL_SKULL
-					in 11..15 -> HomeworldMemento.BAG_OF_HOMEWORLD_DIRT
-					in 16..20 -> HomeworldMemento.BROKEN_SPEAR_TIP
-					in 21..25 -> HomeworldMemento.LEATHER_POUCH
-					in 26..30 -> HomeworldMemento.COLLECTION_OF_DRIED_LEAVES
-					in 31..35 -> HomeworldMemento.CARVED_IDOL
-					in 36..40 -> HomeworldMemento.STONE_FINGER_RING
-					in 41..45 -> HomeworldMemento.UMBILICAL_CORD
-					in 46..50 -> HomeworldMemento.FIRE_STICK
-					in 51..55 -> HomeworldMemento.FUR_SKIN_CLOAK
-					in 56..60 -> HomeworldMemento.STONE_KNIFE
-					in 61..65 -> HomeworldMemento.HIDE_BOOTS
-					in 66..70 -> HomeworldMemento.HUMAN_SKULL
-					in 71..75 -> HomeworldMemento.LEATHER_BRACERS
-					in 76..80 -> HomeworldMemento.BAG_OF_ASHES
-					in 81..85 -> HomeworldMemento.NECKLACE_OF_TEETH
-					in 86..90 -> HomeworldMemento.TALLOW_CANDLE
-					in 91..95 -> HomeworldMemento.CEREMONIAL_MASK
-					in 96..100 -> HomeworldMemento.DRIED_FROG
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			FORGE_WORLD -> {
-				when (it) {
-					in 1..5 -> HomeworldMemento.SKULL_FRAGMENT
-					in 6..10 -> HomeworldMemento.SMALL_COPPER_DISK
-					in 11..15 -> HomeworldMemento.VIAL_OF_SAND
-					in 16..20 -> HomeworldMemento.SNAPPED_LOCK
-					in 21..25 -> HomeworldMemento.PLASTEEL_MARBLE
-					in 26..30 -> HomeworldMemento.PRESSED_LEAF
-					in 31..35 -> HomeworldMemento.TWISTED_WIRE
-					in 36..40 -> HomeworldMemento.CHUNK_OF_COAL
-					in 41..45 -> HomeworldMemento.GREASY_ROD
-					in 46..50 -> HomeworldMemento.TIN_OF_ASHES
-					in 51..55 -> HomeworldMemento.STRIP_OF_CONDUIT_INSULATION
-					in 56..60 -> HomeworldMemento.HANDKERCHIEF_WITH_BURN_HOLES
-					in 61..65 -> HomeworldMemento.BOOT_LACE
-					in 66..70 -> HomeworldMemento.SMUDGED_OPTIC_LENS
-					in 71..75 -> HomeworldMemento.BROKEN_TOOTH
-					in 76..80 -> HomeworldMemento.PHIAL_OF_USED_LUBRICANT_OIL
-					in 81..85 -> HomeworldMemento.BLOODSTAINED_KERCHIEF
-					in 86..90 -> HomeworldMemento.SNAPPED_CALLIPERS
-					in 91..95 -> HomeworldMemento.BROKEN_BIONIC_FINGER
-					in 96..100 -> HomeworldMemento.CRACKED_GUNSIGHT
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			HIGHBORN -> {
-				when (it) {
-					in 1..5 -> HomeworldMemento.BROCADE_COAT
-					in 6..10 -> HomeworldMemento.METAL_LHO_STICK_CASE
-					in 11..15 -> HomeworldMemento.TATTERED_CAPE
-					in 16..20 -> HomeworldMemento.ANCESTRAL_SABRE
-					in 21..25 -> HomeworldMemento.GLASSTEEL_DISK
-					in 26..30 -> HomeworldMemento.NECKLACE
-					in 31..35 -> HomeworldMemento.METAL_FLUTE
-					in 36..40 -> HomeworldMemento.BOOK_OF_INSPIRING_WORDS
-					in 41..45 -> HomeworldMemento.ICON_OF_THE_EMPEROR
-					in 46..50 -> HomeworldMemento.METAL_COIN
-					in 51..55 -> HomeworldMemento.ANTIQUE_EARRING
-					in 56..60 -> HomeworldMemento.TATTERED_VELVET_CLOAK
-					in 57..65 -> HomeworldMemento.IMPRESSIVE_HAT
-					in 66..70 -> HomeworldMemento.INCENSE_STICKS
-					in 71..75 -> HomeworldMemento.OLD_KEY
-					in 76..80 -> HomeworldMemento.SHARD_OF_STAINED_GLASS
-					in 81..85 -> HomeworldMemento.HEADBAND
-					in 86..90 -> HomeworldMemento.SKULL_CHARM
-					in 91..95 -> HomeworldMemento.PILGRIMAGE_TOKEN
-					in 96..100 -> HomeworldMemento.VIAL_OF_BLESSED_WATER
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			HIVE_WORLD -> {
-				when (it) {
-					in 1..5 -> HomeworldMemento.HEAVY_GLOVES
-					in 6..10 -> HomeworldMemento.GANG_HIVE_JACKET
-					in 11..15 -> HomeworldMemento.DECK_OF_CARDS
-					in 16..20 -> HomeworldMemento.WOODEN_DICE
-					in 21..25 -> HomeworldMemento.SPENT_BULLET_CASING
-					in 26..30 -> HomeworldMemento.ENGRAVED_KNIFE
-					in 31..35 -> HomeworldMemento.HIPFLASK
-					in 36..40 -> HomeworldMemento.IDENTITY_CARD
-					in 41..45 -> HomeworldMemento.TATTOO_KIT
-					in 46..50 -> HomeworldMemento.CHIP_FROM_HIVE_WALL
-					in 51..55 -> HomeworldMemento.LEATHER_CAP
-					in 56..60 -> HomeworldMemento.VIAL_OF_GLOWING_WATER
-					in 61..65 -> HomeworldMemento.SMOKING_PIPE
-					in 66..70 -> HomeworldMemento.MASS_OF_MELTED_BULLETS
-					in 71..75 -> HomeworldMemento.CRYSTALLINE_CARVING
-					in 76..80 -> HomeworldMemento.STEEL_TOECAP_BOOTS
-					in 81..85 -> HomeworldMemento.SMALL_LENGTH_OF_CHAIN
-					in 86..90 -> HomeworldMemento.LUCKY_COG
-					in 91..95 -> HomeworldMemento.TUBE_OF_GREASE
-					in 96..100 -> HomeworldMemento.FANCY_VEST
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			SHRINE_WORLD ->
-				when (it) {
-					in 1..5 -> HomeworldMemento.PINFEATHER
-					in 6..10 -> HomeworldMemento.BURNED_PILGRIMAGE_RIBBON
-					in 11..15 -> HomeworldMemento.FRAGMENT_OF_TANNED_SKIN
-					in 16..20 -> HomeworldMemento.BAG_OF_WAX_SCRAPINGS
-					in 21..25 -> HomeworldMemento.CLOTH_SASH
-					in 26..30 -> HomeworldMemento.CHIP_OF_INSCRIBED_BONE
-					in 31..35 -> HomeworldMemento.BAG_OF_BLESSED_DIRT
-					in 36..40 -> HomeworldMemento.SMALL_STONE_BOWL
-					in 41..45 -> HomeworldMemento.BAG_OF_DEAD_SPICES
-					in 46..50 -> HomeworldMemento.TORN_PAGE_FROM_A_PRAYER_SCROLL
-					in 51..55 -> HomeworldMemento.PHIAL_OF_ASHES
-					in 56..60 -> HomeworldMemento.VIAL_OF_BLOOD
-					in 61..65 -> HomeworldMemento.HANDMADE_AQUILA
-					in 66..70 -> HomeworldMemento.RAT_TAIL
-					in 71..75 -> HomeworldMemento.BONE_FLUTE
-					in 76..80 -> HomeworldMemento.BUNDLE_OF_DRIED_GRASS
-					in 81..85 -> HomeworldMemento.BONE_RING
-					in 86..90 -> HomeworldMemento.CHIP_FROM_FALLEN_SERVO_SKULL
-					in 91..95 -> HomeworldMemento.FRAGMENT_FROM_STATUE
-					in 96..100 -> HomeworldMemento.CARVED_ANIMAL_TOOTH
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			VOIDBORN ->
-				when (it) {
-					in 1..5 -> HomeworldMemento.BAG_OF_SALT
-					in 6..10 -> HomeworldMemento.CEREMONIAL_SWORD
-					in 11..15 -> HomeworldMemento.CORPSE_HAIR_AMULET
-					in 16..20 -> HomeworldMemento.THREE_QUARTZ_MARBLES
-					in 21..25 -> HomeworldMemento.BONE_DICE
-					in 26..30 -> HomeworldMemento.WOODEN_BEADS
-					in 31..35 -> HomeworldMemento.INDENT_TAGS
-					in 36..40 -> HomeworldMemento.GLOW_LANTERN
-					in 41..45 -> HomeworldMemento.AQUILA_PENDENT
-					in 46..50 -> HomeworldMemento.SQUEEZEBOX
-					in 51..55 -> HomeworldMemento.LODESTONE
-					in 56..60 -> HomeworldMemento.LUCKY_RATS_FOOT
-					in 61..65 -> HomeworldMemento.MIRROR
-					in 66..70 -> HomeworldMemento.ASTEROID_FRAGMENT
-					in 71..75 -> HomeworldMemento.DECK_PLATE_SECTION
-					in 76..80 -> HomeworldMemento.EXPIRED_RAD_COUNTER
-					in 81..85 -> HomeworldMemento.GLASS_LENS
-					in 86..90 -> HomeworldMemento.BAG_OF_SEEDS
-					in 91..95 -> HomeworldMemento.POLISHED_CORAL_ICON
-					in 96..100 -> HomeworldMemento.WHITTLING_KNIFE
-					else -> throw Exception("Impossible Roll: $it")
-				}
+			Homeworld.FERAL_WORLD -> randomSelection(items = FeralMemento.values()) as Memento
+			Homeworld.FORGE_WORLD -> randomSelection(items = ForgeMemento.values()) as Memento
+			Homeworld.HIGHBORN -> randomSelection(items = HighbornMemento.values()) as Memento
+			Homeworld.HIVE_WORLD -> randomSelection(items = HiveMemento.values()) as Memento
+			Homeworld.SHRINE_WORLD -> randomSelection(items = ShrineMemento.values()) as Memento
+			Homeworld.VOIDBORN -> randomSelection(items = VoidbornMemento.values()) as Memento
 		}
 	}
 
-	private fun rollBackgroundMemento(background: Background): BackgroundMemento {
+	private fun rollBackgroundMemento(background: Background): Memento {
 		return when (background) {
-			ADEPTUS_ADMINISTRATUM -> {
-				when (it) {
-					in 1..5 -> BackgroundMemento.BRASS_QUILL_TIP
-					in 6..10 -> BackgroundMemento.RIBBON_BOOKMARK
-					in 11..15 -> BackgroundMemento.CRACKED_LENS
-					in 16..20 -> BackgroundMemento.SINGED_PARCHMENT
-					in 21..25 -> BackgroundMemento.VIAL_OF_POWDERED_INK
-					in 26..30 -> BackgroundMemento.RUSTY_SCALPEL
-					in 31..35 -> BackgroundMemento.MAP_FRAGMENT
-					in 36..40 -> BackgroundMemento.FINGER_BONE
-					in 41..45 -> BackgroundMemento.WIRE_COIL
-					in 46..50 -> BackgroundMemento.LUMP_OF_CANDLE_WAX
-					in 51..55 -> BackgroundMemento.GLASS_KEY
-					in 56..60 -> BackgroundMemento.CHARCOAL_STICK
-					in 61..65 -> BackgroundMemento.CURLED_FINGERNAIL
-					in 66..70 -> BackgroundMemento.COPPER_KEY_PUNCH
-					in 71..75 -> BackgroundMemento.METAL_BOOK_CLASP
-					in 76..80 -> BackgroundMemento.FESNEL_HAIR_PAINT_BRUSH
-					in 81..85 -> BackgroundMemento.AQUILA_PAPERWEIGHT
-					in 86..90 -> BackgroundMemento.STITCHING_NEEDLE
-					in 91..95 -> BackgroundMemento.ANCIENT_MAGNIFYING_LENS
-					in 96..100 -> BackgroundMemento.BLANK_VELUM_FOLIO
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			ADEPTUS_ARBITES -> {
-				when (it) {
-					in 1..5 -> BackgroundMemento.SHORT_LENGTH_OF_CHAIN
-					in 6..10 -> BackgroundMemento.EXPIRED_WANTED_POSTER
-					in 11..15 -> BackgroundMemento.BAG_OF_SHOT_PELLETS
-					in 16..20 -> BackgroundMemento.DENTED_STEEL_TOE_CAP
-					in 21..25 -> BackgroundMemento.BROKEN_SPY_EYE_LENS
-					in 26..30 -> BackgroundMemento.LEATHER_WRIST_BAND
-					in 31..35 -> BackgroundMemento.BENT_KEY
-					in 36..40 -> BackgroundMemento.LOCK_OF_HAIR
-					in 41..45 -> BackgroundMemento.KNIFE_HANDLE
-					in 46..50 -> BackgroundMemento.METAL_SHOT_GLASS
-					in 51..55 -> BackgroundMemento.STICK_OF_CHALK
-					in 56..60 -> BackgroundMemento.CRACKED_DATA_SLATE
-					in 61..65 -> BackgroundMemento.OLD_NAMEPLATE
-					in 66..70 -> BackgroundMemento.SCRAP_OF_CHAIN_MAIL
-					in 71..75 -> BackgroundMemento.SMALL_BRUSH
-					in 76..80 -> BackgroundMemento.BRAIDED_DOG_HAIR
-					in 81..85 -> BackgroundMemento.POMMEL_WEIGHT
-					in 86..90 -> BackgroundMemento.SECTION_OF_CHEST_PLATE
-					in 91..95 -> BackgroundMemento.BAG_OF_BROKEN_TEETH
-					in 96..100 -> BackgroundMemento.AMASEC_BOTTLE_TOP
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			ADEPTUS_ASTRA_TELEPATHICA -> {
-				when (it) {
-					in 1..5 -> BackgroundMemento.MYRRHINE_MUSK_STICK
-					in 6..10 -> BackgroundMemento.BENT_SPOON
-					in 11..15 -> BackgroundMemento.TORN_TAROT_CARD
-					in 16..20 -> BackgroundMemento.DECK_PLATING_FRAGMENT
-					in 21..25 -> BackgroundMemento.PRESSED_FLOWER_PETAL
-					in 26..30 -> BackgroundMemento.WOODEN_EGG
-					in 31..35 -> BackgroundMemento.NECKLACE_OF_BEADS
-					in 36..40 -> BackgroundMemento.METAL_TUBE
-					in 41..45 -> BackgroundMemento.WIDE_BLACK_RIBBON
-					in 46..50 -> BackgroundMemento.CRACKED_LOOKING_GLASS
-					in 51..55 -> BackgroundMemento.ANIMAL_HORN_CHIP
-					in 56..60 -> BackgroundMemento.SWATH_OF_METALLIC_CLOTH
-					in 61..65 -> BackgroundMemento.CHARRED_MAHOGONITE_CHIP
-					in 66..70 -> BackgroundMemento.BAG_OF_TOENAIL_CLIPPINGS
-					in 71..75 -> BackgroundMemento.THIN_GLASSTEEL_DISC
-					in 76..80 -> BackgroundMemento.CRYSTAL_RING
-					in 81..85 -> BackgroundMemento.RUSTED_IRON_NAIL
-					in 86..90 -> BackgroundMemento.CHIPPED_TRILOBITE_FOSSIL
-					in 91..95 -> BackgroundMemento.BROKEN_CHRONO
-					in 96..100 -> BackgroundMemento.CHIPPED_PEARL
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			ADEPTUS_MECHANICUS -> {
-				when (it) {
-					in 1..5 -> BackgroundMemento.BRASS_COG_WHEEL
-					in 6..10 -> BackgroundMemento.SULPHUR_CRYSTAL
-					in 11..15 -> BackgroundMemento.LENGTH_OF_COILED_WIRE
-					in 16..20 -> BackgroundMemento.PLASTEEL_CUBE
-					in 21..25 -> BackgroundMemento.BAG_OF_RED_SAND
-					in 26..30 -> BackgroundMemento.TINY_HAND_GYROSCOPE
-					in 31..35 -> BackgroundMemento.NUGGET_OF_COPPER_ORE
-					in 36..40 -> BackgroundMemento.BAR_MAGNET_IN_GLASS_BLOCK
-					in 41..45 -> BackgroundMemento.LUMP_OF_MUMMIFIED_FLESH
-					in 46..50 -> BackgroundMemento.CRACKED_CRYSTAL_WAFER
-					in 51..55 -> BackgroundMemento.HEMATITE_STONE
-					in 56..60 -> BackgroundMemento.PHIAL_OF_IRON_FILINGS
-					in 61..65 -> BackgroundMemento.SMALL_BRASS_INGOT
-					in 66..70 -> BackgroundMemento.OILY_CLEANING_RAGS
-					in 71..75 -> BackgroundMemento.TWISTED_METAL_WRENCH
-					in 76..80 -> BackgroundMemento.PHIAL_OF_GELATINOUS_LIQUID
-					in 81..85 -> BackgroundMemento.SMALL_METAL_PYRAMID
-					in 86..90 -> BackgroundMemento.FRAGMENT_OF_STAINED_GLASS
-					in 91..95 -> BackgroundMemento.FINGER_BONE
-					in 96..100 -> BackgroundMemento.METAL_CARBON_ROD
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			ADEPTUS_MINISOTRUM -> {
-				when (it) {
-					in 1..5 -> BackgroundMemento.BROKEN_SEXTANT
-					in 6..10 -> BackgroundMemento.LAMP_WICK
-					in 11..15 -> BackgroundMemento.LEAKING_HOURGLASS
-					in 16..20 -> BackgroundMemento.MATCH
-					in 21..25 -> BackgroundMemento.TIN_OF_SOFT_WAX
-					in 26..30 -> BackgroundMemento.DRIED_LEACH
-					in 31..35 -> BackgroundMemento.BALL_OF_FEATHERS
-					in 36..40 -> BackgroundMemento.LARGE_SALT_CRYSTAL
-					in 41..45 -> BackgroundMemento.BONE_DRILL_BIT
-					in 46..50 -> BackgroundMemento.PHIAL_OF_DUST
-					in 51..55 -> BackgroundMemento.FRAGMENT_OF_STONE_TABLET
-					in 56..60 -> BackgroundMemento.STAINED_WOODEN_TOOTH
-					in 61..65 -> BackgroundMemento.REGICIDE_PIECE
-					in 66..70 -> BackgroundMemento.LUMP_OF_CANDLE_WAX
-					in 71..75 -> BackgroundMemento.TATTERED_BOOKMARK
-					in 76..80 -> BackgroundMemento.CORD_FROM_A_WHIP
-					in 81..85 -> BackgroundMemento.BRASS_KEY_PUNCH
-					in 86..90 -> BackgroundMemento.SCORCHED_FRAGMENT_OF_SKIN
-					in 91..95 -> BackgroundMemento.SLIVER_OF_SILVER_IN_PLASTEEL_DISC
-					in 96..100 -> BackgroundMemento.BURNED_FEATHER_QUILL
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			IMPERIAL_GUARD -> {
-				when (it) {
-					in 1..5 -> BackgroundMemento.BURNT_LAS_POWER_PACK
-					in 6..10 -> BackgroundMemento.XENOS_SKIN_FRAGMENT
-					in 11..15 -> BackgroundMemento.BRAIDED_BOOT_LACE
-					in 16..20 -> BackgroundMemento.BENT_GRENADE_PIN
-					in 21..25 -> BackgroundMemento.BLOODSTAINED_ROCK
-					in 26..30 -> BackgroundMemento.CHIP_OF_TANK_TREAD
-					in 31..35 -> BackgroundMemento.SHARD_OF_CERAMITE_ARMOUR
-					in 36..40 -> BackgroundMemento.RATION_PACK_FOIL
-					in 41..45 -> BackgroundMemento.SMALL_IRON_HORSESHOE
-					in 46..50 -> BackgroundMemento.ROCK_THAT_GLOWS_IN_DARK
-					in 51..55 -> BackgroundMemento.CRACKED_BATON
-					in 56..60 -> BackgroundMemento.ORK_TOOF_NECKLACE
-					in 61..65 -> BackgroundMemento.CHUNK_OF_FUSED_SAND
-					in 66..70 -> BackgroundMemento.BLOODSTAINED_BANDAGE
-					in 71..75 -> BackgroundMemento.SMOKED_GLASS_SHARD
-					in 76..80 -> BackgroundMemento.FRAYED_PENNANT
-					in 81..85 -> BackgroundMemento.OLD_HELMET_STRAP
-					in 86..90 -> BackgroundMemento.DENTED_BELT_BUCKLE
-					in 91..95 -> BackgroundMemento.FORM_4111_JUN_555
-					in 96..100 -> BackgroundMemento.BURNT_AND_CRACKED_COMMENDATION_MEDAL
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
-			OUTCAST -> {
-				when (it) {
-					in 1..5 -> BackgroundMemento.BOX_OF_USED_MATCHES
-					in 6..10 -> BackgroundMemento.BOTTLE_OF_SHRAPNEL
-					in 11..15 -> BackgroundMemento.EYE_PATCH
-					in 16..20 -> BackgroundMemento.SILK_GORGET
-					in 21..25 -> BackgroundMemento.ANKLE_BRACELET
-					in 26..30 -> BackgroundMemento.SHOTGUN_SHELL_CASING
-					in 31..35 -> BackgroundMemento.LEATHER_HAIR_STRAP
-					in 36..40 -> BackgroundMemento.CORK_BOTTLE_STOPPER
-					in 41..45 -> BackgroundMemento.BENT_COIN
-					in 46..50 -> BackgroundMemento.LEATHER_POUCH
-					in 51..55 -> BackgroundMemento.FLAGON_HANDLE
-					in 56..60 -> BackgroundMemento.CLOTH_ARMBAND
-					in 61..65 -> BackgroundMemento.METAL_ARTIFICIAL_NOSE
-					in 66..70 -> BackgroundMemento.CRACKED_AUTO_PISTOL_CLIP
-					in 71..75 -> BackgroundMemento.TUBE_OF_BRIGHT_LIPSTICK
-					in 76..80 -> BackgroundMemento.MOUTH_HARP
-					in 81..85 -> BackgroundMemento.LOADED_DICE
-					in 86..90 -> BackgroundMemento.BADLY_FORGED_COIN
-					in 91..95 -> BackgroundMemento.BAG_OF_DUST
-					in 96..100 -> BackgroundMemento.PLASTEEL_TOOTHPICK
-					else -> throw Exception("Impossible Roll: $it")
-				}
-			}
+			Background.ADEPTUS_ADMINISTRATUM -> randomSelection(items = AdministratumMemento.values()) as Memento
+			Background.ADEPTUS_ARBITES -> randomSelection(items = ArbitesMemento.values()) as Memento
+			Background.ADEPTUS_ASTRA_TELEPATHICA -> randomSelection(items = AstraMemento.values()) as Memento
+			Background.ADEPTUS_MECHANICUS -> randomSelection(items = MechanicusMemento.values()) as Memento
+			Background.ADEPTUS_MINISOTRUM -> randomSelection(items = MinistorumMemento.values()) as Memento
+			Background.IMPERIAL_GUARD -> randomSelection(items = ImperialMemento.values()) as Memento
+			Background.OUTCAST -> randomSelection(items = OutcastMemento.values()) as Memento
 		}
 	}
 }
