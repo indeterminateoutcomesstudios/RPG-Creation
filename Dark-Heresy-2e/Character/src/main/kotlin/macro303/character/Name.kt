@@ -119,7 +119,26 @@ interface Name {
 	}
 
 	enum class HighFemaleName(override val value: String) : Name {
-
+		ARALEEN(value = "Araleen"),
+		CASTELLA(value = "Castella"),
+		ELLEANTRA(value = "Elleantra"),
+		FAUSTA(value = "Fausta"),
+		FLAVIA(value = "Flavia"),
+		HERAS(value = "Heras"),
+		IRISSA(value = "Irissa"),
+		JUCINDA(value = "Jucinda"),
+		LUCINDIA(value = "Lucindia"),
+		MYCANDRA(value = "Mycandra"),
+		NOVIANNA(value = "Novianna"),
+		NUELLA(value = "Nuella"),
+		PALANZA(value = "Palanza"),
+		PRAENTA(value = "Praenta"),
+		REGIA(value = "Regia"),
+		SCYTHIA(value = "Scythia"),
+		TEMETRIA(value = "Temetria"),
+		THALLIA(value = "Thallia"),
+		VENRIA(value = "Venria"),
+		YEMMISE(value = "Yemmise")
 	}
 
 	enum class ArchaicMaleName(override val value: String) : Name {
@@ -146,7 +165,26 @@ interface Name {
 	}
 
 	enum class ArchaicFemaleName(override val value: String) : Name {
-
+		AENNISSE(value = "Aennisse"),
+		BIANCA(value = "Bianca"),
+		DRUSILLA(value = "Drusilla"),
+		EOS(value = "Eos"),
+		FLORENZA(value = "Florenza"),
+		GENEVIEVE(value = "Genevieve"),
+		HANNETTE(value = "Hannette"),
+		JOCASTA(value = "Jocasta"),
+		KATARINA(value = "Katarina"),
+		LETHE(value = "Lethe"),
+		MIRANDA(value = "Miranda"),
+		POLLONIA(value = "Pollonia"),
+		ROSALIND(value = "Rosalind"),
+		SEVERINE(value = "Severine"),
+		TESSERA(value = "Tessera"),
+		TZARELLE(value = "Tzarelle"),
+		URANIA(value = "Urania"),
+		VERITY(value = "Verity"),
+		WYNNIF(value = "Wynnif"),
+		YASTA(value = "Yasta")
 	}
 
 	enum class InformalMaleName(override val value: String) : Name {
@@ -173,6 +211,25 @@ interface Name {
 	}
 
 	enum class InformalFemaleName(override val value: String) : Name {
-
+		ALTA(value = "Alta"),
+		BLUE(value = "Blue"),
+		ECHO(value = "Echo"),
+		FATAL(value = "Fatal"),
+		FLAME(value = "Flame"),
+		GAMMA(value = "Gamma"),
+		GRACE(value = "Grace"),
+		JAINE(value = "Jaine"),
+		LHO(value = "Lho"),
+		MINI(value = "Mini"),
+		NERVA(value = "Nerva"),
+		NEWT(value = "Newt"),
+		PRIS(value = "Pris"),
+		RED(value = "Red"),
+		STEEL(value = "Steel"),
+		STARR(value = "Starr"),
+		TANDA(value = "Tanda"),
+		TRIX(value = "Trix"),
+		XINA(value = "Xina"),
+		ZEDDA(value = "Zedda")
 	}
 }
