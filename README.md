@@ -23,6 +23,7 @@ _TODO Description_
       - Skin
     - Gender
     - Homeworld + Memento
+    - Name + Status
     - Quirks
     - Role
     - Superstition
