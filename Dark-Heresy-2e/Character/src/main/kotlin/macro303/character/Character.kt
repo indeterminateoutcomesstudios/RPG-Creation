@@ -19,7 +19,8 @@ data class Character(
 		val homeworldMemento: Memento,
 		val backgroundMemento: Memento,
 		val nameStatus: NameStatus,
-		val name: Name
+		val name: Name,
+		val divination: Divination
 ) {
 
 	var weaponSkill: Int = 20
@@ -36,17 +37,21 @@ data class Character(
 	var aptitudes: ArrayList<String> = ArrayList()
 
 	init {
-		weaponSkill += rollStat(if (homeworld.pos.contains(Characteristic.WEAPON_SKILL)) 1 else if (homeworld.neg == Characteristic.WEAPON_SKILL) -1 else 0)
-		ballisticSkill += rollStat(if (homeworld.pos.contains(Characteristic.BALLISTIC_SKILL)) 1 else if (homeworld.neg == Characteristic.BALLISTIC_SKILL) -1 else 0)
-		strength += rollStat(if (homeworld.pos.contains(Characteristic.STRENGTH)) 1 else if (homeworld.neg == Characteristic.STRENGTH) -1 else 0)
-		toughness += rollStat(if (homeworld.pos.contains(Characteristic.TOUGHNESS)) 1 else if (homeworld.neg == Characteristic.TOUGHNESS) -1 else 0)
-		agility += rollStat(if (homeworld.pos.contains(Characteristic.AGILITY)) 1 else if (homeworld.neg == Characteristic.AGILITY) -1 else 0)
-		intelligence += rollStat(if (homeworld.pos.contains(Characteristic.INTELLIGENCE)) 1 else if (homeworld.neg == Characteristic.INTELLIGENCE) -1 else 0)
-		perception += rollStat(if (homeworld.pos.contains(Characteristic.PERCEPTION)) 1 else if (homeworld.neg == Characteristic.PERCEPTION) -1 else 0)
-		willpower += rollStat(if (homeworld.pos.contains(Characteristic.WILLPOWER)) 1 else if (homeworld.neg == Characteristic.WILLPOWER) -1 else 0)
-		fellowship += rollStat(if (homeworld.pos.contains(Characteristic.FELLOWSHIP)) 1 else if (homeworld.neg == Characteristic.FELLOWSHIP) -1 else 0)
-		influence += rollStat(if (homeworld.pos.contains(Characteristic.INFLUENCE)) 1 else if (homeworld.neg == Characteristic.INFLUENCE) -1 else 0)
+		rollStats()
 		totalWounds = 5.rollDice() + homeworld.woundBonus
+	}
+
+	private fun rollStats() {
+		weaponSkill += rollStat(count = if (homeworld.pos.contains(Characteristic.WEAPON_SKILL)) 1 else if (homeworld.neg == Characteristic.WEAPON_SKILL) -1 else 0)
+		ballisticSkill += rollStat(count = if (homeworld.pos.contains(Characteristic.BALLISTIC_SKILL)) 1 else if (homeworld.neg == Characteristic.BALLISTIC_SKILL) -1 else 0)
+		strength += rollStat(count = if (homeworld.pos.contains(Characteristic.STRENGTH)) 1 else if (homeworld.neg == Characteristic.STRENGTH) -1 else 0)
+		toughness += rollStat(count = if (homeworld.pos.contains(Characteristic.TOUGHNESS)) 1 else if (homeworld.neg == Characteristic.TOUGHNESS) -1 else 0)
+		agility += rollStat(count = if (homeworld.pos.contains(Characteristic.AGILITY)) 1 else if (homeworld.neg == Characteristic.AGILITY) -1 else 0)
+		intelligence += rollStat(count = if (homeworld.pos.contains(Characteristic.INTELLIGENCE)) 1 else if (homeworld.neg == Characteristic.INTELLIGENCE) -1 else 0)
+		perception += rollStat(count = if (homeworld.pos.contains(Characteristic.PERCEPTION)) 1 else if (homeworld.neg == Characteristic.PERCEPTION) -1 else 0)
+		willpower += rollStat(count = if (homeworld.pos.contains(Characteristic.WILLPOWER)) 1 else if (homeworld.neg == Characteristic.WILLPOWER) -1 else 0)
+		fellowship += rollStat(count = if (homeworld.pos.contains(Characteristic.FELLOWSHIP)) 1 else if (homeworld.neg == Characteristic.FELLOWSHIP) -1 else 0)
+		influence += rollStat(count = if (homeworld.pos.contains(Characteristic.INFLUENCE)) 1 else if (homeworld.neg == Characteristic.INFLUENCE) -1 else 0)
 	}
 
 	private fun rollStat(count: Int): Int {
@@ -81,6 +86,8 @@ data class Character(
 		quirks.forEach { quirk -> println("\t${quirk.value}") }
 		println("Superstition = ${superstition.value}")
 		println("\tMeaning = ${superstition.description}")
+		println("Divination = ${divination.value}")
+		println("\tEffect = ${divination.effect}")
 		println("Stats:")
 		println("\t${Characteristic.WEAPON_SKILL.value} = $weaponSkill")
 		println("\t${Characteristic.BALLISTIC_SKILL.value} = $ballisticSkill")

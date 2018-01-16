@@ -31,27 +31,11 @@ object Builder {
 			homeworldMemento: Memento = rollHomeworldMemento(homeworld = homeworld),
 			backgroundMemento: Memento = rollBackgroundMemento(background = background),
 			nameStatus: NameStatus = rollNameStatus(),
-			name: Name = rollName(nameStatus = nameStatus, isMale = isMale)
+			name: Name = rollName(nameStatus = nameStatus, isMale = isMale),
+			divination: Divination = rollDivination()
 	): Character {
 		val tempQuirks = if (quirks.isNotEmpty()) quirks else rollQuirks(homeworld = homeworld)
-		return Character(
-				isMale = isMale,
-				homeworld = homeworld,
-				background = background,
-				role = role,
-				build = build,
-				ageStatus = ageStatus,
-				age = age,
-				skinColour = skinColour,
-				hairColour = hairColour,
-				eyeColour = eyeColour,
-				quirks = tempQuirks,
-				superstition = superstition,
-				homeworldMemento = homeworldMemento,
-				backgroundMemento = backgroundMemento,
-				nameStatus = nameStatus,
-				name = name
-		)
+		return Character(isMale = isMale, homeworld = homeworld, background = background, role = role, build = build, ageStatus = ageStatus, age = age, skinColour = skinColour, hairColour = hairColour, eyeColour = eyeColour, quirks = tempQuirks, superstition = superstition, homeworldMemento = homeworldMemento, backgroundMemento = backgroundMemento, nameStatus = nameStatus, name = name, divination = divination)
 	}
 
 	private fun rollGender(): Boolean {
@@ -206,5 +190,9 @@ object Builder {
 		if (name == null)
 			name = rollName(nameStatus = nameStatus, isMale = !isMale)
 		return name
+	}
+
+	private fun rollDivination(): Divination {
+		return randomSelection(Divination.values()) as Divination
 	}
 }
