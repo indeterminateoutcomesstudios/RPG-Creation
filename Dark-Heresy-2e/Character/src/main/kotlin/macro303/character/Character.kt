@@ -23,8 +23,8 @@ data class Character(
 		val divination: Divination
 ) {
 
-	var weaponSkill: Int = 20
-	var ballisticSkill: Int = 20
+	var weapon: Int = 20
+	var ballistic: Int = 20
 	var strength: Int = 20
 	var toughness: Int = 20
 	var agility: Int = 20
@@ -39,11 +39,12 @@ data class Character(
 	init {
 		rollStats()
 		totalWounds = 5.rollDice() + homeworld.woundBonus
+		divinationUpdateStats()
 	}
 
 	private fun rollStats() {
-		weaponSkill += rollStat(count = if (homeworld.pos.contains(Characteristic.WEAPON_SKILL)) 1 else if (homeworld.neg == Characteristic.WEAPON_SKILL) -1 else 0)
-		ballisticSkill += rollStat(count = if (homeworld.pos.contains(Characteristic.BALLISTIC_SKILL)) 1 else if (homeworld.neg == Characteristic.BALLISTIC_SKILL) -1 else 0)
+		weapon += rollStat(count = if (homeworld.pos.contains(Characteristic.WEAPON_SKILL)) 1 else if (homeworld.neg == Characteristic.WEAPON_SKILL) -1 else 0)
+		ballistic += rollStat(count = if (homeworld.pos.contains(Characteristic.BALLISTIC_SKILL)) 1 else if (homeworld.neg == Characteristic.BALLISTIC_SKILL) -1 else 0)
 		strength += rollStat(count = if (homeworld.pos.contains(Characteristic.STRENGTH)) 1 else if (homeworld.neg == Characteristic.STRENGTH) -1 else 0)
 		toughness += rollStat(count = if (homeworld.pos.contains(Characteristic.TOUGHNESS)) 1 else if (homeworld.neg == Characteristic.TOUGHNESS) -1 else 0)
 		agility += rollStat(count = if (homeworld.pos.contains(Characteristic.AGILITY)) 1 else if (homeworld.neg == Characteristic.AGILITY) -1 else 0)
@@ -62,6 +63,59 @@ data class Character(
 			rolls.add(10.rollDice())
 		rolls.sort()
 		return rolls[1] + if (count == 1) rolls[2] else rolls[0]
+	}
+
+	private fun divinationUpdateStats() {
+		when (divination) {
+			Divination.TRUST -> perception += 5
+			Divination.PAIN -> agility -= 3
+			Divination.WISE -> {
+				if (2.rollDice() == 1)
+					agility += 3
+				else
+					intelligence += 3
+				if (2.rollDice() == 1)
+					weapon -= 3
+				else
+					ballistic -= 3
+			}
+			Divination.TRUTH -> perception += 3
+			Divination.THOUGHT -> intelligence -= 3
+			Divination.HERESY -> {
+				if (2.rollDice() == 1)
+					fellowship += 3
+				else
+					strength += 3
+				if (2.rollDice() == 1)
+					toughness -= 3
+				else
+					willpower -= 3
+			}
+			Divination.JOB -> {
+				if (2.rollDice() == 1)
+					toughness += 3
+				else
+					willpower += 3
+				if (2.rollDice() == 1)
+					fellowship -= 3
+				else
+					strength -= 3
+			}
+			Divination.VIOLENCE -> {
+				if (2.rollDice() == 1)
+					weapon += 3
+				else
+					ballistic += 3
+				if (2.rollDice() == 1)
+					agility -= 3
+				else
+					intelligence -= 3
+			}
+			Divination.IGNORANCE -> perception -= 3
+			Divination.INSANE -> willpower += 3
+			Divination.SUSPICIOUS -> perception += 2
+			Divination.SUFFERING -> toughness -= 3
+		}
 	}
 
 	fun display() {
@@ -89,8 +143,8 @@ data class Character(
 		println("Divination = ${divination.value}")
 		println("\tEffect = ${divination.effect}")
 		println("Stats:")
-		println("\t${Characteristic.WEAPON_SKILL.value} = $weaponSkill")
-		println("\t${Characteristic.BALLISTIC_SKILL.value} = $ballisticSkill")
+		println("\t${Characteristic.WEAPON_SKILL.value} = $weapon")
+		println("\t${Characteristic.BALLISTIC_SKILL.value} = $ballistic")
 		println("\t${Characteristic.STRENGTH.value} = $strength")
 		println("\t${Characteristic.TOUGHNESS.value} = $toughness")
 		println("\t${Characteristic.AGILITY.value} = $agility")
@@ -120,6 +174,6 @@ data class Character(
 	private fun Int.rollDice() = Random().nextInt(this) + 1
 
 	override fun toString(): String {
-		return "Character(isMale=$isMale, homeworld=$homeworld, background=$background, role=$role, build=$build, ageStatus=$ageStatus, age=$age, skinColour=$skinColour, hairColour=$hairColour, eyeColour=$eyeColour, quirks=$quirks, superstition=$superstition, homeworldMemento=$homeworldMemento, backgroundMemento=$backgroundMemento, nameStatus=$nameStatus, name=$name, weaponSkill=$weaponSkill, ballisticSkill=$ballisticSkill, strength=$strength, toughness=$toughness, agility=$agility, intelligence=$intelligence, perception=$perception, willpower=$willpower, fellowship=$fellowship, influence=$influence, totalWounds=$totalWounds, aptitudes=$aptitudes)"
+		return "Character(isMale=$isMale, homeworld=$homeworld, background=$background, role=$role, build=$build, ageStatus=$ageStatus, age=$age, skinColour=$skinColour, hairColour=$hairColour, eyeColour=$eyeColour, quirks=$quirks, superstition=$superstition, homeworldMemento=$homeworldMemento, backgroundMemento=$backgroundMemento, nameStatus=$nameStatus, name=$name, weapon=$weapon, ballistic=$ballistic, strength=$strength, toughness=$toughness, agility=$agility, intelligence=$intelligence, perception=$perception, willpower=$willpower, fellowship=$fellowship, influence=$influence, totalWounds=$totalWounds, aptitudes=$aptitudes)"
 	}
 }
