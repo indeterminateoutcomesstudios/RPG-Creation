@@ -17,7 +17,9 @@ data class Character(
 		val quirks: ArrayList<Quirk>,
 		val superstition: Superstition,
 		val homeworldMemento: Memento,
-		val backgroundMemento: Memento
+		val backgroundMemento: Memento,
+		val nameStatus: NameStatus,
+		val name: Name
 ) {
 
 	var weaponSkill: Int = 20
@@ -58,6 +60,8 @@ data class Character(
 	}
 
 	fun display() {
+		println("Name = ${name.value}")
+		println("\tStatus = ${nameStatus.value}")
 		println("Gender = ${if (isMale) "Male" else "Female"}")
 		println("Homeworld = ${homeworld.value}")
 		println("\tMemento = ${homeworldMemento.value}")
@@ -109,6 +113,6 @@ data class Character(
 	private fun Int.rollDice() = Random().nextInt(this) + 1
 
 	override fun toString(): String {
-		return "Character(isMale=$isMale, homeworld=$homeworld, background=$background, role=$role, build=$build, ageStatus=$ageStatus, age=$age, skinColour=$skinColour, hairColour=$hairColour, eyeColour=$eyeColour, quirks=$quirks, superstition=$superstition, homeworldMemento=$homeworldMemento, backgroundMemento=$backgroundMemento, weaponSkill=$weaponSkill, ballisticSkill=$ballisticSkill, strength=$strength, toughness=$toughness, agility=$agility, intelligence=$intelligence, perception=$perception, willpower=$willpower, fellowship=$fellowship, influence=$influence)"
+		return "Character(isMale=$isMale, homeworld=$homeworld, background=$background, role=$role, build=$build, ageStatus=$ageStatus, age=$age, skinColour=$skinColour, hairColour=$hairColour, eyeColour=$eyeColour, quirks=$quirks, superstition=$superstition, homeworldMemento=$homeworldMemento, backgroundMemento=$backgroundMemento, nameStatus=$nameStatus, name=$name, weaponSkill=$weaponSkill, ballisticSkill=$ballisticSkill, strength=$strength, toughness=$toughness, agility=$agility, intelligence=$intelligence, perception=$perception, willpower=$willpower, fellowship=$fellowship, influence=$influence, totalWounds=$totalWounds, aptitudes=$aptitudes)"
 	}
 }

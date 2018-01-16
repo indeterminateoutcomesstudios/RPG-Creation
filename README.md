@@ -1,4 +1,4 @@
-# RPG Creation _0.1_
+# RPG Creation _0.1.1_
 
 _TODO Description_  
 
@@ -23,6 +23,7 @@ _TODO Description_
       - Skin
     - Gender
     - Homeworld + Memento
+    - Name + Status
     - Quirks
     - Role
     - Superstition
