@@ -1,19 +1,20 @@
 package macro303.character
 
-import macro303.character.AgeStatus.*
+import macro303.character.ageStatus.AgeStatus.*
 import macro303.character.Build.*
 import macro303.character.Colour.*
 import macro303.character.Memento.*
 import macro303.character.Name.*
 import macro303.character.Quirk.*
 import macro303.character.Superstition.*
+import macro303.character.ageStatus.AgeStatus
+import macro303.character.ageStatus.FeralAgeStatus
 import java.util.*
 import kotlin.collections.ArrayList
 
 object Builder {
-	private fun randomBoolean() = Random().nextBoolean()
-	private fun randomSelection(items: Array<*>) = items[Random().nextInt(items.size)]
 	private fun Int.rollDice() = Random().nextInt(this) + 1
+	private fun randomSelection(items: Array<*>) = items[items.size.rollDice() - 1]
 
 	fun buildCharacter(
 			isMale: Boolean = rollGender(),
@@ -39,7 +40,7 @@ object Builder {
 	}
 
 	private fun rollGender(): Boolean {
-		return randomBoolean()
+		return 2.rollDice() == 1
 	}
 
 	private fun rollHomeworld(): Homeworld {

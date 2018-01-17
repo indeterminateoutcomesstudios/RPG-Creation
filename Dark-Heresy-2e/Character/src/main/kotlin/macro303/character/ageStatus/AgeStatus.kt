@@ -1,13 +1,8 @@
-package macro303.character
+package macro303.character.ageStatus
 
 interface AgeStatus {
 	val value: String
 	val multiplier: Int
-
-	enum class FeralAgeStatus(override val value: String, override val multiplier: Int) : AgeStatus {
-		WARRIOR(value = "Warrior", multiplier = 15),
-		OLD_ONE(value = "Old One", multiplier = 25)
-	}
 
 	enum class ForgeAgeStatus(override val value: String, override val multiplier: Int) : AgeStatus {
 		YOUNG(value = "Young", multiplier = 15),

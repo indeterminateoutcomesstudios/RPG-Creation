@@ -1,5 +1,7 @@
 package macro303.character
 
+import macro303.character.Aptitude.CharacteristicAptitude.*
+import macro303.character.ageStatus.AgeStatus
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -22,17 +24,7 @@ data class Character(
 		val name: Name,
 		val divination: Divination
 ) {
-
-	var weapon: Int = 20
-	var ballistic: Int = 20
-	var strength: Int = 20
-	var toughness: Int = 20
-	var agility: Int = 20
-	var intelligence: Int = 20
-	var perception: Int = 20
-	var willpower: Int = 20
-	var fellowship: Int = 20
-	var influence: Int = 20
+	private val characteristics: EnumMap<Aptitude.CharacteristicAptitude, Int> = EnumMap(Aptitude.CharacteristicAptitude::class.java)
 	var totalWounds: Int
 	var aptitudes: ArrayList<String> = ArrayList()
 
@@ -43,16 +35,16 @@ data class Character(
 	}
 
 	private fun rollStats() {
-		weapon += rollStat(count = if (homeworld.pos.contains(Characteristic.WEAPON_SKILL)) 1 else if (homeworld.neg == Characteristic.WEAPON_SKILL) -1 else 0)
-		ballistic += rollStat(count = if (homeworld.pos.contains(Characteristic.BALLISTIC_SKILL)) 1 else if (homeworld.neg == Characteristic.BALLISTIC_SKILL) -1 else 0)
-		strength += rollStat(count = if (homeworld.pos.contains(Characteristic.STRENGTH)) 1 else if (homeworld.neg == Characteristic.STRENGTH) -1 else 0)
-		toughness += rollStat(count = if (homeworld.pos.contains(Characteristic.TOUGHNESS)) 1 else if (homeworld.neg == Characteristic.TOUGHNESS) -1 else 0)
-		agility += rollStat(count = if (homeworld.pos.contains(Characteristic.AGILITY)) 1 else if (homeworld.neg == Characteristic.AGILITY) -1 else 0)
-		intelligence += rollStat(count = if (homeworld.pos.contains(Characteristic.INTELLIGENCE)) 1 else if (homeworld.neg == Characteristic.INTELLIGENCE) -1 else 0)
-		perception += rollStat(count = if (homeworld.pos.contains(Characteristic.PERCEPTION)) 1 else if (homeworld.neg == Characteristic.PERCEPTION) -1 else 0)
-		willpower += rollStat(count = if (homeworld.pos.contains(Characteristic.WILLPOWER)) 1 else if (homeworld.neg == Characteristic.WILLPOWER) -1 else 0)
-		fellowship += rollStat(count = if (homeworld.pos.contains(Characteristic.FELLOWSHIP)) 1 else if (homeworld.neg == Characteristic.FELLOWSHIP) -1 else 0)
-		influence += rollStat(count = if (homeworld.pos.contains(Characteristic.INFLUENCE)) 1 else if (homeworld.neg == Characteristic.INFLUENCE) -1 else 0)
+		characteristics[WEAPON_SKILL] = rollStat(count = if (homeworld.pos.contains(WEAPON_SKILL)) 1 else if (homeworld.neg == WEAPON_SKILL) -1 else 0) + 20
+		characteristics[BALLISTIC_SKILL] = rollStat(count = if (homeworld.pos.contains(BALLISTIC_SKILL)) 1 else if (homeworld.neg == BALLISTIC_SKILL) -1 else 0) + 20
+		characteristics[STRENGTH] = rollStat(count = if (homeworld.pos.contains(STRENGTH)) 1 else if (homeworld.neg == STRENGTH) -1 else 0) + 20
+		characteristics[TOUGHNESS] = rollStat(count = if (homeworld.pos.contains(TOUGHNESS)) 1 else if (homeworld.neg == TOUGHNESS) -1 else 0) + 20
+		characteristics[AGILITY] = rollStat(count = if (homeworld.pos.contains(AGILITY)) 1 else if (homeworld.neg == AGILITY) -1 else 0) + 20
+		characteristics[INTELLIGENCE] = rollStat(count = if (homeworld.pos.contains(INTELLIGENCE)) 1 else if (homeworld.neg == INTELLIGENCE) -1 else 0) + 20
+		characteristics[PERCEPTION] = rollStat(count = if (homeworld.pos.contains(PERCEPTION)) 1 else if (homeworld.neg == PERCEPTION) -1 else 0) + 20
+		characteristics[WILLPOWER] = rollStat(count = if (homeworld.pos.contains(WILLPOWER)) 1 else if (homeworld.neg == WILLPOWER) -1 else 0) + 20
+		characteristics[FELLOWSHIP] = rollStat(count = if (homeworld.pos.contains(FELLOWSHIP)) 1 else if (homeworld.neg == FELLOWSHIP) -1 else 0) + 20
+		characteristics[INFLUENCE] = rollStat(count = if (homeworld.pos.contains(INFLUENCE)) 1 else if (homeworld.neg == INFLUENCE) -1 else 0) + 20
 	}
 
 	private fun rollStat(count: Int): Int {
@@ -67,54 +59,56 @@ data class Character(
 
 	private fun divinationUpdateStats() {
 		when (divination) {
-			Divination.TRUST -> perception += 5
-			Divination.PAIN -> agility -= 3
+			Divination.TRUST -> {
+				characteristics[PERCEPTION] = characteristics[PERCEPTION]!! + 5
+			}
+			Divination.PAIN -> characteristics[AGILITY] = characteristics[AGILITY]!! - 3
 			Divination.WISE -> {
 				if (2.rollDice() == 1)
-					agility += 3
+					characteristics[AGILITY] = characteristics[AGILITY]!! + 3
 				else
-					intelligence += 3
+					characteristics[INTELLIGENCE] = characteristics[INTELLIGENCE]!! + 3
 				if (2.rollDice() == 1)
-					weapon -= 3
+					characteristics[WEAPON_SKILL] = characteristics[WEAPON_SKILL]!! - 3
 				else
-					ballistic -= 3
+					characteristics[BALLISTIC_SKILL] = characteristics[WEAPON_SKILL]!! - 3
 			}
-			Divination.TRUTH -> perception += 3
-			Divination.THOUGHT -> intelligence -= 3
+			Divination.TRUTH -> characteristics[PERCEPTION] = characteristics[PERCEPTION]!! + 3
+			Divination.THOUGHT -> characteristics[INTELLIGENCE] = characteristics[INTELLIGENCE]!! - 3
 			Divination.HERESY -> {
 				if (2.rollDice() == 1)
-					fellowship += 3
+					characteristics[FELLOWSHIP] = characteristics[FELLOWSHIP]!! + 3
 				else
-					strength += 3
+					characteristics[STRENGTH] = characteristics[STRENGTH]!! + 3
 				if (2.rollDice() == 1)
-					toughness -= 3
+					characteristics[TOUGHNESS] = characteristics[TOUGHNESS]!! - 3
 				else
-					willpower -= 3
+					characteristics[WILLPOWER] = characteristics[WILLPOWER]!! - 3
 			}
 			Divination.JOB -> {
 				if (2.rollDice() == 1)
-					toughness += 3
+					characteristics[TOUGHNESS] = characteristics[TOUGHNESS]!! + 3
 				else
-					willpower += 3
+					characteristics[WILLPOWER] = characteristics[WILLPOWER]!! + 3
 				if (2.rollDice() == 1)
-					fellowship -= 3
+					characteristics[FELLOWSHIP] = characteristics[FELLOWSHIP]!! - 3
 				else
-					strength -= 3
+					characteristics[STRENGTH] = characteristics[STRENGTH]!! - 3
 			}
 			Divination.VIOLENCE -> {
 				if (2.rollDice() == 1)
-					weapon += 3
+					characteristics[WEAPON_SKILL] = characteristics[WEAPON_SKILL]!! + 3
 				else
-					ballistic += 3
+					characteristics[BALLISTIC_SKILL] = characteristics[WEAPON_SKILL]!! + 3
 				if (2.rollDice() == 1)
-					agility -= 3
+					characteristics[AGILITY] = characteristics[AGILITY]!! - 3
 				else
-					intelligence -= 3
+					characteristics[INTELLIGENCE] = characteristics[INTELLIGENCE]!! - 3
 			}
-			Divination.IGNORANCE -> perception -= 3
-			Divination.INSANE -> willpower += 3
-			Divination.SUSPICIOUS -> perception += 2
-			Divination.SUFFERING -> toughness -= 3
+			Divination.IGNORANCE -> characteristics[PERCEPTION] = characteristics[PERCEPTION]!! - 3
+			Divination.INSANE -> characteristics[WILLPOWER] = characteristics[WILLPOWER]!! + 3
+			Divination.SUSPICIOUS -> characteristics[PERCEPTION] = characteristics[PERCEPTION]!! - 2
+			Divination.SUFFERING -> characteristics[TOUGHNESS] = characteristics[TOUGHNESS]!! - 3
 		}
 	}
 
@@ -143,16 +137,25 @@ data class Character(
 		println("Divination = ${divination.value}")
 		println("\tEffect = ${divination.effect}")
 		println("Stats:")
-		println("\t${Characteristic.WEAPON_SKILL.value} = $weapon")
-		println("\t${Characteristic.BALLISTIC_SKILL.value} = $ballistic")
-		println("\t${Characteristic.STRENGTH.value} = $strength")
-		println("\t${Characteristic.TOUGHNESS.value} = $toughness")
-		println("\t${Characteristic.AGILITY.value} = $agility")
-		println("\t${Characteristic.INTELLIGENCE.value} = $intelligence")
-		println("\t${Characteristic.PERCEPTION.value} = $perception")
-		println("\t${Characteristic.WILLPOWER.value} = $willpower")
-		println("\t${Characteristic.FELLOWSHIP.value} = $fellowship")
-		println("\t${Characteristic.INFLUENCE.value} = $influence")
+		println("\t${WEAPON_SKILL.value} = ${characteristics[WEAPON_SKILL]}")
+		println("\t\tAptitudes = ${Arrays.toString(WEAPON_SKILL.aptitudes)}")
+		println("\t${BALLISTIC_SKILL.value} = ${characteristics[BALLISTIC_SKILL]}")
+		println("\t\tAptitudes = ${Arrays.toString(BALLISTIC_SKILL.aptitudes)}")
+		println("\t${STRENGTH.value} = ${characteristics[STRENGTH]}")
+		println("\t\tAptitudes = ${Arrays.toString(STRENGTH.aptitudes)}")
+		println("\t${TOUGHNESS.value} = ${characteristics[TOUGHNESS]}")
+		println("\t\tAptitudes = ${Arrays.toString(TOUGHNESS.aptitudes)}")
+		println("\t${AGILITY.value} = ${characteristics[AGILITY]}")
+		println("\t\tAptitudes = ${Arrays.toString(AGILITY.aptitudes)}")
+		println("\t${INTELLIGENCE.value} = ${characteristics[INTELLIGENCE]}")
+		println("\t\tAptitudes = ${Arrays.toString(INTELLIGENCE.aptitudes)}")
+		println("\t${PERCEPTION.value} = ${characteristics[PERCEPTION]}")
+		println("\t\tAptitudes = ${Arrays.toString(PERCEPTION.aptitudes)}")
+		println("\t${WILLPOWER.value} = ${characteristics[WILLPOWER]}")
+		println("\t\tAptitudes = ${Arrays.toString(WILLPOWER.aptitudes)}")
+		println("\t${FELLOWSHIP.value} = ${characteristics[FELLOWSHIP]}")
+		println("\t\tAptitudes = ${Arrays.toString(FELLOWSHIP.aptitudes)}")
+		println("\t${INFLUENCE.value} = ${characteristics[INFLUENCE]}")
 		println("\tTotal Wounds = $totalWounds")
 	}
 
@@ -174,6 +177,6 @@ data class Character(
 	private fun Int.rollDice() = Random().nextInt(this) + 1
 
 	override fun toString(): String {
-		return "Character(isMale=$isMale, homeworld=$homeworld, background=$background, role=$role, build=$build, ageStatus=$ageStatus, age=$age, skinColour=$skinColour, hairColour=$hairColour, eyeColour=$eyeColour, quirks=$quirks, superstition=$superstition, homeworldMemento=$homeworldMemento, backgroundMemento=$backgroundMemento, nameStatus=$nameStatus, name=$name, weapon=$weapon, ballistic=$ballistic, strength=$strength, toughness=$toughness, agility=$agility, intelligence=$intelligence, perception=$perception, willpower=$willpower, fellowship=$fellowship, influence=$influence, totalWounds=$totalWounds, aptitudes=$aptitudes)"
+		return "Character(isMale=$isMale, homeworld=$homeworld, background=$background, role=$role, build=$build, ageStatus=$ageStatus, age=$age, skinColour=$skinColour, hairColour=$hairColour, eyeColour=$eyeColour, quirks=$quirks, superstition=$superstition, homeworldMemento=$homeworldMemento, backgroundMemento=$backgroundMemento, nameStatus=$nameStatus, name=$name, totalWounds=$totalWounds, aptitudes=$aptitudes)"
 	}
 }
