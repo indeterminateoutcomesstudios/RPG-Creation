@@ -17,26 +17,44 @@ object Builder {
 	private fun randomSelection(items: Array<*>) = items[items.size.rollDice() - 1]
 
 	fun buildCharacter(
-			isMale: Boolean = rollGender(),
-			homeworld: Homeworld = rollHomeworld(),
-			background: Background = rollBackground(homeworld = homeworld),
-			role: Role = rollRole(background = background),
-			build: Build = rollBuild(homeworld = homeworld),
-			ageStatus: AgeStatus = rollAgeStatus(homeworld = homeworld),
-			age: Int = rollAge(ageStatus = ageStatus),
-			skinColour: Skin = rollSkinColour(homeworld = homeworld),
-			hairColour: Hair = rollHairColour(homeworld = homeworld),
-			eyeColour: Eyes = rollEyeColour(homeworld = homeworld),
-			quirks: ArrayList<Quirk> = ArrayList(),
-			superstition: Superstition = rollSuperstition(homeworld = homeworld),
-			homeworldMemento: Memento = rollHomeworldMemento(homeworld = homeworld),
-			backgroundMemento: Memento = rollBackgroundMemento(background = background),
-			nameStatus: NameStatus = rollNameStatus(),
-			name: Name = rollName(nameStatus = nameStatus, isMale = isMale),
-			divination: Divination = rollDivination()
+		isMale: Boolean = rollGender(),
+		homeworld: Homeworld = rollHomeworld(),
+		background: Background = rollBackground(homeworld = homeworld),
+		role: Role = rollRole(background = background),
+		build: Build = rollBuild(homeworld = homeworld),
+		ageStatus: AgeStatus = rollAgeStatus(homeworld = homeworld),
+		age: Int = rollAge(ageStatus = ageStatus),
+		skinColour: Skin = rollSkinColour(homeworld = homeworld),
+		hairColour: Hair = rollHairColour(homeworld = homeworld),
+		eyeColour: Eyes = rollEyeColour(homeworld = homeworld),
+		quirks: ArrayList<Quirk> = ArrayList(),
+		superstition: Superstition = rollSuperstition(homeworld = homeworld),
+		homeworldMemento: Memento = rollHomeworldMemento(homeworld = homeworld),
+		backgroundMemento: Memento = rollBackgroundMemento(background = background),
+		nameStatus: NameStatus = rollNameStatus(),
+		name: Name = rollName(nameStatus = nameStatus, isMale = isMale),
+		divination: Divination = rollDivination()
 	): Character {
 		val tempQuirks = if (quirks.isNotEmpty()) quirks else rollQuirks(homeworld = homeworld)
-		return Character(isMale = isMale, homeworld = homeworld, background = background, role = role, build = build, ageStatus = ageStatus, age = age, skinColour = skinColour, hairColour = hairColour, eyeColour = eyeColour, quirks = tempQuirks, superstition = superstition, homeworldMemento = homeworldMemento, backgroundMemento = backgroundMemento, nameStatus = nameStatus, name = name, divination = divination)
+		return Character(
+			isMale = isMale,
+			homeworld = homeworld,
+			background = background,
+			role = role,
+			build = build,
+			ageStatus = ageStatus,
+			age = age,
+			skinColour = skinColour,
+			hairColour = hairColour,
+			eyeColour = eyeColour,
+			quirks = tempQuirks,
+			superstition = superstition,
+			homeworldMemento = homeworldMemento,
+			backgroundMemento = backgroundMemento,
+			nameStatus = nameStatus,
+			name = name,
+			divination = divination
+		)
 	}
 
 	private fun rollGender(): Boolean {
@@ -132,12 +150,32 @@ object Builder {
 	@Suppress("UNCHECKED_CAST")
 	private fun rollQuirk(homeworld: Homeworld): Quirk? {
 		return when (homeworld) {
-			Homeworld.FERAL_WORLD -> randomSelection(items = (FeralQuirk.values() as Array<FeralQuirk?>).plusElement(null)) as Quirk?
-			Homeworld.FORGE_WORLD -> randomSelection(items = (ForgeQuirk.values() as Array<ForgeQuirk?>).plusElement(null)) as Quirk?
-			Homeworld.HIGHBORN -> randomSelection(items = (HighbornQuirk.values() as Array<HighbornQuirk?>).plusElement(null)) as Quirk?
+			Homeworld.FERAL_WORLD -> randomSelection(
+				items = (FeralQuirk.values() as Array<FeralQuirk?>).plusElement(
+					null
+				)
+			) as Quirk?
+			Homeworld.FORGE_WORLD -> randomSelection(
+				items = (ForgeQuirk.values() as Array<ForgeQuirk?>).plusElement(
+					null
+				)
+			) as Quirk?
+			Homeworld.HIGHBORN -> randomSelection(
+				items = (HighbornQuirk.values() as Array<HighbornQuirk?>).plusElement(
+					null
+				)
+			) as Quirk?
 			Homeworld.HIVE_WORLD -> randomSelection(items = (HiveQuirk.values() as Array<HiveQuirk?>).plusElement(null)) as Quirk?
-			Homeworld.SHRINE_WORLD -> randomSelection(items = (ShrineQuirk.values() as Array<ShrineQuirk?>).plusElement(null)) as Quirk?
-			Homeworld.VOIDBORN -> randomSelection(items = (VoidbornQuirk.values() as Array<VoidbornQuirk?>).plusElement(null)) as Quirk?
+			Homeworld.SHRINE_WORLD -> randomSelection(
+				items = (ShrineQuirk.values() as Array<ShrineQuirk?>).plusElement(
+					null
+				)
+			) as Quirk?
+			Homeworld.VOIDBORN -> randomSelection(
+				items = (VoidbornQuirk.values() as Array<VoidbornQuirk?>).plusElement(
+					null
+				)
+			) as Quirk?
 		}
 	}
 
@@ -182,11 +220,31 @@ object Builder {
 	@Suppress("UNCHECKED_CAST")
 	private fun rollName(nameStatus: NameStatus, isMale: Boolean): Name {
 		var name = when (nameStatus) {
-			NameStatus.PRIMITIVE -> randomSelection(items = ((if (isMale) PrimitiveMaleName.values() else PrimitiveFemaleName.values()) as Array<Name?>).plusElement(null)) as Name?
-			NameStatus.LOW_GOTHIC -> randomSelection(items = ((if (isMale) LowMaleName.values() else LowFemaleName.values()) as Array<Name?>).plusElement(null)) as Name?
-			NameStatus.HIGH_GOTHIC -> randomSelection(items = ((if (isMale) HighMaleName.values() else HighFemaleName.values()) as Array<Name?>).plusElement(null)) as Name?
-			NameStatus.ARCHAIC -> randomSelection(items = ((if (isMale) ArchaicMaleName.values() else ArchaicFemaleName.values()) as Array<Name?>).plusElement(null)) as Name?
-			NameStatus.INFORMAL -> randomSelection(items = ((if (isMale) InformalMaleName.values() else InformalMaleName.values()) as Array<Name?>).plusElement(null)) as Name?
+			NameStatus.PRIMITIVE -> randomSelection(
+				items = ((if (isMale) PrimitiveMaleName.values() else PrimitiveFemaleName.values()) as Array<Name?>).plusElement(
+					null
+				)
+			) as Name?
+			NameStatus.LOW_GOTHIC -> randomSelection(
+				items = ((if (isMale) LowMaleName.values() else LowFemaleName.values()) as Array<Name?>).plusElement(
+					null
+				)
+			) as Name?
+			NameStatus.HIGH_GOTHIC -> randomSelection(
+				items = ((if (isMale) HighMaleName.values() else HighFemaleName.values()) as Array<Name?>).plusElement(
+					null
+				)
+			) as Name?
+			NameStatus.ARCHAIC -> randomSelection(
+				items = ((if (isMale) ArchaicMaleName.values() else ArchaicFemaleName.values()) as Array<Name?>).plusElement(
+					null
+				)
+			) as Name?
+			NameStatus.INFORMAL -> randomSelection(
+				items = ((if (isMale) InformalMaleName.values() else InformalMaleName.values()) as Array<Name?>).plusElement(
+					null
+				)
+			) as Name?
 		}
 		if (name == null)
 			name = rollName(nameStatus = nameStatus, isMale = !isMale)

@@ -1,6 +1,12 @@
 package macro303.character.build
 
-enum class HighbornBuild(override val value: String, override val heightM: Double, override val weightM: Int, override val heightF: Double, override val weightF: Int) : Build {
+enum class HighbornBuild(
+	override val value: String,
+	override val heightM: Double,
+	override val weightM: Int,
+	override val heightF: Double,
+	override val weightF: Int
+) : Build {
 	SLENDER(value = "Slender", heightM = 1.75, weightM = 65, heightF = 1.65, weightF = 60),
 	SVELTE(value = "Svelte", heightM = 1.85, weightM = 70, heightF = 1.75, weightF = 65),
 	FIT(value = "Fit", heightM = 1.75, weightM = 70, heightF = 1.65, weightF = 60),

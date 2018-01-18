@@ -7,10 +7,10 @@ object Builder {
 	private fun randomBoolean() = Random().nextBoolean()
 
 	fun buildCharacter(
-			isMale: Boolean = rollGender()
+		isMale: Boolean = rollGender()
 	): Character {
 		return Character(
-				isMale = isMale
+			isMale = isMale
 		)
 	}
 

@@ -1,7 +1,7 @@
 package macro303.character
 
 data class Character(
-		val isMale: Boolean
+	val isMale: Boolean
 ) {
 
 	fun display() {

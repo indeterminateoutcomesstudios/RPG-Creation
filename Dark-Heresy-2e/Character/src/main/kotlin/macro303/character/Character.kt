@@ -15,23 +15,23 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 data class Character(
-		val isMale: Boolean,
-		val homeworld: Homeworld,
-		val background: Background,
-		val role: Role,
-		val build: Build,
-		val ageStatus: AgeStatus,
-		val age: Int,
-		val skinColour: Skin,
-		val hairColour: Hair,
-		val eyeColour: Eyes,
-		val quirks: ArrayList<Quirk>,
-		val superstition: Superstition,
-		val homeworldMemento: Memento,
-		val backgroundMemento: Memento,
-		val nameStatus: NameStatus,
-		val name: Name,
-		val divination: Divination
+	val isMale: Boolean,
+	val homeworld: Homeworld,
+	val background: Background,
+	val role: Role,
+	val build: Build,
+	val ageStatus: AgeStatus,
+	val age: Int,
+	val skinColour: Skin,
+	val hairColour: Hair,
+	val eyeColour: Eyes,
+	val quirks: ArrayList<Quirk>,
+	val superstition: Superstition,
+	val homeworldMemento: Memento,
+	val backgroundMemento: Memento,
+	val nameStatus: NameStatus,
+	val name: Name,
+	val divination: Divination
 ) {
 	private val characteristics: EnumMap<CharacterAptitude, Int> = EnumMap(CharacterAptitude::class.java)
 	var totalWounds: Int
@@ -44,16 +44,26 @@ data class Character(
 	}
 
 	private fun rollStats() {
-		characteristics[WEAPON_SKILL] = rollStat(count = if (homeworld.pos.contains(WEAPON_SKILL)) 1 else if (homeworld.neg == WEAPON_SKILL) -1 else 0) + 20
-		characteristics[BALLISTIC_SKILL] = rollStat(count = if (homeworld.pos.contains(BALLISTIC_SKILL)) 1 else if (homeworld.neg == BALLISTIC_SKILL) -1 else 0) + 20
-		characteristics[STRENGTH] = rollStat(count = if (homeworld.pos.contains(STRENGTH)) 1 else if (homeworld.neg == STRENGTH) -1 else 0) + 20
-		characteristics[TOUGHNESS] = rollStat(count = if (homeworld.pos.contains(TOUGHNESS)) 1 else if (homeworld.neg == TOUGHNESS) -1 else 0) + 20
-		characteristics[AGILITY] = rollStat(count = if (homeworld.pos.contains(AGILITY)) 1 else if (homeworld.neg == AGILITY) -1 else 0) + 20
-		characteristics[INTELLIGENCE] = rollStat(count = if (homeworld.pos.contains(INTELLIGENCE)) 1 else if (homeworld.neg == INTELLIGENCE) -1 else 0) + 20
-		characteristics[PERCEPTION] = rollStat(count = if (homeworld.pos.contains(PERCEPTION)) 1 else if (homeworld.neg == PERCEPTION) -1 else 0) + 20
-		characteristics[WILLPOWER] = rollStat(count = if (homeworld.pos.contains(WILLPOWER)) 1 else if (homeworld.neg == WILLPOWER) -1 else 0) + 20
-		characteristics[FELLOWSHIP] = rollStat(count = if (homeworld.pos.contains(FELLOWSHIP)) 1 else if (homeworld.neg == FELLOWSHIP) -1 else 0) + 20
-		characteristics[INFLUENCE] = rollStat(count = if (homeworld.pos.contains(INFLUENCE)) 1 else if (homeworld.neg == INFLUENCE) -1 else 0) + 20
+		characteristics[WEAPON_SKILL] = rollStat(count = if (homeworld.pos.contains(WEAPON_SKILL)) 1 else if (homeworld.neg == WEAPON_SKILL) -1 else 0) +
+				20
+		characteristics[BALLISTIC_SKILL] = rollStat(count = if (homeworld.pos.contains(BALLISTIC_SKILL)) 1 else if (homeworld.neg == BALLISTIC_SKILL) -1 else 0) +
+				20
+		characteristics[STRENGTH] = rollStat(count = if (homeworld.pos.contains(STRENGTH)) 1 else if (homeworld.neg == STRENGTH) -1 else 0) +
+				20
+		characteristics[TOUGHNESS] = rollStat(count = if (homeworld.pos.contains(TOUGHNESS)) 1 else if (homeworld.neg == TOUGHNESS) -1 else 0) +
+				20
+		characteristics[AGILITY] = rollStat(count = if (homeworld.pos.contains(AGILITY)) 1 else if (homeworld.neg == AGILITY) -1 else 0) +
+				20
+		characteristics[INTELLIGENCE] = rollStat(count = if (homeworld.pos.contains(INTELLIGENCE)) 1 else if (homeworld.neg == INTELLIGENCE) -1 else 0) +
+				20
+		characteristics[PERCEPTION] = rollStat(count = if (homeworld.pos.contains(PERCEPTION)) 1 else if (homeworld.neg == PERCEPTION) -1 else 0) +
+				20
+		characteristics[WILLPOWER] = rollStat(count = if (homeworld.pos.contains(WILLPOWER)) 1 else if (homeworld.neg == WILLPOWER) -1 else 0) +
+				20
+		characteristics[FELLOWSHIP] = rollStat(count = if (homeworld.pos.contains(FELLOWSHIP)) 1 else if (homeworld.neg == FELLOWSHIP) -1 else 0) +
+				20
+		characteristics[INFLUENCE] = rollStat(count = if (homeworld.pos.contains(INFLUENCE)) 1 else if (homeworld.neg == INFLUENCE) -1 else 0) +
+				20
 	}
 
 	private fun rollStat(count: Int): Int {
