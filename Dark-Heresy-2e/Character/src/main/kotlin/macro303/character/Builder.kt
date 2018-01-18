@@ -1,14 +1,14 @@
 package macro303.character
 
-import macro303.character.ageStatus.AgeStatus.*
-import macro303.character.Build.*
-import macro303.character.Colour.*
-import macro303.character.Memento.*
-import macro303.character.Name.*
-import macro303.character.Quirk.*
-import macro303.character.Superstition.*
-import macro303.character.ageStatus.AgeStatus
-import macro303.character.ageStatus.FeralAgeStatus
+import macro303.character.ageStatus.*
+import macro303.character.build.*
+import macro303.character.colour.eyes.*
+import macro303.character.colour.hair.*
+import macro303.character.colour.skin.*
+import macro303.character.memento.*
+import macro303.character.name.*
+import macro303.character.quirk.*
+import macro303.character.superstition.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -24,9 +24,9 @@ object Builder {
 			build: Build = rollBuild(homeworld = homeworld),
 			ageStatus: AgeStatus = rollAgeStatus(homeworld = homeworld),
 			age: Int = rollAge(ageStatus = ageStatus),
-			skinColour: Colour = rollSkinColour(homeworld = homeworld),
-			hairColour: Colour = rollHairColour(homeworld = homeworld),
-			eyeColour: Colour = rollEyeColour(homeworld = homeworld),
+			skinColour: Skin = rollSkinColour(homeworld = homeworld),
+			hairColour: Hair = rollHairColour(homeworld = homeworld),
+			eyeColour: Eyes = rollEyeColour(homeworld = homeworld),
 			quirks: ArrayList<Quirk> = ArrayList(),
 			superstition: Superstition = rollSuperstition(homeworld = homeworld),
 			homeworldMemento: Memento = rollHomeworldMemento(homeworld = homeworld),
@@ -81,36 +81,36 @@ object Builder {
 		return 10.rollDice() + (ageStatus.multiplier)
 	}
 
-	private fun rollSkinColour(homeworld: Homeworld): Colour {
+	private fun rollSkinColour(homeworld: Homeworld): Skin {
 		return when (homeworld) {
-			Homeworld.FERAL_WORLD -> randomSelection(items = FeralSkin.values()) as Colour
-			Homeworld.FORGE_WORLD -> randomSelection(items = ForgeSkin.values()) as Colour
-			Homeworld.HIGHBORN -> randomSelection(items = HighbornSkin.values()) as Colour
-			Homeworld.HIVE_WORLD -> randomSelection(items = HiveSkin.values()) as Colour
-			Homeworld.SHRINE_WORLD -> randomSelection(items = ShrineSkin.values()) as Colour
-			Homeworld.VOIDBORN -> randomSelection(items = VoidbornSkin.values()) as Colour
+			Homeworld.FERAL_WORLD -> randomSelection(items = FeralSkin.values()) as Skin
+			Homeworld.FORGE_WORLD -> randomSelection(items = ForgeSkin.values()) as Skin
+			Homeworld.HIGHBORN -> randomSelection(items = HighbornSkin.values()) as Skin
+			Homeworld.HIVE_WORLD -> randomSelection(items = HiveSkin.values()) as Skin
+			Homeworld.SHRINE_WORLD -> randomSelection(items = ShrineSkin.values()) as Skin
+			Homeworld.VOIDBORN -> randomSelection(items = VoidbornSkin.values()) as Skin
 		}
 	}
 
-	private fun rollHairColour(homeworld: Homeworld): Colour {
+	private fun rollHairColour(homeworld: Homeworld): Hair {
 		return when (homeworld) {
-			Homeworld.FERAL_WORLD -> randomSelection(items = FeralHair.values()) as Colour
-			Homeworld.FORGE_WORLD -> randomSelection(items = ForgeHair.values()) as Colour
-			Homeworld.HIGHBORN -> randomSelection(items = HighbornHair.values()) as Colour
-			Homeworld.HIVE_WORLD -> randomSelection(items = HiveHair.values()) as Colour
-			Homeworld.SHRINE_WORLD -> randomSelection(items = ShrineHair.values()) as Colour
-			Homeworld.VOIDBORN -> randomSelection(items = VoidbornHair.values()) as Colour
+			Homeworld.FERAL_WORLD -> randomSelection(items = FeralHair.values()) as Hair
+			Homeworld.FORGE_WORLD -> randomSelection(items = ForgeHair.values()) as Hair
+			Homeworld.HIGHBORN -> randomSelection(items = HighbornHair.values()) as Hair
+			Homeworld.HIVE_WORLD -> randomSelection(items = HiveHair.values()) as Hair
+			Homeworld.SHRINE_WORLD -> randomSelection(items = ShrineHair.values()) as Hair
+			Homeworld.VOIDBORN -> randomSelection(items = VoidbornHair.values()) as Hair
 		}
 	}
 
-	private fun rollEyeColour(homeworld: Homeworld): Colour {
+	private fun rollEyeColour(homeworld: Homeworld): Eyes {
 		return when (homeworld) {
-			Homeworld.FERAL_WORLD -> randomSelection(items = FeralEyes.values()) as Colour
-			Homeworld.FORGE_WORLD -> randomSelection(items = ForgeEyes.values()) as Colour
-			Homeworld.HIGHBORN -> randomSelection(items = HighbornEyes.values()) as Colour
-			Homeworld.HIVE_WORLD -> randomSelection(items = HiveEyes.values()) as Colour
-			Homeworld.SHRINE_WORLD -> randomSelection(items = ShrineEyes.values()) as Colour
-			Homeworld.VOIDBORN -> randomSelection(items = VoidbornEyes.values()) as Colour
+			Homeworld.FERAL_WORLD -> randomSelection(items = FeralEyes.values()) as Eyes
+			Homeworld.FORGE_WORLD -> randomSelection(items = ForgeEyes.values()) as Eyes
+			Homeworld.HIGHBORN -> randomSelection(items = HighbornEyes.values()) as Eyes
+			Homeworld.HIVE_WORLD -> randomSelection(items = HiveEyes.values()) as Eyes
+			Homeworld.SHRINE_WORLD -> randomSelection(items = ShrineEyes.values()) as Eyes
+			Homeworld.VOIDBORN -> randomSelection(items = VoidbornEyes.values()) as Eyes
 		}
 	}
 

@@ -1,7 +1,16 @@
 package macro303.character
 
-import macro303.character.Aptitude.CharacteristicAptitude.*
 import macro303.character.ageStatus.AgeStatus
+import macro303.character.aptitude.CharacterAptitude
+import macro303.character.aptitude.CharacterAptitude.*
+import macro303.character.build.Build
+import macro303.character.colour.eyes.Eyes
+import macro303.character.colour.hair.Hair
+import macro303.character.colour.skin.Skin
+import macro303.character.memento.Memento
+import macro303.character.name.Name
+import macro303.character.quirk.Quirk
+import macro303.character.superstition.Superstition
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -13,9 +22,9 @@ data class Character(
 		val build: Build,
 		val ageStatus: AgeStatus,
 		val age: Int,
-		val skinColour: Colour,
-		val hairColour: Colour,
-		val eyeColour: Colour,
+		val skinColour: Skin,
+		val hairColour: Hair,
+		val eyeColour: Eyes,
 		val quirks: ArrayList<Quirk>,
 		val superstition: Superstition,
 		val homeworldMemento: Memento,
@@ -24,7 +33,7 @@ data class Character(
 		val name: Name,
 		val divination: Divination
 ) {
-	private val characteristics: EnumMap<Aptitude.CharacteristicAptitude, Int> = EnumMap(Aptitude.CharacteristicAptitude::class.java)
+	private val characteristics: EnumMap<CharacterAptitude, Int> = EnumMap(CharacterAptitude::class.java)
 	var totalWounds: Int
 	var aptitudes: ArrayList<String> = ArrayList()
 
@@ -127,7 +136,7 @@ data class Character(
 		println("Age = $age")
 		println("\tStatus = ${ageStatus.value}")
 		println("Colours:")
-		println("\tSkin = ${skinColour.value}")
+		println("\tskin = ${skinColour.value}")
 		println("\tHair = ${hairColour.value}")
 		println("\tEye = ${eyeColour.value}")
 		println("Quirks:")
