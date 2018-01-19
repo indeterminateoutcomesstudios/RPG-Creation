@@ -27,6 +27,14 @@ enum class SkillAptitude(
 		ADEPTUS_ASTARTES(
 			value = "Adeptus Astartes",
 			description = "Information concerning the physiologically and psychologically modified Space Marines, the Imperium’s most potent defenders. Few outside their ranks gain such knowledge, which can include the culture of a Chapter and its history, wargear, unusual physiology, and battle cants."
+		),
+		ADEPTUS_ASTRA_TELEPATHICA(
+			value = "Adeptus Astra Telepathica",
+			description = "Knowledge of how psykers are gathered and sanctioned, including how Astropaths are used throughout the Imperium, and the basics of astro-telepathy."
+		),
+		ADEPTUS_MECHANICUS(
+			value = "Adeptus Mechanicus",
+			description = "A general understanding of the symbols and practices that the Cult of the Machine God commonly uses. Administratum: Broad knowledge of the labyrinthine workings, rules, traditions, and dictates of the Adeptus Administratum"
 		);
 
 		override val characteristic: CharacterAptitude = INTELLIGENCE
