@@ -4,7 +4,7 @@ _TODO Description_
 
 ## Dependencies
 
-- JDK 1.8
+- JDK 9.0
 - [kotlin-stdlib-jdk8: 1.2.20](https://kotlinlang.org/)
 - [junit: RELEASE {4.12} (test)](http://junit.org/junit4/)
 - [kotlin-test-junit: 1.2.20 (test)](https://kotlinlang.org/)  

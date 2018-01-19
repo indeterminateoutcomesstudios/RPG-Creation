@@ -76,6 +76,7 @@ data class Character(
 		return rolls[1] + if (count == 1) rolls[2] else rolls[0]
 	}
 
+	@Suppress("NON_EXHAUSTIVE_WHEN")
 	private fun divinationUpdateStats() {
 		when (divination) {
 			Divination.TRUST -> {
