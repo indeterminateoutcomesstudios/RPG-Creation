@@ -13,7 +13,9 @@ enum class SkillAptitude(
 	AWARENESS(value = "Awareness", characteristic = PERCEPTION, aptitudes = arrayOf(PERCEPTION, FIELDCRAFT)),
 	CHARM(value = "Charm", characteristic = FELLOWSHIP, aptitudes = arrayOf(FELLOWSHIP, SOCIAL)),
 	COMMAND(value = "Command", characteristic = FELLOWSHIP, aptitudes = arrayOf(FELLOWSHIP, LEADERSHIP)),
-	COMMERCE(value = "Commerce", characteristic = INTELLIGENCE, aptitudes = arrayOf(INTELLIGENCE, KNOWLEDGE));
+	COMMERCE(value = "Commerce", characteristic = INTELLIGENCE, aptitudes = arrayOf(INTELLIGENCE, KNOWLEDGE)),
+	DECEIVE(value = "Deceive", characteristic = FELLOWSHIP, aptitudes = arrayOf(FELLOWSHIP, SOCIAL)),
+	DODGE(value = "Dodge", characteristic = AGILITY, aptitudes = arrayOf(AGILITY, DEFENCE));
 
 	enum class CommonLore(override val value: String, val description: String) : Skill {
 		ADEPTA_SORORITAS(
@@ -103,5 +105,63 @@ enum class SkillAptitude(
 
 		override val characteristic: CharacterAptitude = INTELLIGENCE
 		override val aptitudes: Array<Aptitude> = arrayOf(INTELLIGENCE, GENERAL)
+	}
+
+	enum class ForbiddenLore(override val value: String, val description: String) : Skill {
+		ARCHAEOTECH(
+			value = "Archaeotech",
+			description = "Knowledge of the great, lost tech devices of times past, and clues to their mysterious functions and purposes."
+		),
+		CHAOS_SPACE_MARINES(
+			value = "Chaos Space Marines",
+			description = "Information concerning those Adeptus Astartes who turned traitor, as well as the paths they embrace and the equipment they use."
+		),
+		CRIMINAL_CARTELS_AND_SMUGGLERS(
+			value = "Criminal Cartels and Smugglers",
+			description = "Information regarding organised groups that flout the Emperor’s Law in Askellon, such as those engaging in the Faceless Trade of proscribed artefacts."
+		),
+		DAEMONOLOGY(
+			value = "Daemonology",
+			description = "Terrible knowledge about some of the most infamous Warp entities and their twisted physical manifestations."
+		),
+		HERESY(
+			value = "Heresy",
+			description = "Wisdom concerning acts and practices deemed anathema by the Imperium, plus the most contemptible heretics of history and their infamous and deplorable acts."
+		),
+		THE_HORUS_HERESY_AND_THE_LONG_WAR(
+			value = "The Horus Heresy and the Long War",
+			description = "The origins and history of the 10,000 year long struggle between the forces of the Ruinous Powers and the Imperium of Man."
+		),
+		INQUISITION(
+			value = "Inquisition",
+			description = "Though Acolytes exist to serve an Inquisitor, knowing too much about their masters can be dangerous. Those who chose to study the history and nature of the Inquisition’s authority often are exposed to information that can forever ruin their minds."
+		),
+		MUTANTS(
+			value = "Mutants",
+			description = "The study of stable and unstable mutations within humanity, their cancerous influence and mutagenic development over time, and some of the studies and tomes on the topic."
+		),
+		OFFICIO_ASSASSINORUM(
+			value = "Officio Assassinorum",
+			description = "This highly secretive agency exists to eliminate powerful, often singular threats to the Imperium, such as renegade planetary governors or apostate preachers. Acolytes who dare study the organisation may become familiar with their techniques and wargear."
+		),
+		PIRATES(
+			value = "Pirates",
+			description = "Knowledge of the scourges of the Warp lanes throughout Askellon, their tactics, infamous vessels, and notorious captains."
+		),
+		PSYKERS(
+			value = "Psykers",
+			description = "Skill in identifying psykers, the effects of their unnatural powers, their dangers, and the general extent of their capabilities."
+		),
+		THE_WARP(
+			value = "The Warp",
+			description = "An understanding of the energy of the Immaterium, its interaction and interrelation with realspace, and how its tides and eddies affect travel between the stars."
+		),
+		XENOS(
+			value = "Xenos",
+			description = "Knowledge of the minor and major alien species known to the Imperium, the threat they pose to Mankind, and their general appearance. The character should specify which xenos race in which he is specialising (for example, Xenos–Craftworld Eldar or Xenos–Orks) as each is a different Specialisation."
+		);
+
+		override val characteristic: CharacterAptitude = INTELLIGENCE
+		override val aptitudes: Array<Aptitude> = arrayOf(INTELLIGENCE, KNOWLEDGE)
 	}
 }
