@@ -165,7 +165,11 @@ object Builder {
 					null
 				)
 			) as Quirk?
-			Homeworld.HIVE_WORLD -> randomSelection(items = (HiveQuirk.values() as Array<HiveQuirk?>).plusElement(null)) as Quirk?
+			Homeworld.HIVE_WORLD -> randomSelection(
+				items = (HiveQuirk.values() as Array<HiveQuirk?>).plusElement(
+					null
+				)
+			) as Quirk?
 			Homeworld.SHRINE_WORLD -> randomSelection(
 				items = (ShrineQuirk.values() as Array<ShrineQuirk?>).plusElement(
 					null
