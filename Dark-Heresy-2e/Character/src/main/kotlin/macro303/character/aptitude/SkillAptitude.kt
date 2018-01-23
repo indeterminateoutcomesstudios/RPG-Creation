@@ -8,14 +8,141 @@ enum class SkillAptitude(
 	override val characteristic: CharacterAptitude,
 	override val aptitudes: Array<Aptitude>
 ) : Skill {
-	ACROBATICS(value = "Acrobatics", characteristic = AGILITY, aptitudes = arrayOf(AGILITY, GENERAL)),
-	ATHLETICS(value = "Athletics", characteristic = STRENGTH, aptitudes = arrayOf(STRENGTH, GENERAL)),
-	AWARENESS(value = "Awareness", characteristic = PERCEPTION, aptitudes = arrayOf(PERCEPTION, FIELDCRAFT)),
-	CHARM(value = "Charm", characteristic = FELLOWSHIP, aptitudes = arrayOf(FELLOWSHIP, SOCIAL)),
-	COMMAND(value = "Command", characteristic = FELLOWSHIP, aptitudes = arrayOf(FELLOWSHIP, LEADERSHIP)),
-	COMMERCE(value = "Commerce", characteristic = INTELLIGENCE, aptitudes = arrayOf(INTELLIGENCE, KNOWLEDGE)),
-	DECEIVE(value = "Deceive", characteristic = FELLOWSHIP, aptitudes = arrayOf(FELLOWSHIP, SOCIAL)),
-	DODGE(value = "Dodge", characteristic = AGILITY, aptitudes = arrayOf(AGILITY, DEFENCE));
+	ACROBATICS(
+		value = "Acrobatics",
+		characteristic = AGILITY,
+		aptitudes = arrayOf(AGILITY, GENERAL)
+	),
+	ATHLETICS(
+		value = "Athletics",
+		characteristic = STRENGTH,
+		aptitudes = arrayOf(STRENGTH, GENERAL)
+	),
+	AWARENESS(
+		value = "Awareness",
+		characteristic = PERCEPTION,
+		aptitudes = arrayOf(PERCEPTION, FIELDCRAFT)
+	),
+	CHARM(
+		value = "Charm",
+		characteristic = FELLOWSHIP,
+		aptitudes = arrayOf(FELLOWSHIP, SOCIAL)
+	),
+	COMMAND(
+		value = "Command",
+		characteristic = FELLOWSHIP,
+		aptitudes = arrayOf(FELLOWSHIP, LEADERSHIP)
+	),
+	COMMERCE(
+		value = "Commerce",
+		characteristic = INTELLIGENCE,
+		aptitudes = arrayOf(INTELLIGENCE, KNOWLEDGE)
+	),
+	DECEIVE(
+		value = "Deceive",
+		characteristic = FELLOWSHIP,
+		aptitudes = arrayOf(FELLOWSHIP, SOCIAL)
+	),
+	DODGE(
+		value = "Dodge",
+		characteristic = AGILITY,
+		aptitudes = arrayOf(AGILITY, DEFENCE)
+	),
+	INQUIRY(
+		value = "Inquiry",
+		characteristic = FELLOWSHIP,
+		aptitudes = arrayOf(FELLOWSHIP, SOCIAL)
+	),
+	INTERROGATION(
+		value = "Interrogation",
+		characteristic = WILLPOWER,
+		aptitudes = arrayOf(WILLPOWER, SOCIAL)
+	),
+	INTIMIDATE(
+		value = "Intimidate",
+		characteristic = STRENGTH,
+		aptitudes = arrayOf(STRENGTH, SOCIAL)
+	),
+	LOGIC(
+		value = "Logic",
+		characteristic = INTELLIGENCE,
+		aptitudes = arrayOf(INTELLIGENCE, KNOWLEDGE)
+	),
+	MEDICAE(
+		value = "Medicae",
+		characteristic = INTELLIGENCE,
+		aptitudes = arrayOf(INTELLIGENCE, FIELDCRAFT)
+	),
+	NAVIGATE_SURFACE(
+		value = "Navigate (Surface)",
+		characteristic = INTELLIGENCE,
+		aptitudes = arrayOf(INTELLIGENCE, FIELDCRAFT)
+	),
+	NAVIGATE_STELLAR(
+		value = "Navigate (Stellar)",
+		characteristic = INTELLIGENCE,
+		aptitudes = arrayOf(INTELLIGENCE, FIELDCRAFT)
+	),
+	NAVIGATE_WARP(
+		value = "Navigate (Warp)",
+		characteristic = INTELLIGENCE,
+		aptitudes = arrayOf(INTELLIGENCE, FIELDCRAFT)
+	),
+	OPERATE_SURFACE(
+		value = "Operate (Surface)",
+		characteristic = AGILITY,
+		aptitudes = arrayOf(AGILITY, FIELDCRAFT)
+	),
+	OPERATE_AERONAUTICA(
+		value = "Operate (Aeronautica)",
+		characteristic = AGILITY,
+		aptitudes = arrayOf(AGILITY, FIELDCRAFT)
+	),
+	OPERATE_VOIDSHIP(
+		value = "Operate (Voidship)",
+		characteristic = AGILITY,
+		aptitudes = arrayOf(AGILITY, FIELDCRAFT)
+	),
+	PARRY(
+		value = "Parry",
+		characteristic = WEAPON_SKILL,
+		aptitudes = arrayOf(WEAPON_SKILL, DEFENCE)
+	),
+	PSYNISCIENCE(
+		value = "Psyniscience",
+		characteristic = PERCEPTION,
+		aptitudes = arrayOf(PERCEPTION, PSYKER)
+	),
+	SCRUTINY(
+		value = "Scrutiny",
+		characteristic = PERCEPTION,
+		aptitudes = arrayOf(PERCEPTION, GENERAL)
+	),
+	SECURITY(
+		value = "Security",
+		characteristic = INTELLIGENCE,
+		aptitudes = arrayOf(INTELLIGENCE, TECH)
+	),
+	SLEIGHT_OF_HAND(
+		value = "Sleight of Hand",
+		characteristic = AGILITY,
+		aptitudes = arrayOf(AGILITY, KNOWLEDGE)
+	),
+	STEALTH(
+		value = "Stealth",
+		characteristic = AGILITY,
+		aptitudes = arrayOf(AGILITY, FIELDCRAFT)
+	),
+	SURVIVAL(
+		value = "Survival",
+		characteristic = PERCEPTION,
+		aptitudes = arrayOf(PERCEPTION, FIELDCRAFT)
+	),
+	TECH_USE(
+		value = "Tech-Use",
+		characteristic = INTELLIGENCE,
+		aptitudes = arrayOf(INTELLIGENCE, TECH)
+	);
 
 	enum class CommonLore(override val value: String, val description: String) : Skill {
 		ADEPTA_SORORITAS(
@@ -163,5 +290,203 @@ enum class SkillAptitude(
 
 		override val characteristic: CharacterAptitude = INTELLIGENCE
 		override val aptitudes: Array<Aptitude> = arrayOf(INTELLIGENCE, KNOWLEDGE)
+	}
+
+	enum class Linguistics(override val value: String, val description: String) : Skill {
+		CHAPTER_RUNES(
+			value = "Chapter Runes",
+			description = "Each Chapter of the Adeptus Astartes has its own form of ciphers used to communicate between its warriors. These are closely-guarded secrets that are almost never taught to those outside the Chapter or Legion, and as such form a reliable way for those within the Chapter or Legion to quickly identify each other."
+		),
+		CHAOS_MARKS(
+			value = "Chaos Marks",
+			description = "There are countless symbols and signs that followers of the various Ruinous Powers use to share their dark secrets, each with its own subtle meaning or specific purpose."
+		),
+		ELDAR(
+			value = "Eldar",
+			description = "Though no human can hope to capture the subtle nuances and sub-tones of this extremely complex and ancient language, it is enough to make one’s meaning clear."
+		),
+		HIGH_GOTHIC(
+			value = "High Gothic",
+			description = "The official language of the Imperium, used by Imperial officials, nobility, members of the Ecclesiarchy, and those involved in high-level negotiations."
+		),
+		IMPERIAL_CODES(
+			value = "Imperial Codes",
+			description = "Both the Imperial Navy and the Imperial Guard employ a battle language which comprises mostly numbers and acronyms. Incomprehensible to those who do not know its meaning, it allows them to quickly signal for reinforcements, identify enemies, and call down fire support or artillery barrages."
+		),
+		LOW_GOTHIC(
+			value = "Low Gothic",
+			description = "The common tongue of the Imperium, used by the countless billions of ordinary citizens."
+		),
+		MERCENARY_CANT(
+			value = "Mercenary Cant",
+			description = "Many mercenary companies operate across Askellon, and each has an abbreviated, clipped battle language for orders and commands. Though there are some commonalities, each is essentially unique."
+		),
+		NECRONTYR(
+			value = "Necrontyr",
+			description = "The ancient and mechanical tones that the arisen Necron lords use to communicate with each other and their underlings as part of their reconquest of the galaxy."
+		),
+		ORK(
+			value = "Ork",
+			description = "More grunts and physical violence than an actual language, it is possible for humans to speak and understand this brutal tongue, though it is doubtful they would be able to survive a conversation."
+		),
+		TECHNA_LINGUA(
+			value = "Techna-Lingua",
+			description = "The language of the Adeptus Mechanicus, this binary cant has been optimised for rapid and efficient communication of technical data and servitor commands."
+		),
+		TAU(
+			value = "Tau",
+			description = "The language of the Tau Empire, spoken by the Tau themselves and understood by their multitude of alien subjects."
+		),
+		UNDERWORLD(
+			value = "Underworld",
+			description = "Crime lords have used ciphers for countless millennia, and their sophistication has only increased over time. Each organization, such as the Trade Sable, uses its own unique codes and glyphs to deter competition."
+		),
+		XENOS_MARKINGS(
+			value = "Xenos Markings",
+			description = "Many aliens make extensive use of symbolism and icons. Understanding these markings allows a broad understanding of their meaning such as where a race has marked its boundaries or areas marked as “dangerous.”"
+		);
+
+		override val characteristic: CharacterAptitude = INTELLIGENCE
+		override val aptitudes: Array<Aptitude> = arrayOf(INTELLIGENCE, GENERAL)
+	}
+
+	enum class ScholasticLore(override val value: String, val description: String) : Skill {
+		ASTROMANCY(
+			value = "Astromancy",
+			description = "A knowledge of stars, singularities, and the worlds around them, as well as theoretical understanding of how to use magnascopes, astrolithic charts, and the like."
+		),
+		BEASTS(
+			value = "Beasts",
+			description = "An understanding of the genus and families of animals and familiarity with the characteristics and appearances of the many semi-sentient creatures to be found across the sector."
+		),
+		BUREAUCRACY(
+			value = "Bureaucracy",
+			description = "A familiarity with the rules and regulations involved with Askellian governments, particularly the Adeptus Administratum, and their many and varied departments, bureaus, and polices."
+		),
+		CHYMISTRY(
+			value = "Chymistry",
+			description = "A knowledge of chemicals, their alchemical applications in a number of uses, and their prevalence or scarcity throughout the Imperium."
+		),
+		CRYPTOLOGY(
+			value = "Cryptology",
+			description = "An understanding of codes, ciphers, cryptographs, secret languages, and numerical keys. This may be used to either create or decipher encryptions."
+		),
+		HERALDRY(
+			value = "Heraldry",
+			description = "A grasp of the principles and devices of heraldry, as well as a knowledge of the most common seals and heraldic devices used by the Askellon’s noble houses and families."
+		),
+		IMPERIAL_WARRANTS(
+			value = "Imperial Warrants",
+			description = "Information concerning the establishment, legal scope, and use of the warrants granted to Rogue Traders, as well as the best-known and dynastic warrants of the Imperium."
+		),
+		JUDGEMENT(
+			value = "Judgement",
+			description = "Knowledge of the proper sentences for the multitude of crimes and heresies punishable by Imperial law."
+		),
+		LEGEND(
+			value = "Legend",
+			description = "Going beyond archaic knowledge, this encompasses momentous portions of mythic history, such as the Dark Age of Technology, the Age of Strife, the Great Crusade, and the Horus Heresy, retold in the form of epic, apocryphal fables."
+		),
+		NUMEROLOGY(
+			value = "Numerology",
+			description = "An understanding of the mysterious link between numbers and the physical universe, from low kharmic theory to the infamous Kappellax Correlation."
+		),
+		OCCULT(
+			value = "Occult",
+			description = "An understanding of obscure and hermetic (though not clearly heretical) rituals, theories, and superstitions, as well as the better-known mystical uses of occult items."
+		),
+		PHILOSOPHY(
+			value = "Philosophy",
+			description = "Knowledge concerning the theories of thought, belief, existence, and other intangibles. As it also includes logic and debate, it may be used for crafting arguments or creating philosophical tracts."
+		),
+		TACTICA_IMPERIALIS(
+			value = "Tactica Imperialis",
+			description = "The codified military doctrines of the Imperial Guard and Imperial Navy, as well as other systems of troop deployment and battle techniques used by the Imperium. This knowledge may be used to devise a battle plan or deduce the likely flow of war fought by Imperial forces."
+		);
+
+		override val characteristic: CharacterAptitude = INTELLIGENCE
+		override val aptitudes: Array<Aptitude> = arrayOf(INTELLIGENCE, KNOWLEDGE)
+	}
+
+	enum class Trade(override val value: String, val description: String) : Skill {
+		AGRI(
+			value = "Agri",
+			description = "Used to grow, care for, and harvest crops and animals."
+		),
+		ARCHAEOLOGIST(
+			value = "Archaeologist",
+			description = "Used to locate, examine, and analyse ancient ruins and artefacts."
+		),
+		ARMOURER(
+			value = "Armourer",
+			description = "Used to design, upgrade, and forge weaponry, from personal arms to starship batteries."
+		),
+		ASTROGRAPHER(
+			value = "Astrographer",
+			description = "Used to create two- and three-dimensional representations of stellar locations and Warp routes."
+		),
+		CHYMIST(
+			value = "Chymist",
+			description = "Used to create poisons, drugs, and a wide variety of other compounds."
+		),
+		CRYPTOGRAPHER(
+			value = "Cryptographer",
+			description = "Used to create or decode complicated ciphers, codes, and other puzzles."
+		),
+		COOK(
+			value = "Cook",
+			description = "Used to cook meals and determine if scavenged food is edible."
+		),
+		EXPLORATOR(
+			value = "Explorator",
+			description = "Used in the exploration of unknown stellar regions."
+		),
+		LINGUIST(
+			value = "Linguist",
+			description = "Used to learn or decipher new languages, both spoken and written, and even create new ones in some cases."
+		),
+		LOREMANCER(
+			value = "Loremancer",
+			description = "Used to recount events in a variety of ways, from dry recitations or texts to epic operas or statuary"
+		),
+		MORTICATOR(
+			value = "Morticator",
+			description = "Used to prepare, preserve, and often render down corpse remains into ingredients for a variety of preparations."
+		),
+		PERFORMANCER(
+			value = "Performancer",
+			description = "Used to perform for audiences in a variety of entertaining art forms, often using dance, song, and poetry."
+		),
+		PROSPECTOR(
+			value = "Prospector",
+			description = "Used to find and identify valuable minerals."
+		),
+		SCRIMSHAWER(
+			value = "Scrimshawer",
+			description = "Used to inscribe patterns, text, and art onto a variety of materials."
+		),
+		SCULPTOR(
+			value = "Sculptor",
+			description = "Used to create inspiring works of art in stone, metal, and other materials, often as part of Imperial edifices."
+		),
+		SHIPWRIGHT(
+			value = "Shipwright",
+			description = "Used to design, upgrade, and manufacture void-capable vessels."
+		),
+		SOOTHSAYER(
+			value = "Soothsayer",
+			description = "Used to “foretell” the future by a number of interpretative arts, though its effectiveness is suspect."
+		),
+		TECHNOMAT(
+			value = "Technomat",
+			description = "Used to maintain and repair technological devices, but through rote memorization rather than true understanding or comprehension."
+		),
+		VOIDFARER(
+			value = "Voidfarer",
+			description = "Used in the day-to-day operation, logistics, and defence of starships."
+		);
+
+		override val characteristic: CharacterAptitude = INTELLIGENCE
+		override val aptitudes: Array<Aptitude> = arrayOf(INTELLIGENCE, GENERAL)
 	}
 }

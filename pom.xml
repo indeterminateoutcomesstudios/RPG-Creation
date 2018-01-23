@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>nz.co.macro303</groupId>
 	<artifactId>rpg-creation</artifactId>
-	<version>0.1.1-21</version>
+	<version>0.1.1-22</version>
 	<packaging>pom</packaging>
 	<name>RPG Creation</name>
-	
+
 	<modules>
 		<module>dark-heresy-2e</module>
 		<module>dungeons-and-dragons-5e</module>
@@ -15,10 +16,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.release>9</maven.compiler.release>
-		<maven.compiler.source>1.9</maven.compiler.source>
-		<maven.compiler.target>1.9</maven.compiler.target>
-		<kotlin.version>1.2.20</kotlin.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<kotlin.version>1.2.21</kotlin.version>
 		<kotlin.compiler.incremental>true</kotlin.compiler.incremental>
 		<kotlin.compiler.languageVersion>1.2</kotlin.compiler.languageVersion>
 		<kotlin.compiler.apiVersion>1.2</kotlin.compiler.apiVersion>
@@ -30,24 +30,6 @@
 			<groupId>org.jetbrains.kotlin</groupId>
 			<artifactId>kotlin-stdlib-jdk8</artifactId>
 			<version>${kotlin.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>RELEASE</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jetbrains.kotlin</groupId>
-			<artifactId>kotlin-test-junit</artifactId>
-			<version>${kotlin.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-			<version>RELEASE</version>
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
