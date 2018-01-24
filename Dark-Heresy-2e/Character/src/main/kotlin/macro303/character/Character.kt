@@ -3,6 +3,7 @@ package macro303.character
 import macro303.character.ageStatus.AgeStatus
 import macro303.character.aptitude.CharacterAptitude
 import macro303.character.aptitude.CharacterAptitude.*
+import macro303.character.aptitude.Skill
 import macro303.character.aptitude.SkillAptitude
 import macro303.character.build.Build
 import macro303.character.colour.eyes.Eyes
@@ -14,6 +15,7 @@ import macro303.character.quirk.Quirk
 import macro303.character.superstition.Superstition
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.LinkedHashSet
 
 data class Character(
 	val isMale: Boolean,
@@ -38,6 +40,7 @@ data class Character(
 	private val characterAptitudes: EnumMap<CharacterAptitude, Int> = EnumMap(CharacterAptitude::class.java)
 	private val skillAptitudes: EnumMap<SkillAptitude, Int> = EnumMap(SkillAptitude::class.java)
 	var totalWounds: Int
+	val talents: LinkedHashSet<Talent> = LinkedHashSet()
 
 	init {
 		rollStats()
@@ -136,17 +139,17 @@ data class Character(
 		println("Age = $age")
 		println("\tStatus = ${ageStatus.value}")
 		println("Colours:")
-		println("\tskin = ${skinColour.value}")
+		println("\tSkin = ${skinColour.value}")
 		println("\tHair = ${hairColour.value}")
-		println("\tEye = ${eyeColour.value}")
+		println("\tEyes = ${eyeColour.value}")
 		println("Quirks:")
-		quirks.forEach { quirk -> println("\t${quirk.value}") }
+		quirks.sortedWith(compareBy(Quirk::value)).forEach { println("\t${it.value}") }
 		println("Superstition = ${superstition.value}")
 		println("\tMeaning = ${superstition.description}")
 		println("Divination = ${divination.value}")
 		println("\tEffect = ${divination.effect}")
 		println("Stats:")
-		CharacterAptitude.values().forEach {
+		CharacterAptitude.values().sortedWith(compareBy(CharacterAptitude::value)).forEach {
 			println("\t${it.value} = ${characteristics[it]}")
 			if (it != INFLUENCE) {
 				println("\t\tAptitudes = ${Arrays.toString(it.aptitudes)}")
@@ -154,6 +157,13 @@ data class Character(
 			}
 		}
 		println("\tTotal Wounds = $totalWounds")
+		println("Skills:")
+		skillAptitudes.toSortedMap(compareBy(Skill::value)).forEach {
+			println("\t${it.key.value} = ${it.value}")
+			println("\t\tAptitudes = ${Arrays.toString(it.key.aptitudes)}")
+		}
+		println("Talents:")
+		talents.sortedWith(compareBy(Talent::tier, Talent::value)).forEach { println("\t${it.value}") }
 	}
 
 	private fun Int.rollDice() = Random().nextInt(this) + 1
