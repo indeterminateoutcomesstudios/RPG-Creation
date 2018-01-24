@@ -3,6 +3,7 @@ package macro303.character
 import macro303.character.ageStatus.AgeStatus
 import macro303.character.aptitude.CharacterAptitude
 import macro303.character.aptitude.CharacterAptitude.*
+import macro303.character.aptitude.SkillAptitude
 import macro303.character.build.Build
 import macro303.character.colour.eyes.Eyes
 import macro303.character.colour.hair.Hair
@@ -34,8 +35,9 @@ data class Character(
 	val divination: Divination
 ) {
 	private val characteristics: EnumMap<CharacterAptitude, Int> = EnumMap(CharacterAptitude::class.java)
+	private val characterAptitudes: EnumMap<CharacterAptitude, Int> = EnumMap(CharacterAptitude::class.java)
+	private val skillAptitudes: EnumMap<SkillAptitude, Int> = EnumMap(SkillAptitude::class.java)
 	var totalWounds: Int
-	var aptitudes: ArrayList<String> = ArrayList()
 
 	init {
 		rollStats()
@@ -44,26 +46,13 @@ data class Character(
 	}
 
 	private fun rollStats() {
-		characteristics[WEAPON_SKILL] = rollStat(count = if (homeworld.pos.contains(WEAPON_SKILL)) 1 else if (homeworld.neg == WEAPON_SKILL) -1 else 0) +
-				20
-		characteristics[BALLISTIC_SKILL] = rollStat(count = if (homeworld.pos.contains(BALLISTIC_SKILL)) 1 else if (homeworld.neg == BALLISTIC_SKILL) -1 else 0) +
-				20
-		characteristics[STRENGTH] = rollStat(count = if (homeworld.pos.contains(STRENGTH)) 1 else if (homeworld.neg == STRENGTH) -1 else 0) +
-				20
-		characteristics[TOUGHNESS] = rollStat(count = if (homeworld.pos.contains(TOUGHNESS)) 1 else if (homeworld.neg == TOUGHNESS) -1 else 0) +
-				20
-		characteristics[AGILITY] = rollStat(count = if (homeworld.pos.contains(AGILITY)) 1 else if (homeworld.neg == AGILITY) -1 else 0) +
-				20
-		characteristics[INTELLIGENCE] = rollStat(count = if (homeworld.pos.contains(INTELLIGENCE)) 1 else if (homeworld.neg == INTELLIGENCE) -1 else 0) +
-				20
-		characteristics[PERCEPTION] = rollStat(count = if (homeworld.pos.contains(PERCEPTION)) 1 else if (homeworld.neg == PERCEPTION) -1 else 0) +
-				20
-		characteristics[WILLPOWER] = rollStat(count = if (homeworld.pos.contains(WILLPOWER)) 1 else if (homeworld.neg == WILLPOWER) -1 else 0) +
-				20
-		characteristics[FELLOWSHIP] = rollStat(count = if (homeworld.pos.contains(FELLOWSHIP)) 1 else if (homeworld.neg == FELLOWSHIP) -1 else 0) +
-				20
-		characteristics[INFLUENCE] = rollStat(count = if (homeworld.pos.contains(INFLUENCE)) 1 else if (homeworld.neg == INFLUENCE) -1 else 0) +
-				20
+		CharacterAptitude.values().forEach {
+			characteristics[it] = rollStat(
+				count = if (homeworld.pos.contains(it)) 1 else if (homeworld.neg == it) -1 else 0
+			) + 20
+		}
+		CharacterAptitude.values().forEach { aptitude -> characterAptitudes[aptitude] = 0 }
+		SkillAptitude.values().forEach { aptitude -> skillAptitudes[aptitude] = 0 }
 	}
 
 	private fun rollStat(count: Int): Int {
@@ -157,26 +146,20 @@ data class Character(
 		println("Divination = ${divination.value}")
 		println("\tEffect = ${divination.effect}")
 		println("Stats:")
-		println("\t${WEAPON_SKILL.value} = ${characteristics[WEAPON_SKILL]}")
-		println("\t\tAptitudes = ${Arrays.toString(WEAPON_SKILL.aptitudes)}")
-		println("\t${BALLISTIC_SKILL.value} = ${characteristics[BALLISTIC_SKILL]}")
-		println("\t\tAptitudes = ${Arrays.toString(BALLISTIC_SKILL.aptitudes)}")
-		println("\t${STRENGTH.value} = ${characteristics[STRENGTH]}")
-		println("\t\tAptitudes = ${Arrays.toString(STRENGTH.aptitudes)}")
-		println("\t${TOUGHNESS.value} = ${characteristics[TOUGHNESS]}")
-		println("\t\tAptitudes = ${Arrays.toString(TOUGHNESS.aptitudes)}")
-		println("\t${AGILITY.value} = ${characteristics[AGILITY]}")
-		println("\t\tAptitudes = ${Arrays.toString(AGILITY.aptitudes)}")
-		println("\t${INTELLIGENCE.value} = ${characteristics[INTELLIGENCE]}")
-		println("\t\tAptitudes = ${Arrays.toString(INTELLIGENCE.aptitudes)}")
-		println("\t${PERCEPTION.value} = ${characteristics[PERCEPTION]}")
-		println("\t\tAptitudes = ${Arrays.toString(PERCEPTION.aptitudes)}")
-		println("\t${WILLPOWER.value} = ${characteristics[WILLPOWER]}")
-		println("\t\tAptitudes = ${Arrays.toString(WILLPOWER.aptitudes)}")
-		println("\t${FELLOWSHIP.value} = ${characteristics[FELLOWSHIP]}")
-		println("\t\tAptitudes = ${Arrays.toString(FELLOWSHIP.aptitudes)}")
-		println("\t${INFLUENCE.value} = ${characteristics[INFLUENCE]}")
+		CharacterAptitude.values().forEach {
+			println("\t${it.value} = ${characteristics[it]}")
+			if (it != INFLUENCE) {
+				println("\t\tAptitudes = ${Arrays.toString(it.aptitudes)}")
+				println("\t\tAptitude Level = ${characterAptitudes[it]}")
+			}
+		}
 		println("\tTotal Wounds = $totalWounds")
+	}
+
+	private fun Int.rollDice() = Random().nextInt(this) + 1
+
+	override fun toString(): String {
+		return "Character(isMale=$isMale, homeworld=$homeworld, background=$background, role=$role, build=$build, ageStatus=$ageStatus, age=$age, skinColour=$skinColour, hairColour=$hairColour, eyeColour=$eyeColour, quirks=$quirks, superstition=$superstition, homeworldMemento=$homeworldMemento, backgroundMemento=$backgroundMemento, nameStatus=$nameStatus, name=$name, divination=$divination, characteristics=$characteristics, characterAptitudes=$characterAptitudes, skillAptitudes=$skillAptitudes, totalWounds=$totalWounds)"
 	}
 
 	companion object {
@@ -192,11 +175,5 @@ data class Character(
 					println("Character: $character")
 			}
 		}
-	}
-
-	private fun Int.rollDice() = Random().nextInt(this) + 1
-
-	override fun toString(): String {
-		return "Character(isMale=$isMale, homeworld=$homeworld, background=$background, role=$role, build=$build, ageStatus=$ageStatus, age=$age, skinColour=$skinColour, hairColour=$hairColour, eyeColour=$eyeColour, quirks=$quirks, superstition=$superstition, homeworldMemento=$homeworldMemento, backgroundMemento=$backgroundMemento, nameStatus=$nameStatus, name=$name, totalWounds=$totalWounds, aptitudes=$aptitudes)"
 	}
 }
