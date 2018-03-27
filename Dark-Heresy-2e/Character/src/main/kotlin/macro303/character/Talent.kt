@@ -234,5 +234,55 @@ enum class Talent(val value: String, val tier: Int, val aptitudes: Array<Aptitud
 		value = "Jaded",
 		tier = 1,
 		aptitudes = arrayOf(WILLPOWER, DEFENCE)
+	),
+	KEEN_INTUITION(
+		value = "Keen Intuition",
+		tier = 1,
+		aptitudes = arrayOf(PERCEPTION, SOCIAL)
+	),
+	KILLING_STRIKE(
+		value = "Killing Strike",
+		tier = 2,
+		aptitudes = arrayOf(WEAPON_SKILL, OFFENCE)
+	),
+	LEAP_UP(
+		value = "Leap Up",
+		tier = 1,
+		aptitudes = arrayOf(AGILITY, GENERAL)
+	),
+	LIGHTNING_ATTACK(
+		value = "Lightning Attack",
+		tier = 3,
+		aptitudes = arrayOf(WEAPON_SKILL, FINESSE)
+	),
+	LUMINEN_BLAST(
+		value = "Luminen Blast",
+		tier = 3,
+		aptitudes = arrayOf(BALLISTIC_SKILL, TECH)
+	),
+	LUMINEN_SHOCK(
+		value = "Luminen Shock",
+		tier = 2,
+		aptitudes = arrayOf(WEAPON_SKILL, TECH)
+	),
+	MAGLEV_TRANSCENDENCE(
+		value = "Maglev Transcendence",
+		tier = 2,
+		aptitudes = arrayOf(INTELLIGENCE, TECH)
+	),
+	MARKSMAN(
+		value = "Marksman",
+		tier = 2,
+		aptitudes = arrayOf(BALLISTIC_SKILL, FINESSE)
+	),
+	MASTERY(
+		value = "Mastery",
+		tier = 3,
+		aptitudes = arrayOf(INTELLIGENCE, KNOWLEDGE)
+	),
+	MECHADENDRITE_USE(
+		value = "Mechadendrite Use",
+		tier = 2,
+		aptitudes = arrayOf(INTELLIGENCE, TECH)
 	)
 }
